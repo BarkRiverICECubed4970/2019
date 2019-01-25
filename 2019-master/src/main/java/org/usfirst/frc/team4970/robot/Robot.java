@@ -19,14 +19,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
+//import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
+//import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
+/*import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
 import org.usfirst.frc.team4970.robot.commands.Auto_ScaleForward;
@@ -38,7 +38,9 @@ import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOSwitch;
 import org.usfirst.frc.team4970.robot.commands.ReleaseArmSpring;
 import org.usfirst.frc.team4970.robot.commands.TestAutoCommand;
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
+*/
 import org.usfirst.frc.team4970.robot.subsystems.ClimbMotor;
+
 import utils.Constants;
 
 /**
@@ -57,9 +59,9 @@ public class Robot extends TimedRobot {
     public static WPI_TalonSRX m_solenoid = new WPI_TalonSRX(Constants.solenoidMotorCanAddress);
 
 	public static final DriveTrain _driveTrain = new DriveTrain();
-	public static final IntakeMotor _intakeMotor = new IntakeMotor();
-	public static final HingeMotor _hingeMotor = new HingeMotor();
-	public static final ArmMotor _armMotor = new ArmMotor();
+//	public static final IntakeMotor _intakeMotor = new IntakeMotor();
+//	public static final HingeMotor _hingeMotor = new HingeMotor();
+//	public static final ArmMotor _armMotor = new ArmMotor();
 	/* 
 	 * this call needs to come after the drivetrain instantiation...
 	 * due to wiring constraints, the gyro and climbMotor are using
@@ -90,35 +92,35 @@ public class Robot extends TimedRobot {
 		_calibrationManager = new Constants();
 		
 //		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
-		m_chooser.addDefault("All Positions: Drive Forward", new Auto_DriveForward());
+//		m_chooser.addDefault("All Positions: Drive Forward", new Auto_DriveForward());
 
 //		m_chooser.addObject("Left Position: Switch Either Side", new Auto_EitherSwitch('L'));
 //		m_chooser.addObject("Right Position: Switch Either Side", new Auto_EitherSwitch('R'));
-		m_chooser.addObject("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
-		m_chooser.addObject("Right Position: Close Switch or Drive Forward", new Auto_SwitchForward('R'));
-		m_chooser.addObject("Left Position: Close Switch or Drive Forward", new Auto_SwitchForward('L'));
+//		m_chooser.addObject("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
+//		m_chooser.addObject("Right Position: Close Switch or Drive Forward", new Auto_SwitchForward('R'));
+//		m_chooser.addObject("Left Position: Close Switch or Drive Forward", new Auto_SwitchForward('L'));
 		
-		m_chooser.addObject("Left Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('L'));
-		m_chooser.addObject("Left Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('L'));
-		m_chooser.addObject("Left Position: Scale, Forward", new Auto_ScaleForward('L'));
+//		m_chooser.addObject("Left Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('L'));
+//		m_chooser.addObject("Left Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('L'));
+//		m_chooser.addObject("Left Position: Scale, Forward", new Auto_ScaleForward('L'));
 //		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('L'));
 //		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('L'));
 //		m_chooser.addObject("Left Position: Scale Either Side", new Auto_EitherScale('L'));
 
-		m_chooser.addObject("Right Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('R'));
-		m_chooser.addObject("Right Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('R'));
-		m_chooser.addObject("Right Position: Scale, Forward", new Auto_ScaleForward('R'));
+//		m_chooser.addObject("Right Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('R'));
+//		m_chooser.addObject("Right Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('R'));
+//		m_chooser.addObject("Right Position: Scale, Forward", new Auto_ScaleForward('R'));
 //		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('R'));
 //		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('R'));
 //		m_chooser.addObject("Right Position: Scale Either Side", new Auto_EitherScale('R'));
 
-		m_chooser.addObject("Display Position and Game Data", new TestAutoCommand());
-        m_chooser.addObject("Release Spring and Do Nothing", new ReleaseArmSpring());
+//		m_chooser.addObject("Display Position and Game Data", new TestAutoCommand());
+ //       m_chooser.addObject("Release Spring and Do Nothing", new ReleaseArmSpring());
         // instantiate the command used for the autonomous period
 
 		SmartDashboard.putData("Auto mode", m_chooser);	
 
-		CameraServer.getInstance().startAutomaticCapture();
+//		CameraServer.getInstance().startAutomaticCapture();
 		
 		/*
 

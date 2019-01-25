@@ -305,20 +305,20 @@ public class Constants {
     	SmartDashboard.putNumber("Drive Encoder Counts Per Inch", driveEncoderCountsPerInch);
 
     	/* Arm motor */
-    	SmartDashboard.putNumber("Arm Encoder Count", Robot._armMotor.getEncoderCount());
-    	SmartDashboard.putNumber("Arm Closed Loop Error", Robot._armMotor.getClosedLoopError());
-    	SmartDashboard.putNumber("Arm Motor Output Voltage", Robot._armMotor.getMotorOutputVoltage());
-    	SmartDashboard.putString("Arm State", Robot._armMotor.getState());
+//    	SmartDashboard.putNumber("Arm Encoder Count", Robot._armMotor.getEncoderCount());
+//    	SmartDashboard.putNumber("Arm Closed Loop Error", Robot._armMotor.getClosedLoopError());
+ //   	SmartDashboard.putNumber("Arm Motor Output Voltage", Robot._armMotor.getMotorOutputVoltage());
+ //   	SmartDashboard.putString("Arm State", Robot._armMotor.getState());
     	
 		/* Hinge motor */
-    	SmartDashboard.putNumber("Hinge Encoder Count", Robot._hingeMotor.getEncoderCount());
-    	SmartDashboard.putNumber("Hinge Closed Loop Error", Robot._hingeMotor.getClosedLoopError());
-    	SmartDashboard.putNumber("Hinge Motor Output Voltage", Robot._hingeMotor.getMotorOutputVoltage());
-    	SmartDashboard.putString("Hinge State", Robot._hingeMotor.getState());
+ //   	SmartDashboard.putNumber("Hinge Encoder Count", Robot._hingeMotor.getEncoderCount());
+ //   	SmartDashboard.putNumber("Hinge Closed Loop Error", Robot._hingeMotor.getClosedLoopError());
+ //   	SmartDashboard.putNumber("Hinge Motor Output Voltage", Robot._hingeMotor.getMotorOutputVoltage());
+ //   	SmartDashboard.putString("Hinge State", Robot._hingeMotor.getState());
     	
-    	SmartDashboard.putNumber("Intake Encoder Count", Robot._intakeMotor.getEncoderCount());
-    	SmartDashboard.putNumber("Intake Closed Loop Error", Robot._intakeMotor.getClosedLoopError());
-    	SmartDashboard.putNumber("Intake Motor Output Voltage", Robot._intakeMotor.getMotorOutputVoltage());
+ //   	SmartDashboard.putNumber("Intake Encoder Count", Robot._intakeMotor.getEncoderCount());
+ //   	SmartDashboard.putNumber("Intake Closed Loop Error", Robot._intakeMotor.getClosedLoopError());
+ //   	SmartDashboard.putNumber("Intake Motor Output Voltage", Robot._intakeMotor.getMotorOutputVoltage());
 
         SmartDashboard.putNumber("Winch Extend Counter", Robot._climbMotor.getWinchOutCount());
 	    
