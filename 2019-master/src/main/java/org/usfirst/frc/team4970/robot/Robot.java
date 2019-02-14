@@ -122,6 +122,7 @@ public class Robot extends TimedRobot {
 
 //		CameraServer.getInstance().startAutomaticCapture();
 		
+
 		/*
 
 	      new Thread(() -> {
