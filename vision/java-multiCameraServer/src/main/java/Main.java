@@ -232,6 +232,7 @@ public final class Main {
     double centerX = 0.0;
     int exposure = 5;
     NetworkTable table;
+  //  NetworkTable shuffletable = NetworkTable.getTable("SmartDashboard");
 
     if (args.length > 0) {
       configFile = args[0];
@@ -251,7 +252,7 @@ public final class Main {
       System.out.println("Setting up NetworkTables client for team " + team);
 //      ntinst.startClientTeam(team);
     }
-    table = ntinst.getTable("GRIP");
+    table = ntinst.getTable("SmartDashboard");
     centerXEntry = ntinst.getEntry("centerX");
 
     // start cameras

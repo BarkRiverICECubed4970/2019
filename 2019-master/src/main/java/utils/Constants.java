@@ -112,6 +112,8 @@ public class Constants {
     public static double hatchMotorUpDutyCycle = 0.2;
     public static double hatchMotorDownDutyCycle = 0.2;
 
+	public static double hatchCommandTimeout = 2.0;
+
 	public static double ballOutputAutoTimeout = 2.0;
     
 	public static double liftMotorPidKp = 5.0;
@@ -122,9 +124,11 @@ public class Constants {
     public static double liftMotorAllowableClosedLoopError = 10;
 	public static double liftSecondsFromNeutral = 0.25;
 	public static double liftMotorPeakVoltage = 0.5;
-    public static double liftIntakePositionPidSetpoint = 50.0;
+
+	public static double liftIntakePositionPidSetpoint = 50.0;
     public static double liftHatchPositionPidSetpoint = 70.0;
 	public static double liftRocketPositionPidSetpoint = 100.0;
+
 	public static double liftCommandTimeout = 5.0;
 	
 
@@ -224,6 +228,7 @@ public class Constants {
 		/* Hatch motor */
     	SmartDashboard.putNumber("Hatch Up Duty Cycle", hatchMotorUpDutyCycle);
     	SmartDashboard.putNumber("Hatch Down Duty Cycle", hatchMotorDownDutyCycle);
+		SmartDashboard.putNumber("Hatch Command Timeout", hatchCommandTimeout);
 
 		/* Hinge motor */
     	SmartDashboard.putNumber("Hinge PID KP", hingeMotorPidKp);

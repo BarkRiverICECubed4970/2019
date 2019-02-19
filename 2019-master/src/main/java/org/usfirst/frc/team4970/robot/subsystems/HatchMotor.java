@@ -14,6 +14,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class HatchMotor extends Subsystem {
 
+	public enum HatchState
+	{
+		HATCH_UP, HATCH_DOWN
+	};
+
+	public static HatchState _hatchState = HatchState.HATCH_UP;
+
 	public HatchMotor() {
 		Robot.m_hatch.setNeutralMode(NeutralMode.Brake);
 		
