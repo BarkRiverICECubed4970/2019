@@ -15,6 +15,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class LiftMotor extends Subsystem {
 
+	public enum LiftState
+	{
+		LIFT_START_HEIGHT, LIFT_INTAKE_HEIGHT, LIFT_HATCH_HEIGHT, LIFT_ROCKET_HEIGHT, LIFT_MOVING
+	};
+	
+	public static LiftState _liftState = LiftState.LIFT_START_HEIGHT;
+	
 	WPI_TalonSRX m_lift = new WPI_TalonSRX(Constants.liftMotorCanAddress);
 
 	public LiftMotor() {

@@ -112,7 +112,7 @@ public class Constants {
     public static double hatchMotorUpDutyCycle = 0.2;
     public static double hatchMotorDownDutyCycle = 0.2;
 
-	public static double cubeOutputAutoTimeout = 2.0;
+	public static double ballOutputAutoTimeout = 2.0;
     
 	public static double liftMotorPidKp = 5.0;
     public static double liftMotorLowerPidKp = 5.0;
@@ -125,7 +125,9 @@ public class Constants {
     public static double liftIntakePositionPidSetpoint = 50.0;
     public static double liftHatchPositionPidSetpoint = 70.0;
 	public static double liftRocketPositionPidSetpoint = 100.0;
-    
+	public static double liftCommandTimeout = 5.0;
+	
+
     public static double armMotorPidKp = 5.0;
     public static double armMotorLowerPidKp = 5.0;
     public static double armMotorPidKi = 0.0;
@@ -146,12 +148,8 @@ public class Constants {
     public static double armReleaseSpringDutyCycle = -0.65;
     public static double armReleaseSpringTimeout = 0.25;
     
-    public static double intakeCubeDutyCycle = 0.3;
-    public static double outputCubeDutyCycle = 0.4;
-    public static double outputScaleCubeDutyCycle = 0.6;
-    public static double extendTapeDutyCycle = 1.0;
-    public static double reelTapeDutyCycle = 1.0;
-    public static double unlockWinchTimeout = 0.25;
+    public static double intakeBallDutyCycle = 0.3;
+    public static double outputBallDutyCycle = 0.4;
  	
     public static final int timeoutMs = 10;
     
@@ -209,6 +207,7 @@ public class Constants {
     	SmartDashboard.putNumber("Lift Intake PID Setpoint", liftIntakePositionPidSetpoint);
     	SmartDashboard.putNumber("Lift Rocket PID Setpoint", liftRocketPositionPidSetpoint);
     	SmartDashboard.putNumber("Lift Hatch PID Setpoint", liftHatchPositionPidSetpoint);
+		SmartDashboard.putNumber("Lift Command Timeout", liftCommandTimeout);
 
  		SmartDashboard.putNumber("Arm To Switch Timeout", Constants.armToSwitchTimeout);
 		SmartDashboard.putNumber("Arm To Scale Timeout", Constants.armToScaleTimeout);
@@ -218,14 +217,9 @@ public class Constants {
 
     	
     	/* Intake motor */
-    	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
-    	SmartDashboard.putNumber("Output Cube Duty Cycle", outputCubeDutyCycle);   
-    	SmartDashboard.putNumber("Output Scale Cube Duty Cycle", outputScaleCubeDutyCycle);   
-    	SmartDashboard.putNumber("Intake PID KP", intakeMotorPidKp);
-    	SmartDashboard.putNumber("Intake PID KI", intakeMotorPidKi);
-    	SmartDashboard.putNumber("Intake PID KD", intakeMotorPidKd);
-    	SmartDashboard.putNumber("Intake PID Allowable Error", intakeMotorAllowableClosedLoopError);
-    	SmartDashboard.putNumber("Cube Output Auto Timeout", cubeOutputAutoTimeout);
+    	SmartDashboard.putNumber("Intake Ball Duty Cycle", intakeBallDutyCycle);
+    	SmartDashboard.putNumber("Output Ball Duty Cycle", outputBallDutyCycle);   
+    	SmartDashboard.putNumber("Ball Output Auto Timeout", ballOutputAutoTimeout);
 		
 		/* Hatch motor */
     	SmartDashboard.putNumber("Hatch Up Duty Cycle", hatchMotorUpDutyCycle);
