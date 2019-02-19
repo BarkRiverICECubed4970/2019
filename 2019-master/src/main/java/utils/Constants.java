@@ -13,12 +13,10 @@ public class Constants {
 	public static final int leftFrontDriveMotorCanAddress = 3;
 	public static final int rightRearDriveMotorCanAddress = 4;
 	public static final int rightFrontDriveMotorCanAddress = 5;
-	public static final int armMotorCanAddress = 6;
-	public static final int hingeMotorCanAddress = 7;
-	public static final int intakeMotor1CanAddress = 8;
-	public static final int intakeMotor2CanAddress = 9;
-	public static final int climbMotorCanAddress = 13;
-	public static final int solenoidMotorCanAddress = 12;
+
+	public static final int liftMotorCanAddress = 12;
+	public static final int hatchMotorCanAddress = 13;
+	public static final int intakeMotorCanAddress = 14;
 	
     public static double autoScaleTurnDegrees = -45.0;
     public static double autoNinetyDegrees = -40.0;
@@ -110,8 +108,23 @@ public class Constants {
     public static double intakeMotorPidKi = 0.0;
     public static double intakeMotorPidKd = 0.0;
     public static double intakeMotorAllowableClosedLoopError = 10;
-    public static double cubeOutputAutoTimeout = 2.0;
+
+    public static double hatchMotorUpDutyCycle = 0.2;
+    public static double hatchMotorDownDutyCycle = 0.2;
+
+	public static double cubeOutputAutoTimeout = 2.0;
     
+	public static double liftMotorPidKp = 5.0;
+    public static double liftMotorLowerPidKp = 5.0;
+    public static double liftMotorPidKi = 0.0;
+    public static double liftMotorPidKd = 0.0;
+    public static double liftMotorPidKf = 0.0;
+    public static double liftMotorAllowableClosedLoopError = 10;
+	public static double liftSecondsFromNeutral = 0.25;
+	public static double liftMotorPeakVoltage = 0.5;
+    public static double liftIntakePositionPidSetpoint = 50.0;
+    public static double liftHatchPositionPidSetpoint = 70.0;
+	public static double liftRocketPositionPidSetpoint = 100.0;
     
     public static double armMotorPidKp = 5.0;
     public static double armMotorLowerPidKp = 5.0;
@@ -139,13 +152,7 @@ public class Constants {
     public static double extendTapeDutyCycle = 1.0;
     public static double reelTapeDutyCycle = 1.0;
     public static double unlockWinchTimeout = 0.25;
-    /* 
-       how many times the extend winch command has been called
-       before reelWinch() can be called (to prevent sucking the hook 
-       in and destroying the assembly)
-    */
-    public static double winchOutCount = 75.0;
-	
+ 	
     public static final int timeoutMs = 10;
     
     public Constants() {
@@ -167,27 +174,6 @@ public class Constants {
 		SmartDashboard.putNumber("Timed Drive Timeout", timedDriveTimeout);
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Autonomous drive inches", autoDriveStraightAutoInches);
-		SmartDashboard.putNumber("Autonomous straight drive to close switch inches", autoStraightDriveToCloseSwitchInches);
-		SmartDashboard.putNumber("Autonomous angle drive to close switch inches", autoAngleDriveToCloseSwitchInches);
-		SmartDashboard.putNumber("Autonomous straight drive to close scale inches", autoStraightDriveToCloseScaleInches);
-		SmartDashboard.putNumber("Autonomous angle drive to close scale inches", autoAngleDriveToCloseScaleInches);
-		SmartDashboard.putNumber("Autonomous drive past switch inches", autoDrivePastSwitchInches);
-		SmartDashboard.putNumber("Autonomous drive across switch inches", autoDriveAcrossSwitchInches);
-		SmartDashboard.putNumber("Autonomous drive across scale inches", autoDriveAcrossScaleInches);
-		SmartDashboard.putNumber("Autonomous opposite scale degrees to turn", autoOppositeScaleTurnDegrees);
-		SmartDashboard.putNumber("Autonomous drive to null zone", autoDriveToNullZone);
-		SmartDashboard.putNumber("Autonomous drive to opposite switch zone", autoDriveToOppositeSwitchZone);
-		SmartDashboard.putNumber("Autonomous drive to fence from switch zone", autoDriveToFenceFromSwitchZone);
-		SmartDashboard.putNumber("Autonomous turn degrees from center", autoTurnDegreesFromCenter);
-		SmartDashboard.putNumber("Autonomous switch turn degrees from side", autoSwitchTurnDegreesFromSide);
-		SmartDashboard.putNumber("Autonomous turn degrees to close scale", autoTurnDegreesToCloseScale);
-		SmartDashboard.putNumber("Autonomous 90 degree turn", autoNinetyDegrees);
-		SmartDashboard.putNumber("Autonomous scale degree turn", autoScaleTurnDegrees);
-		SmartDashboard.putNumber("Autonomous drive to fence from center", autoDriveToFenceFromCenter);
-		SmartDashboard.putNumber("Autonomous drive to switch from center timeout", autoDriveToSwitchFromCenterTimeout);
-		SmartDashboard.putNumber("Autonomous reverse drive inches", autoReverseDriveInches);
-		SmartDashboard.putNumber("Autonomous switch from center left degree adder", autoSwitchFromCenterLeftDegreeAdder);
-		SmartDashboard.putNumber("Autonomous switch from center left distance adder", autoSwitchFromCenterLeftDistanceAdder);
 				
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive start duty cycle", straightDriveStartDutyCycle);
@@ -211,22 +197,20 @@ public class Constants {
     	SmartDashboard.putNumber("Turn Degrees Timeout", turnDegreesTimeout);
     	SmartDashboard.putNumber("Drive straight angle for test", driveStraightAngleForTest);
 
-    	/* Arm motor */
-    	SmartDashboard.putNumber("Arm PID KP", armMotorPidKp);
-    	SmartDashboard.putNumber("Arm Lower PID KP", armMotorLowerPidKp);
-    	SmartDashboard.putNumber("Arm PID KI", armMotorPidKi);
-    	SmartDashboard.putNumber("Arm PID KD", armMotorPidKd);
-    	SmartDashboard.putNumber("Arm Raise PID KF", armMotorRaisePidKf);
-    	SmartDashboard.putNumber("Arm Lower PID KF", armMotorLowerPidKf);
-    	SmartDashboard.putNumber("Arm PID Allowable Error", armMotorAllowableClosedLoopError);
-    	SmartDashboard.putNumber("Arm Intake PID Setpoint", intakePositionArmPidSetpoint);
-    	SmartDashboard.putNumber("Arm Switch PID Setpoint", switchPositionArmPidSetpoint);
-    	SmartDashboard.putNumber("Arm Scale PID Setpoint", scalePositionArmPidSetpoint);   
-    	SmartDashboard.putNumber("Arm PID Ramp", armSecondsFromNeutral);
-    	SmartDashboard.putNumber("Arm Raise Peak Voltage", armMotorPeakRaiseVoltage);
-    	SmartDashboard.putNumber("Arm Lower Peak Voltage", armMotorPeakLowerVoltage);
-    	SmartDashboard.putNumber("Arm Lower PID Entry Point", armMotorLowerArmPidEntryPoint);
-		SmartDashboard.putNumber("Arm To Switch Timeout", Constants.armToSwitchTimeout);
+		/* Lift motor */
+    	SmartDashboard.putNumber("Lift PID Ramp", liftSecondsFromNeutral);
+    	SmartDashboard.putNumber("Lift PID KP", liftMotorPidKp);
+    	SmartDashboard.putNumber("Lift Lower PID KP", liftMotorLowerPidKp);
+    	SmartDashboard.putNumber("Lift PID KI", liftMotorPidKi);
+    	SmartDashboard.putNumber("Lift PID KD", liftMotorPidKd);
+    	SmartDashboard.putNumber("Lift PID KF", liftMotorPidKf);
+    	SmartDashboard.putNumber("Lift Peak Voltage", liftMotorPeakVoltage);
+    	SmartDashboard.putNumber("Lift PID Allowable Error", liftMotorAllowableClosedLoopError);
+    	SmartDashboard.putNumber("Lift Intake PID Setpoint", liftIntakePositionPidSetpoint);
+    	SmartDashboard.putNumber("Lift Rocket PID Setpoint", liftRocketPositionPidSetpoint);
+    	SmartDashboard.putNumber("Lift Hatch PID Setpoint", liftHatchPositionPidSetpoint);
+
+ 		SmartDashboard.putNumber("Arm To Switch Timeout", Constants.armToSwitchTimeout);
 		SmartDashboard.putNumber("Arm To Scale Timeout", Constants.armToScaleTimeout);
 		SmartDashboard.putNumber("Arm To Intake Timeout", Constants.armToIntakeTimeout);
 		SmartDashboard.putNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
@@ -243,6 +227,10 @@ public class Constants {
     	SmartDashboard.putNumber("Intake PID Allowable Error", intakeMotorAllowableClosedLoopError);
     	SmartDashboard.putNumber("Cube Output Auto Timeout", cubeOutputAutoTimeout);
 		
+		/* Hatch motor */
+    	SmartDashboard.putNumber("Hatch Up Duty Cycle", hatchMotorUpDutyCycle);
+    	SmartDashboard.putNumber("Hatch Down Duty Cycle", hatchMotorDownDutyCycle);
+
 		/* Hinge motor */
     	SmartDashboard.putNumber("Hinge PID KP", hingeMotorPidKp);
     	SmartDashboard.putNumber("Hinge Lower PID KP", hingeMotorLowerPidKp);
@@ -257,33 +245,19 @@ public class Constants {
     	SmartDashboard.putNumber("Lower Hinge Timeout", lowerHingeTimeout);
     	SmartDashboard.putNumber("Raise Hinge Timeout", raiseHingeTimeout);
 
-
-    	/* Climbing */
-    	SmartDashboard.putNumber("Extend Tape Duty Cycle", extendTapeDutyCycle);   
-    	SmartDashboard.putNumber("Reel Tape Duty Cycle", reelTapeDutyCycle);   
-    	
     	/* CAN Addresses for Talons */
     	SmartDashboard.putNumber("Left Rear Drive Motor CAN Address", leftRearDriveMotorCanAddress);   
     	SmartDashboard.putNumber("Left Front Drive Motor CAN Address", leftFrontDriveMotorCanAddress);   
     	SmartDashboard.putNumber("Right Rear Drive Motor CAN Address", rightRearDriveMotorCanAddress);   
     	SmartDashboard.putNumber("Right Front Drive Motor CAN Address", rightFrontDriveMotorCanAddress);   
-    	SmartDashboard.putNumber("Intake Motor 1 CAN Address", intakeMotor1CanAddress);   
-    	SmartDashboard.putNumber("Intake Motor 2 CAN Address", intakeMotor2CanAddress);   
-    	SmartDashboard.putNumber("Hinge Motor CAN Address", hingeMotorCanAddress);   
-    	SmartDashboard.putNumber("Arm Motor CAN Address", armMotorCanAddress);   
-    	SmartDashboard.putNumber("Climb Motor CAN Address", climbMotorCanAddress);   
-    	SmartDashboard.putNumber("Solenoid Motor CAN Address", solenoidMotorCanAddress);   
+    	SmartDashboard.putNumber("Intake Motor CAN Address", intakeMotorCanAddress);   
+    	SmartDashboard.putNumber("Lift Motor CAN Address", liftMotorCanAddress);   
+    	SmartDashboard.putNumber("Hatch Motor CAN Address", hatchMotorCanAddress);   
 	}
     
 	/* periodically publish outputs */
     private void updateSmartDashboard() {
 
-    	/* game data */
-    	if (Robot.gameData != null)
-    	{
-    		SmartDashboard.putString("Game Data", Robot.gameData);    		
-    	}
-    	
     	/* 
     	 * put an instance of the PDP to shuffleboard... this may help to see
     	 * issues with motors, etc...
@@ -304,28 +278,9 @@ public class Constants {
 		SmartDashboard.putNumber("Gyro PID output value", Robot._driveTrain.getPidOutput());
     	SmartDashboard.putNumber("Drive Encoder Counts Per Inch", driveEncoderCountsPerInch);
 
-    	/* Arm motor */
-//    	SmartDashboard.putNumber("Arm Encoder Count", Robot._armMotor.getEncoderCount());
-//    	SmartDashboard.putNumber("Arm Closed Loop Error", Robot._armMotor.getClosedLoopError());
- //   	SmartDashboard.putNumber("Arm Motor Output Voltage", Robot._armMotor.getMotorOutputVoltage());
- //   	SmartDashboard.putString("Arm State", Robot._armMotor.getState());
-    	
-		/* Hinge motor */
- //   	SmartDashboard.putNumber("Hinge Encoder Count", Robot._hingeMotor.getEncoderCount());
- //   	SmartDashboard.putNumber("Hinge Closed Loop Error", Robot._hingeMotor.getClosedLoopError());
- //   	SmartDashboard.putNumber("Hinge Motor Output Voltage", Robot._hingeMotor.getMotorOutputVoltage());
- //   	SmartDashboard.putString("Hinge State", Robot._hingeMotor.getState());
-    	
- //   	SmartDashboard.putNumber("Intake Encoder Count", Robot._intakeMotor.getEncoderCount());
- //   	SmartDashboard.putNumber("Intake Closed Loop Error", Robot._intakeMotor.getClosedLoopError());
- //   	SmartDashboard.putNumber("Intake Motor Output Voltage", Robot._intakeMotor.getMotorOutputVoltage());
-
-        SmartDashboard.putNumber("Winch Extend Counter", Robot._climbMotor.getWinchOutCount());
-	    
-    	Constants.armUpMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",Constants.armUpMaxDriveDutyCycle);
-    	Constants.armDownMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",Constants.armDownMaxDriveDutyCycle);
-
-		Constants.armReleaseSpringDutyCycle = SmartDashboard.getNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
-		Constants.armReleaseSpringTimeout = SmartDashboard.getNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
+    	/* Lift motor */
+    	SmartDashboard.putNumber("Lift Encoder Count", Robot._liftMotor.getEncoderCount());
+    	SmartDashboard.putNumber("Lift Closed Loop Error", Robot._liftMotor.getClosedLoopError());
+    	SmartDashboard.putNumber("Lift Motor Output Voltage", Robot._liftMotor.getMotorOutputVoltage());
 	}
 }

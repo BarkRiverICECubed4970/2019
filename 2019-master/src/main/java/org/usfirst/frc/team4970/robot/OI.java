@@ -106,7 +106,7 @@ public class OI {
     	// SmartDashboard Buttons
     	SmartDashboard.putData("Drive Straight", new DriveStraight(0.0, 0.0, true));
     	SmartDashboard.putData("Drive Straight Reverse", new DriveStraightReverse(0.0, 0.0, true));
-    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(0.0, true));
+		SmartDashboard.putData("Turn Degrees", new TurnDegrees(0.0, true));
     	
     }
 }

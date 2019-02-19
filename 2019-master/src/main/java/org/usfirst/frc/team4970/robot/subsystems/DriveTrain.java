@@ -60,7 +60,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	
     private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
 
-	public Gyro _gyro = new Gyro(Robot.m_solenoid);
+	public Gyro _gyro = new Gyro(Robot.m_hatch);
 	
     public final PIDController _gyroPid = new PIDController(Constants.gyroStraightPidKp, Constants.gyroPidKi, Constants.gyroPidKd, _gyro, this);
 	

@@ -7,10 +7,6 @@
 
 package org.usfirst.frc.team4970.robot;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -19,27 +15,16 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
-//import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
+import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
+import org.usfirst.frc.team4970.robot.subsystems.HatchMotor;
+import org.usfirst.frc.team4970.robot.subsystems.LiftMotor;
+
+import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-//import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
-/*import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
-import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
-import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
-import org.usfirst.frc.team4970.robot.commands.Auto_ScaleForward;
-import org.usfirst.frc.team4970.robot.commands.Auto_ScaleSwitchForward;
-import org.usfirst.frc.team4970.robot.commands.Auto_SwitchForward;
-import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleForward;
-import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOScale;
-import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOSwitch;
-import org.usfirst.frc.team4970.robot.commands.ReleaseArmSpring;
-import org.usfirst.frc.team4970.robot.commands.TestAutoCommand;
-import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
-*/
-import org.usfirst.frc.team4970.robot.subsystems.ClimbMotor;
 
 import utils.Constants;
 
@@ -53,26 +38,18 @@ import utils.Constants;
 public class Robot extends TimedRobot {
 	
 	/* 
-	 * due to wiring and weight, the solenoid and gyro are using the same talonSRX,
-	 * keep things simple and have robot own it, so both subsystems can see it. 
+	 * due to wiring and weight, the hatch and gyro are using the same talonSRX,
+	 * keep things simple and have robot own it, so any subsystems that need the gyro can see it. 
 	 */
-    public static WPI_TalonSRX m_solenoid = new WPI_TalonSRX(Constants.solenoidMotorCanAddress);
+    public static WPI_TalonSRX m_hatch = new WPI_TalonSRX(Constants.hatchMotorCanAddress);
 
 	public static final DriveTrain _driveTrain = new DriveTrain();
-//	public static final IntakeMotor _intakeMotor = new IntakeMotor();
-//	public static final HingeMotor _hingeMotor = new HingeMotor();
-//	public static final ArmMotor _armMotor = new ArmMotor();
-	/* 
-	 * this call needs to come after the drivetrain instantiation...
-	 * due to wiring constraints, the gyro and climbMotor are using
-	 * the same talonSRX
-	 */
-	public static final ClimbMotor _climbMotor = new ClimbMotor();
+	public static final IntakeMotor _intakeMotor = new IntakeMotor();
+	public static final HatchMotor _hatchMotor = new HatchMotor();
+	public static final LiftMotor _liftMotor = new LiftMotor();
 
 	public static OI m_oi;
 
-	public static String gameData;
-	
 //	public static PowerDistributionPanel pdp = new PowerDistributionPanel(); 
 	
 	Command m_autonomousCommand;
@@ -91,62 +68,12 @@ public class Robot extends TimedRobot {
 		
 		_calibrationManager = new Constants();
 		
-//		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
-//		m_chooser.addDefault("All Positions: Drive Forward", new Auto_DriveForward());
-
-//		m_chooser.addObject("Left Position: Switch Either Side", new Auto_EitherSwitch('L'));
-//		m_chooser.addObject("Right Position: Switch Either Side", new Auto_EitherSwitch('R'));
-//		m_chooser.addObject("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
-//		m_chooser.addObject("Right Position: Close Switch or Drive Forward", new Auto_SwitchForward('R'));
-//		m_chooser.addObject("Left Position: Close Switch or Drive Forward", new Auto_SwitchForward('L'));
-		
-//		m_chooser.addObject("Left Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('L'));
-//		m_chooser.addObject("Left Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('L'));
-//		m_chooser.addObject("Left Position: Scale, Forward", new Auto_ScaleForward('L'));
-//		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('L'));
-//		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('L'));
-//		m_chooser.addObject("Left Position: Scale Either Side", new Auto_EitherScale('L'));
-
-//		m_chooser.addObject("Right Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('R'));
-//		m_chooser.addObject("Right Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('R'));
-//		m_chooser.addObject("Right Position: Scale, Forward", new Auto_ScaleForward('R'));
-//		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('R'));
-//		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('R'));
-//		m_chooser.addObject("Right Position: Scale Either Side", new Auto_EitherScale('R'));
-
-//		m_chooser.addObject("Display Position and Game Data", new TestAutoCommand());
- //       m_chooser.addObject("Release Spring and Do Nothing", new ReleaseArmSpring());
+	    m_chooser.addDefault("Do Nothing", null);
+		m_chooser.addObject("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches, 0.0, false));
         // instantiate the command used for the autonomous period
 
 		SmartDashboard.putData("Auto mode", m_chooser);	
-
-//		CameraServer.getInstance().startAutomaticCapture();
-		
-
-		/*
-
-	      new Thread(() -> {
-	      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
-	      camera.setResolution(320, 240);
-	      camera.setExposureAuto();
-	
-	      
-	      CvSink cvSink = CameraServer.getInstance().getVideo();
-	      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 320, 240);
-	      
-	      Mat source = new Mat();
-	      Mat output = new Mat();
-	      
-	      while(true) {            	
-	          cvSink.grabFrameNoTimeout(source);
-	          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-	          outputStream.putFrame(output);
-	      }
-	  }, "camera").start();
-	  
-	  */
 	}
-	
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -180,15 +107,6 @@ public class Robot extends TimedRobot {
 		_driveTrain.setDriveTrainBrakeMode(true);
 		
 		m_autonomousCommand = m_chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-		
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
