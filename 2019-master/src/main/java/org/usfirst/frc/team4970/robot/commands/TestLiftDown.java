@@ -10,23 +10,19 @@ import utils.Constants;
 /**
  *
  */
-public class LiftToIntakePosition extends Command {
+public class TestLiftDown extends Command {
 
-	public LiftToIntakePosition() {
+	public TestLiftDown() {
 
         requires(Robot._liftMotor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.liftIntakePositionPidSetpoint = SmartDashboard.getNumber("Lift Intake PID Setpoint", Constants.liftIntakePositionPidSetpoint);
-
-        Constants.liftCommandTimeout = SmartDashboard.getNumber("Lift Command Timeout", Constants.liftCommandTimeout);
-
-    	setTimeout(Constants.liftCommandTimeout);
+        Constants.liftHatchPositionPidSetpoint = SmartDashboard.getNumber("Lift Hatch PID Setpoint", Constants.liftHatchPositionPidSetpoint);
 
        	LiftMotor._liftState = LiftMotor.LiftState.LIFT_MOVING;    		
-       	Robot._liftMotor.moveLiftPosition(Constants.liftIntakePositionPidSetpoint);
+       	Robot._liftMotor.moveLiftManual(-1.0 * SmartDashboard.getNumber("Lift Test Duty Cycle", Constants.liftTestDutyCycle));
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,20 +30,12 @@ public class LiftToIntakePosition extends Command {
     }
 
     protected boolean isFinished() {
-    	if ((isTimedOut()) || 
-    		((Math.abs(Robot._liftMotor.getEncoderCount() - Constants.liftIntakePositionPidSetpoint))
-    			<= (int)Constants.liftMotorAllowableClosedLoopError))
-    	{
-    		LiftMotor._liftState = LiftMotor.LiftState.LIFT_INTAKE_HEIGHT;
-    		return true;
-    	} else {
-            return false;
-        }
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot._liftMotor.stop();
+    	Robot._liftMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

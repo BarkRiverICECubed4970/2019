@@ -110,8 +110,11 @@ public class OI {
 		
 		SmartDashboard.putData("Hatch Up", new HatchUp());
 		SmartDashboard.putData("Hatch Up", new HatchDown());
+		SmartDashboard.putData("Hatch Toggle", new HatchToggle());
 		SmartDashboard.putData("Lift to Intake Position", new LiftToIntakePosition());
 		SmartDashboard.putData("Lift to Hatch Position", new LiftToHatchPosition());
 		SmartDashboard.putData("Lift to Rocket Position", new LiftToRocketPosition());
+		SmartDashboard.putData("Test Lift Up", new TestLiftUp());
+		SmartDashboard.putData("Test Lift Down", new TestLiftDown());
     }
 }

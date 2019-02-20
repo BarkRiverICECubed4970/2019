@@ -26,7 +26,7 @@ public class LiftToHatchPosition extends Command {
     	setTimeout(Constants.liftCommandTimeout);
 
        	LiftMotor._liftState = LiftMotor.LiftState.LIFT_MOVING;    		
-       	Robot._liftMotor.moveLift(Constants.liftHatchPositionPidSetpoint);
+       	Robot._liftMotor.moveLiftPosition(Constants.liftHatchPositionPidSetpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run

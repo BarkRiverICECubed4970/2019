@@ -26,7 +26,7 @@ public class LiftToRocketPosition extends Command {
     	setTimeout(Constants.liftCommandTimeout);
 
        	LiftMotor._liftState = LiftMotor.LiftState.LIFT_MOVING;    		
-       	Robot._liftMotor.moveLift(Constants.liftRocketPositionPidSetpoint);
+       	Robot._liftMotor.moveLiftPosition(Constants.liftRocketPositionPidSetpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run

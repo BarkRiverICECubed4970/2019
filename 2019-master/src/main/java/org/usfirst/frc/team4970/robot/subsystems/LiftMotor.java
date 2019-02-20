@@ -47,7 +47,7 @@ public class LiftMotor extends Subsystem {
 
 	}
 
-	public void moveLift(double setpoint)
+	public void moveLiftPosition(double setpoint)
 	{
 		Constants.liftMotorPidKp = SmartDashboard.getNumber("Lift PID KP", Constants.liftMotorPidKp);
     	Constants.liftMotorPidKi = SmartDashboard.getNumber("Lift PID KI", Constants.liftMotorPidKi);
@@ -66,6 +66,11 @@ public class LiftMotor extends Subsystem {
 	   	m_lift.configAllowableClosedloopError(0, (int)Constants.liftMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
 		m_lift.set(ControlMode.Position, setpoint);
+	}
+
+	public void moveLiftManual(double dutyCycle)
+	{
+		Robot.m_hatch.set(ControlMode.PercentOutput, dutyCycle);
 	}
 
     public void initDefaultCommand() {
