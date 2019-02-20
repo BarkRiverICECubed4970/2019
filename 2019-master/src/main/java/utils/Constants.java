@@ -73,7 +73,6 @@ public class Constants {
 	public static double ballOutputAutoTimeout = 2.0;
     
 	public static double liftMotorPidKp = 5.0;
-    public static double liftMotorLowerPidKp = 5.0;
     public static double liftMotorPidKi = 0.0;
     public static double liftMotorPidKd = 0.0;
 	public static double liftMotorPidKf = 0.0;
@@ -135,7 +134,6 @@ public class Constants {
 
 		/* Lift motor */
     	SmartDashboard.putNumber("Lift PID KP", liftMotorPidKp);
-    	SmartDashboard.putNumber("Lift Lower PID KP", liftMotorLowerPidKp);
     	SmartDashboard.putNumber("Lift PID KI", liftMotorPidKi);
     	SmartDashboard.putNumber("Lift PID KD", liftMotorPidKd);
 		SmartDashboard.putNumber("Lift PID KF", liftMotorPidKf);

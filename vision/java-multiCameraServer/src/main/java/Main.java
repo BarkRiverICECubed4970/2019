@@ -247,10 +247,10 @@ public final class Main {
     NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
     if (server) {
       System.out.println("Setting up NetworkTables server");
-//      ntinst.startServer();
+      ntinst.startServer();
     } else {
       System.out.println("Setting up NetworkTables client for team " + team);
-//      ntinst.startClientTeam(team);
+      ntinst.startClientTeam(team);
     }
     table = ntinst.getTable("SmartDashboard");
     centerXEntry = ntinst.getEntry("centerX");
