@@ -76,10 +76,11 @@ public class Constants {
     public static double liftMotorLowerPidKp = 5.0;
     public static double liftMotorPidKi = 0.0;
     public static double liftMotorPidKd = 0.0;
-    public static double liftMotorPidKf = 0.0;
+	public static double liftMotorPidKf = 0.0;
+	public static double liftMotorMotionCruiseVelocity = 0.0;
+	public static double liftMotorMotionAcceleration = 0.0;
     public static double liftMotorAllowableClosedLoopError = 10;
-	public static double liftSecondsFromNeutral = 0.25;
-	public static double liftMotorPeakVoltage = 0.5;
+	public static double liftMotorPeakVoltage = 1.0;
 
 	public static double liftIntakePositionPidSetpoint = 50.0;
     public static double liftHatchPositionPidSetpoint = 70.0;
@@ -133,12 +134,13 @@ public class Constants {
     	SmartDashboard.putNumber("Drive straight angle for test", driveStraightAngleForTest);
 
 		/* Lift motor */
-    	SmartDashboard.putNumber("Lift PID Ramp", liftSecondsFromNeutral);
     	SmartDashboard.putNumber("Lift PID KP", liftMotorPidKp);
     	SmartDashboard.putNumber("Lift Lower PID KP", liftMotorLowerPidKp);
     	SmartDashboard.putNumber("Lift PID KI", liftMotorPidKi);
     	SmartDashboard.putNumber("Lift PID KD", liftMotorPidKd);
-    	SmartDashboard.putNumber("Lift PID KF", liftMotorPidKf);
+		SmartDashboard.putNumber("Lift PID KF", liftMotorPidKf);
+		SmartDashboard.putNumber("Lift Motion Cruise Velocity", liftMotorMotionCruiseVelocity);
+		SmartDashboard.putNumber("Lift Motion Acceleration", liftMotorMotionAcceleration);
     	SmartDashboard.putNumber("Lift Peak Voltage", liftMotorPeakVoltage);
     	SmartDashboard.putNumber("Lift PID Allowable Error", liftMotorAllowableClosedLoopError);
     	SmartDashboard.putNumber("Lift Intake PID Setpoint", liftIntakePositionPidSetpoint);

@@ -25,6 +25,7 @@ public class LiftMotor extends Subsystem {
 	WPI_TalonSRX m_lift = new WPI_TalonSRX(Constants.liftMotorCanAddress);
 
 	public LiftMotor() {
+		m_lift.configFactoryDefault();
 		m_lift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.timeoutMs);
 
 		m_lift.configNominalOutputForward(0, Constants.timeoutMs);
@@ -34,9 +35,6 @@ public class LiftMotor extends Subsystem {
 //		m_lift.setInverted(true);
 				   
 		m_lift.setNeutralMode(NeutralMode.Brake);
-		
-		Constants.liftSecondsFromNeutral = SmartDashboard.getNumber("Lift PID Ramp", Constants.liftSecondsFromNeutral);
-		m_lift.configClosedloopRamp(Constants.liftSecondsFromNeutral, Constants.timeoutMs);
 		
 		/* 
 		 * for now, forget about the absolute position, just set the relative position
@@ -49,6 +47,7 @@ public class LiftMotor extends Subsystem {
 
 	public void moveLiftPosition(double setpoint)
 	{
+		Constants.liftMotorPidKf = SmartDashboard.getNumber("Lift PID KF", Constants.liftMotorPidKf);
 		Constants.liftMotorPidKp = SmartDashboard.getNumber("Lift PID KP", Constants.liftMotorPidKp);
     	Constants.liftMotorPidKi = SmartDashboard.getNumber("Lift PID KI", Constants.liftMotorPidKi);
     	Constants.liftMotorPidKd = SmartDashboard.getNumber("Lift PID KD", Constants.liftMotorPidKd);
@@ -59,13 +58,18 @@ public class LiftMotor extends Subsystem {
 	   	m_lift.config_kD(0, Constants.liftMotorPidKd, Constants.timeoutMs);
 	   	m_lift.config_kF(0, Constants.liftMotorPidKf, Constants.timeoutMs);
 
+		Constants.liftMotorMotionCruiseVelocity = SmartDashboard.getNumber("Lift Motion Cruise Velocity", Constants.liftMotorMotionCruiseVelocity);
+		Constants.liftMotorMotionAcceleration = SmartDashboard.getNumber("Lift Motion Acceleration", Constants.liftMotorMotionAcceleration);
+		m_lift.configMotionCruiseVelocity((int)Constants.liftMotorMotionCruiseVelocity, Constants.timeoutMs);
+		m_lift.configMotionAcceleration((int)Constants.liftMotorMotionAcceleration, Constants.timeoutMs);
+
 	   	Constants.liftMotorPeakVoltage = SmartDashboard.getNumber("Lift Peak Voltage", Constants.liftMotorPeakVoltage);
 	   	m_lift.configPeakOutputForward(Constants.liftMotorPeakVoltage, Constants.timeoutMs);
-	   	m_lift.configPeakOutputReverse(Constants.liftMotorPeakVoltage, Constants.timeoutMs);
+	   	m_lift.configPeakOutputReverse(-1.0 * Constants.liftMotorPeakVoltage, Constants.timeoutMs);
 
 	   	m_lift.configAllowableClosedloopError(0, (int)Constants.liftMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
-		m_lift.set(ControlMode.Position, setpoint);
+		m_lift.set(ControlMode.MotionMagic, setpoint);
 	}
 
 	public void moveLiftManual(double dutyCycle)

@@ -68,6 +68,8 @@ public class Robot extends TimedRobot {
 		
 		_calibrationManager = new Constants();
 		
+		m_hatch.configFactoryDefault();
+
 	    m_chooser.addDefault("Do Nothing", null);
 		m_chooser.addObject("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches, 0.0, false));
         // instantiate the command used for the autonomous period

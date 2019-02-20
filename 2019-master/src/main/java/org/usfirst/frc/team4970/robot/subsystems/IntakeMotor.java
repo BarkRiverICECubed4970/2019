@@ -18,6 +18,8 @@ public class IntakeMotor extends Subsystem {
 	WPI_TalonSRX m_intake = new WPI_TalonSRX(Constants.intakeMotorCanAddress);
 
 	public IntakeMotor() {
+		m_intake.configFactoryDefault();
+
 		m_intake.setNeutralMode(NeutralMode.Brake);
 		
     	m_intake.configNominalOutputForward(0, Constants.timeoutMs);
