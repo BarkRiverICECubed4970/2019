@@ -78,8 +78,8 @@ public class OI {
         joystickButton1 = new JoystickButton(joystick, 4);
         joystickButton1.whenPressed(new LiftToRocketPosition());
         
-//        joystickButton1 = new JoystickButton(joystick, 3);
-//        joystickButton1.whenPressed(new ToggleHinge());
+        joystickButton1 = new JoystickButton(joystick, 3);
+        joystickButton1.whenPressed(new HatchToggle());
         
         joystickButton1 = new JoystickButton(joystick, 8);
         joystickButton1.whileHeld(new BallIntake());
@@ -87,11 +87,11 @@ public class OI {
         joystickButton1 = new JoystickButton(joystick, 7);
         joystickButton1.whileHeld(new BallOutput());
 
-//        joystickButton1 = new JoystickButton(joystick, 5);
-//        joystickButton1.whileHeld(new BallOutputSlow());
+        joystickButton1 = new JoystickButton(joystick, 5);
+        joystickButton1.whileHeld(new BallOutputSlow());
 
-//        joystickButton1 = new JoystickButton(joystick, 6);
-//        joystickButton1.whileHeld(new BallIntakeSlow());
+        joystickButton1 = new JoystickButton(joystick, 6);
+        joystickButton1.whileHeld(new BallIntakeSlow());
 
 //       joystickButton1 = new JoystickButton(joystick, 13);
 //        joystickButton1.whenPressed(new ReleaseArmSpring());
@@ -108,8 +108,11 @@ public class OI {
     	SmartDashboard.putData("Drive Straight Reverse", new DriveStraightReverse(0.0, 0.0, true));
 		SmartDashboard.putData("Turn Degrees", new TurnDegrees(0.0, true));
 		
+		SmartDashboard.putData("Stop Lift", new TestLiftStop());
+		SmartDashboard.putData("Stop Hatch", new TestHatchStop());
+
 		SmartDashboard.putData("Hatch Up", new HatchUp());
-		SmartDashboard.putData("Hatch Up", new HatchDown());
+		SmartDashboard.putData("Hatch Down", new HatchDown());
 		SmartDashboard.putData("Hatch Toggle", new HatchToggle());
 		SmartDashboard.putData("Lift to Intake Position", new LiftToIntakePosition());
 		SmartDashboard.putData("Lift to Hatch Position", new LiftToHatchPosition());

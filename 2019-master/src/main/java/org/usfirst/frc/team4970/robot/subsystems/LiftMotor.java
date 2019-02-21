@@ -81,7 +81,7 @@ public class LiftMotor extends Subsystem {
     }
         
     public void stop() {
-    	m_lift.set(0.0);
+    	m_lift.set(ControlMode.PercentOutput, 0.0);
     }  
 
 	public double getEncoderCount() {

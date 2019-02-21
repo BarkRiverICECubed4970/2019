@@ -31,20 +31,20 @@ public class IntakeMotor extends Subsystem {
     
     public void intakeBall() {
     	intakeDc = Math.max(0.0, Robot.m_oi.joystick.getRawAxis(4));
-    	Robot.m_intake.set(ControlMode.PercentOutput, intakeDc);
+    	Robot.m_intake.set(ControlMode.PercentOutput, -1.0 * intakeDc);
     }
     
     public void intakeBallSlow(double dutyCycle) {
-    	Robot.m_intake.set(ControlMode.PercentOutput, dutyCycle);
+    	Robot.m_intake.set(ControlMode.PercentOutput, -1.0 * dutyCycle);
     }
 
     public void outputBall() {
     	outputDc = Math.max(0.0, Robot.m_oi.joystick.getRawAxis(3)); 
-   		Robot.m_intake.set(ControlMode.PercentOutput, -1.0*outputDc);
+   		Robot.m_intake.set(ControlMode.PercentOutput, outputDc);
     }
 
     public void outputBallSlow(double dutyCycle) {
-   		Robot.m_intake.set(ControlMode.PercentOutput, -1.0*dutyCycle);
+   		Robot.m_intake.set(ControlMode.PercentOutput, dutyCycle);
     }
  
     public void stop() {
