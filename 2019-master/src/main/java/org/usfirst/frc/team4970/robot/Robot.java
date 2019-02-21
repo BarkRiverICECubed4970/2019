@@ -38,10 +38,10 @@ import utils.Constants;
 public class Robot extends TimedRobot {
 	
 	/* 
-	 * due to wiring and weight, the hatch and gyro are using the same talonSRX,
+	 * due to wiring and weight, the intake and gyro are using the same talonSRX,
 	 * keep things simple and have robot own it, so any subsystems that need the gyro can see it. 
 	 */
-    public static WPI_TalonSRX m_hatch = new WPI_TalonSRX(Constants.hatchMotorCanAddress);
+    public static WPI_TalonSRX m_intake = new WPI_TalonSRX(Constants.intakeMotorCanAddress);
 
 	public static final DriveTrain _driveTrain = new DriveTrain();
 	public static final IntakeMotor _intakeMotor = new IntakeMotor();
@@ -68,8 +68,6 @@ public class Robot extends TimedRobot {
 		
 		_calibrationManager = new Constants();
 		
-		m_hatch.configFactoryDefault();
-
 	    m_chooser.addDefault("Do Nothing", null);
 		m_chooser.addObject("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches, 0.0, false));
         // instantiate the command used for the autonomous period

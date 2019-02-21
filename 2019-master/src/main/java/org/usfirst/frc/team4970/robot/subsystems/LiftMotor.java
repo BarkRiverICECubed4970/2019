@@ -74,7 +74,7 @@ public class LiftMotor extends Subsystem {
 
 	public void moveLiftManual(double dutyCycle)
 	{
-		Robot.m_hatch.set(ControlMode.PercentOutput, dutyCycle);
+		m_lift.set(ControlMode.PercentOutput, dutyCycle);
 	}
 
     public void initDefaultCommand() {

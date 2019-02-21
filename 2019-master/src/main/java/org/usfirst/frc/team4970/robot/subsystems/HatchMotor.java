@@ -21,13 +21,17 @@ public class HatchMotor extends Subsystem {
 
 	public static HatchState _hatchState = HatchState.HATCH_UP;
 
+	public static WPI_TalonSRX m_hatch = new WPI_TalonSRX(Constants.hatchMotorCanAddress);
+
 	public HatchMotor() {
-		Robot.m_hatch.setNeutralMode(NeutralMode.Brake);
+		m_hatch.configFactoryDefault();
+
+		m_hatch.setNeutralMode(NeutralMode.Brake);
 		
-    	Robot.m_hatch.configNominalOutputForward(0, Constants.timeoutMs);
-    	Robot.m_hatch.configNominalOutputReverse(0, Constants.timeoutMs);
-    	Robot.m_hatch.configPeakOutputForward(1.0, Constants.timeoutMs);
-    	Robot.m_hatch.configPeakOutputReverse(-1.0, Constants.timeoutMs);
+    	m_hatch.configNominalOutputForward(0, Constants.timeoutMs);
+    	m_hatch.configNominalOutputReverse(0, Constants.timeoutMs);
+    	m_hatch.configPeakOutputForward(1.0, Constants.timeoutMs);
+    	m_hatch.configPeakOutputReverse(-1.0, Constants.timeoutMs);
 	}
 	
     public void initDefaultCommand() {
@@ -35,15 +39,15 @@ public class HatchMotor extends Subsystem {
     }
     
     public void holdUp() {
-    	Robot.m_hatch.set(ControlMode.PercentOutput, SmartDashboard.getNumber("Hatch Up Duty Cycle", Constants.hatchMotorUpDutyCycle));
+    	m_hatch.set(ControlMode.PercentOutput, SmartDashboard.getNumber("Hatch Up Duty Cycle", Constants.hatchMotorUpDutyCycle));
     }
     
     public void holdDown() {
-    	Robot.m_hatch.set(ControlMode.PercentOutput, -1.0* SmartDashboard.getNumber("Hatch Down Duty Cycle", Constants.hatchMotorDownDutyCycle));
+    	m_hatch.set(ControlMode.PercentOutput, -1.0* SmartDashboard.getNumber("Hatch Down Duty Cycle", Constants.hatchMotorDownDutyCycle));
     }
 
     public void stop() {
-    	Robot.m_hatch.set(ControlMode.PercentOutput, 0.0);
+    	m_hatch.set(ControlMode.PercentOutput, 0.0);
     }
 }
 

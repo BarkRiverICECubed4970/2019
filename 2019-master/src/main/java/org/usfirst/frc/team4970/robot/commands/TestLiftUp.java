@@ -19,8 +19,6 @@ public class TestLiftUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.liftHatchPositionPidSetpoint = SmartDashboard.getNumber("Lift Hatch PID Setpoint", Constants.liftHatchPositionPidSetpoint);
-
        	LiftMotor._liftState = LiftMotor.LiftState.LIFT_MOVING;    		
        	Robot._liftMotor.moveLiftManual(SmartDashboard.getNumber("Lift Test Duty Cycle", Constants.liftTestDutyCycle));
     }
