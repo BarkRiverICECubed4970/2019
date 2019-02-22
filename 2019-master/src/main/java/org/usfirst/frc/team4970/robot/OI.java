@@ -119,5 +119,6 @@ public class OI {
 		SmartDashboard.putData("Lift to Rocket Position", new LiftToRocketPosition());
 		SmartDashboard.putData("Test Lift Up", new TestLiftUp());
 		SmartDashboard.putData("Test Lift Down", new TestLiftDown());
+		SmartDashboard.putData("Reset Lift Encoder", new TestLiftResetEncoder());
     }
 }

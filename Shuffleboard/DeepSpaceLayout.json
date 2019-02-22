@@ -804,6 +804,17 @@
               "_source0": "network_table:///SmartDashboard/Lift Motor Output Voltage",
               "_title": "Lift Motor Output Voltage"
             }
+          },
+          "11,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Reset Lift Encoder",
+              "_title": "Reset Lift Encoder"
+            }
           }
         }
       }
@@ -1175,6 +1186,17 @@
               "_source0": "network_table:///SmartDashboard/Test Lift Down",
               "_title": "/SmartDashboard/Test Lift Down"
             }
+          },
+          "1,5": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Reset Lift Encoder",
+              "_title": "Reset Lift Encoder"
+            }
           }
         }
       }
@@ -1321,6 +1343,779 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Intake Ball Duty Cycle",
               "_title": "/SmartDashboard/Intake Ball Duty Cycle"
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Straight",
+              "_title": "martDashboard/Drive Straight"
+            }
+          },
+          "9,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Straight Reverse",
+              "_title": "martDashboard/Drive Straight Reverse"
+            }
+          },
+          "11,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Turn Degrees",
+              "_title": "martDashboard/Turn Degrees"
+            }
+          },
+          "13,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Stop Lift",
+              "_title": "martDashboard/Stop Lift"
+            }
+          },
+          "15,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Stop Hatch",
+              "_title": "martDashboard/Stop Hatch"
+            }
+          },
+          "17,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Hatch Up",
+              "_title": "martDashboard/Hatch Up"
+            }
+          },
+          "4,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Hatch Down",
+              "_title": "martDashboard/Hatch Down"
+            }
+          },
+          "6,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Hatch Toggle",
+              "_title": "martDashboard/Hatch Toggle"
+            }
+          },
+          "8,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Intake Position",
+              "_title": "martDashboard/Lift to Intake Position"
+            }
+          },
+          "10,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Hatch Position",
+              "_title": "martDashboard/Lift to Hatch Position"
+            }
+          },
+          "12,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Rocket Position",
+              "_title": "martDashboard/Lift to Rocket Position"
+            }
+          },
+          "14,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Test Lift Up",
+              "_title": "martDashboard/Test Lift Up"
+            }
+          },
+          "16,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Test Lift Down",
+              "_title": "martDashboard/Test Lift Down"
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Reset Lift Encoder",
+              "_title": "martDashboard/Reset Lift Encoder"
+            }
+          },
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Inches to drive for test",
+              "_title": "martDashboard/Inches to drive for test"
+            }
+          },
+          "0,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Degrees to turn",
+              "_title": "martDashboard/Degrees to turn"
+            }
+          },
+          "18,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Autonomous drive inches",
+              "_title": "martDashboard/Autonomous drive inches"
+            }
+          },
+          "2,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Straight drive start duty cycle",
+              "_title": "martDashboard/Straight drive start duty cycle"
+            }
+          },
+          "3,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Straight drive final duty cycle",
+              "_title": "martDashboard/Straight drive final duty cycle"
+            }
+          },
+          "4,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Straight drive rate limit",
+              "_title": "martDashboard/Straight drive rate limit"
+            }
+          },
+          "5,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Straight drive ramp down inches",
+              "_title": "martDashboard/Straight drive ramp down inches"
+            }
+          },
+          "6,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro Turn Degrees PID KP",
+              "_title": "martDashboard/Gyro Turn Degrees PID KP"
+            }
+          },
+          "7,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro Drive Reverse PID KP",
+              "_title": "martDashboard/Gyro Drive Reverse PID KP"
+            }
+          },
+          "8,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro Drive Straight PID KP",
+              "_title": "martDashboard/Gyro Drive Straight PID KP"
+            }
+          },
+          "9,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID KI",
+              "_title": "martDashboard/Gyro PID KI"
+            }
+          },
+          "10,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID KD",
+              "_title": "martDashboard/Gyro PID KD"
+            }
+          },
+          "11,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Min Input",
+              "_title": "martDashboard/Gyro PID Min Input"
+            }
+          },
+          "12,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Max Input",
+              "_title": "martDashboard/Gyro PID Max Input"
+            }
+          },
+          "13,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Min Output",
+              "_title": "martDashboard/Gyro PID Min Output"
+            }
+          },
+          "14,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Max Output",
+              "_title": "martDashboard/Gyro PID Max Output"
+            }
+          },
+          "15,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Tolerance",
+              "_title": "martDashboard/Gyro PID Tolerance"
+            }
+          },
+          "16,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Max Setpoint",
+              "_title": "martDashboard/Gyro PID Max Setpoint"
+            }
+          },
+          "17,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Encoder Counts Per Inch",
+              "_title": "martDashboard/Drive Encoder Counts Per Inch"
+            }
+          },
+          "18,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Turn Degrees Timeout",
+              "_title": "martDashboard/Turn Degrees Timeout"
+            }
+          },
+          "0,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive straight angle for test",
+              "_title": "martDashboard/Drive straight angle for test"
+            }
+          },
+          "1,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift PID KP",
+              "_title": "martDashboard/Lift PID KP"
+            }
+          },
+          "2,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift PID KI",
+              "_title": "martDashboard/Lift PID KI"
+            }
+          },
+          "3,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift PID KD",
+              "_title": "martDashboard/Lift PID KD"
+            }
+          },
+          "4,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift PID KF",
+              "_title": "martDashboard/Lift PID KF"
+            }
+          },
+          "5,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Motion Cruise Velocity",
+              "_title": "martDashboard/Lift Motion Cruise Velocity"
+            }
+          },
+          "6,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Motion Acceleration",
+              "_title": "martDashboard/Lift Motion Acceleration"
+            }
+          },
+          "7,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Peak Voltage",
+              "_title": "martDashboard/Lift Peak Voltage"
+            }
+          },
+          "8,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift PID Allowable Error",
+              "_title": "martDashboard/Lift PID Allowable Error"
+            }
+          },
+          "9,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Intake PID Setpoint",
+              "_title": "martDashboard/Lift Intake PID Setpoint"
+            }
+          },
+          "10,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Rocket PID Setpoint",
+              "_title": "martDashboard/Lift Rocket PID Setpoint"
+            }
+          },
+          "11,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Hatch PID Setpoint",
+              "_title": "martDashboard/Lift Hatch PID Setpoint"
+            }
+          },
+          "12,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Command Timeout",
+              "_title": "martDashboard/Lift Command Timeout"
+            }
+          },
+          "13,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Test Duty Cycle",
+              "_title": "martDashboard/Lift Test Duty Cycle"
+            }
+          },
+          "14,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Ball Output Auto Timeout",
+              "_title": "martDashboard/Ball Output Auto Timeout"
+            }
+          },
+          "15,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hatch Up Duty Cycle",
+              "_title": "martDashboard/Hatch Up Duty Cycle"
+            }
+          },
+          "16,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hatch Down Duty Cycle",
+              "_title": "martDashboard/Hatch Down Duty Cycle"
+            }
+          },
+          "17,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hatch Command Timeout",
+              "_title": "martDashboard/Hatch Command Timeout"
+            }
+          },
+          "18,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Rear Drive Motor CAN Address",
+              "_title": "martDashboard/Left Rear Drive Motor CAN Address"
+            }
+          },
+          "0,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Front Drive Motor CAN Address",
+              "_title": "martDashboard/Left Front Drive Motor CAN Address"
+            }
+          },
+          "1,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Rear Drive Motor CAN Address",
+              "_title": "martDashboard/Right Rear Drive Motor CAN Address"
+            }
+          },
+          "2,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Front Drive Motor CAN Address",
+              "_title": "martDashboard/Right Front Drive Motor CAN Address"
+            }
+          },
+          "3,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Motor CAN Address",
+              "_title": "martDashboard/Lift Motor CAN Address"
+            }
+          },
+          "4,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hatch Motor CAN Address",
+              "_title": "martDashboard/Hatch Motor CAN Address"
+            }
+          },
+          "5,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto mode",
+              "_title": "martDashboard/Auto mode"
+            }
+          },
+          "6,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Joystick forward",
+              "_title": "martDashboard/Joystick forward"
+            }
+          },
+          "7,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Joystick rotate",
+              "_title": "martDashboard/Joystick rotate"
+            }
+          },
+          "8,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Pigeon fused heading",
+              "_title": "martDashboard/Pigeon fused heading"
+            }
+          },
+          "9,4": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///SmartDashboard/Pigeon",
+              "_title": "martDashboard/Pigeon",
+              "Visuals/Major tick spacing": 45.0,
+              "Visuals/Starting angle": 180.0,
+              "Visuals/Show tick mark ring": true
+            }
+          },
+          "12,4": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/Gyro PID",
+              "_title": "martDashboard/Gyro PID"
+            }
+          },
+          "14,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Encoder Count",
+              "_title": "martDashboard/Right Encoder Count"
+            }
+          },
+          "15,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Encoder Count",
+              "_title": "martDashboard/Left Encoder Count"
+            }
+          },
+          "16,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID output value",
+              "_title": "martDashboard/Gyro PID output value"
+            }
+          },
+          "17,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Encoder Count",
+              "_title": "martDashboard/Lift Encoder Count"
+            }
+          },
+          "18,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Closed Loop Error",
+              "_title": "martDashboard/Lift Closed Loop Error"
+            }
+          },
+          "0,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Motor Output Voltage",
+              "_title": "martDashboard/Lift Motor Output Voltage"
             }
           }
         }
@@ -1659,6 +2454,18 @@
             }
           }
         }
+      }
+    },
+    {
+      "title": "Camera",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 64.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {}
       }
     }
   ],
