@@ -33,7 +33,8 @@ public class TestLiftDown extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._liftMotor.stop();
+        /* hold the lift where it is */
+        Robot._liftMotor.moveLiftPosition(Robot._liftMotor.getEncoderCount());
     }
 
     // Called when another command which requires one or more of the same
