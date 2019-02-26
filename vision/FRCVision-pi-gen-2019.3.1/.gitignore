@@ -1,0 +1,14 @@
+deploy/*
+work/*
+postrun.sh
+SKIP
+SKIP_IMAGES
+.pc
+*-pc
+apt-cacher-ng/
+deps/tools/configServer/configServer
+deps/tools/multiCameraServer/multiCameraServer
+deps/tools/setuidgids/setuidgids
+*.o
+*.sw?
+*.debug

@@ -1,0 +1,25 @@
+resources:
+  containers:
+  - container: pi-gen
+    image: wpilib/pi-gen:latest
+    options: --privileged
+
+jobs:
+ - job: 'Main'
+   pool:
+     vmImage: 'Ubuntu 16.04'
+
+   timeoutInMinutes: 0
+
+   container: pi-gen
+
+   steps:
+      - checkout: self
+        submodules: true
+      - script: |
+          sudo sh -c 'dpkg-reconfigure qemu-user-static && ./build.sh'
+          cp deploy/*.zip deploy/examples/*.zip $BUILD_ARTIFACTSTAGINGDIRECTORY
+        displayName: 'Build Image'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          artifactName: 'FRCVisionImage'
