@@ -88,7 +88,7 @@ public class Constants {
 	public static double liftHatchPlaceUpperPositionSetpoint = 10900.0;
 
 	public static double liftCommandTimeout = 5.0;
-	public static double liftTestDutyCycle = 0.2;
+	public static double liftTestDutyCycle = 0.3;
 
     public static double intakeBallDutyCycle = 0.3;
     public static double outputBallDutyCycle = 0.4;
