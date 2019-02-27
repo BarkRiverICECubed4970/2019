@@ -81,12 +81,11 @@ public class Constants {
     public static double liftMotorAllowableClosedLoopError = 10;
 	public static double liftMotorPeakVoltage = 1.0;
 
-	public static double liftIntakePositionPidSetpoint = 50.0;
-    public static double liftHatchPositionPidSetpoint = 5000.0;
-	public static double liftRocketPositionPidSetpoint = 7420.0;
-	public static double liftHatchOffRack = 2250.0;
-    public static double liftPlaceLowerHatch = 1100.0;
-	public static double liftPlaceUpperHatch = 10900.0;
+	public static double liftBallIntakePositionSetpoint = 50.0;
+	public static double liftRocketPositionSetpoint = 7420.0;
+	public static double liftHatchIntakePositionSetpoint = 2250.0;
+    public static double liftHatchPlaceLowerPositionSetpoint = 1100.0;
+	public static double liftHatchPlaceUpperPositionSetpoint = 10900.0;
 
 	public static double liftCommandTimeout = 5.0;
 	public static double liftTestDutyCycle = 0.2;
@@ -144,9 +143,11 @@ public class Constants {
 		SmartDashboard.putNumber("Lift Motion Acceleration", liftMotorMotionAcceleration);
     	SmartDashboard.putNumber("Lift Peak Voltage", liftMotorPeakVoltage);
     	SmartDashboard.putNumber("Lift PID Allowable Error", liftMotorAllowableClosedLoopError);
-    	SmartDashboard.putNumber("Lift Intake PID Setpoint", liftIntakePositionPidSetpoint);
-    	SmartDashboard.putNumber("Lift Rocket PID Setpoint", liftRocketPositionPidSetpoint);
-    	SmartDashboard.putNumber("Lift Hatch PID Setpoint", liftHatchPositionPidSetpoint);
+    	SmartDashboard.putNumber("Lift Ball Intake Setpoint", liftBallIntakePositionSetpoint);
+    	SmartDashboard.putNumber("Lift Rocket Setpoint", liftRocketPositionSetpoint);
+		SmartDashboard.putNumber("Lift Hatch Intake Setpoint", liftHatchIntakePositionSetpoint);
+		SmartDashboard.putNumber("Lift Hatch Lower Setpoint", liftHatchPlaceLowerPositionSetpoint);
+		SmartDashboard.putNumber("Lift Hatch Upper Setpoint", liftHatchPlaceUpperPositionSetpoint);
 		SmartDashboard.putNumber("Lift Command Timeout", liftCommandTimeout);
 		SmartDashboard.putNumber("Lift Test Duty Cycle", liftTestDutyCycle);
     	

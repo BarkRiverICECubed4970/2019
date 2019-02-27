@@ -71,19 +71,19 @@ public class OI {
 //        joystickButton1.whenPressed(new RaiseHinge());
         
         joystickButton1 = new JoystickButton(joystick, 2);
-        joystickButton1.whenPressed(new LiftToPosition(50.0));
+        joystickButton1.whenPressed(new LiftToBallIntakePosition());
         
         joystickButton1 = new JoystickButton(joystick, 3);
-        joystickButton1.whenPressed(new LiftToPosition(2250.0));
+        joystickButton1.whenPressed(new LiftToHatchIntakePosition());
         
         joystickButton1 = new JoystickButton(joystick, 1);
-        joystickButton1.whenPressed(new LiftToPosition(1100.0));
+        joystickButton1.whenPressed(new LiftToHatchLowerPosition());
         
         joystickButton1 = new JoystickButton(joystick, 4);
-        joystickButton1.whenPressed(new LiftToPosition(7420.0));
+        joystickButton1.whenPressed(new LiftToRocketPosition());
 
 		joystickButton1 = new JoystickButton(joystick, 10);
-        joystickButton1.whenPressed(new LiftToPosition(10900.0));
+        joystickButton1.whenPressed(new LiftToHatchUpperPosition());
         
         joystickButton1 = new JoystickButton(joystick, 14);
         joystickButton1.whenPressed(new HatchToggle());
@@ -121,8 +121,10 @@ public class OI {
 		SmartDashboard.putData("Hatch Up", new HatchUp());
 		SmartDashboard.putData("Hatch Down", new HatchDown());
 		SmartDashboard.putData("Hatch Toggle", new HatchToggle());
-		SmartDashboard.putData("Lift to Intake Position", new LiftToIntakePosition());
-		SmartDashboard.putData("Lift to Hatch Position", new LiftToHatchPosition());
+		SmartDashboard.putData("Lift to Ball Intake Position", new LiftToBallIntakePosition());
+		SmartDashboard.putData("Lift to Hatch Intake Position", new LiftToHatchIntakePosition());
+		SmartDashboard.putData("Lift to Hatch Lower Position", new LiftToHatchLowerPosition());
+		SmartDashboard.putData("Lift to Hatch Upper Position", new LiftToHatchUpperPosition());
 		SmartDashboard.putData("Lift to Rocket Position", new LiftToRocketPosition());
 		SmartDashboard.putData("Test Lift Up", new TestLiftUp());
 		SmartDashboard.putData("Test Lift Down", new TestLiftDown());

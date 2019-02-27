@@ -10,23 +10,23 @@ import utils.Constants;
 /**
  *
  */
-public class LiftToPosition extends Command {
-    private static double setPoint;
+public class LiftToBallIntakePosition extends Command {
 
-	public LiftToPosition(double setPointParm) {
+	public LiftToBallIntakePosition() {
 
-        setPoint = setPointParm;
         requires(Robot._liftMotor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        Constants.liftBallIntakePositionSetpoint = SmartDashboard.getNumber("Lift Ball Intake Setpoint", Constants.liftBallIntakePositionSetpoint);
+
         Constants.liftCommandTimeout = SmartDashboard.getNumber("Lift Command Timeout", Constants.liftCommandTimeout);
 
     	setTimeout(Constants.liftCommandTimeout);
 
        	LiftMotor._liftState = LiftMotor.LiftState.LIFT_MOVING;    		
-       	Robot._liftMotor.moveLiftPosition(setPoint);
+       	Robot._liftMotor.moveLiftPosition(Constants.liftBallIntakePositionSetpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,10 +35,10 @@ public class LiftToPosition extends Command {
 
     protected boolean isFinished() {
     	if ((isTimedOut()) || 
-    		((Math.abs(Robot._liftMotor.getEncoderCount() - setPoint))
+    		((Math.abs(Robot._liftMotor.getEncoderCount() - Constants.liftBallIntakePositionSetpoint))
     			<= (int)Constants.liftMotorAllowableClosedLoopError))
     	{
-    		LiftMotor._liftState = LiftMotor.LiftState.LIFT_HATCH_HEIGHT;
+    		LiftMotor._liftState = LiftMotor.LiftState.LIFT_INTAKE_HEIGHT;
     		return true;
     	} else {
             return false;

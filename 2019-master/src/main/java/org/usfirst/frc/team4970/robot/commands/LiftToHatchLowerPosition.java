@@ -10,23 +10,23 @@ import utils.Constants;
 /**
  *
  */
-public class LiftToRocketPosition extends Command {
+public class LiftToHatchLowerPosition extends Command {
 
-	public LiftToRocketPosition() {
+	public LiftToHatchLowerPosition() {
 
         requires(Robot._liftMotor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.liftRocketPositionSetpoint = SmartDashboard.getNumber("Lift Rocket Setpoint", Constants.liftRocketPositionSetpoint);
+        Constants.liftHatchPlaceLowerPositionSetpoint = SmartDashboard.getNumber("Lift Hatch Lower Setpoint", Constants.liftHatchPlaceLowerPositionSetpoint);
 
         Constants.liftCommandTimeout = SmartDashboard.getNumber("Lift Command Timeout", Constants.liftCommandTimeout);
 
     	setTimeout(Constants.liftCommandTimeout);
 
        	LiftMotor._liftState = LiftMotor.LiftState.LIFT_MOVING;    		
-       	Robot._liftMotor.moveLiftPosition(Constants.liftRocketPositionSetpoint);
+       	Robot._liftMotor.moveLiftPosition(Constants.liftHatchPlaceLowerPositionSetpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,10 +35,10 @@ public class LiftToRocketPosition extends Command {
 
     protected boolean isFinished() {
     	if ((isTimedOut()) || 
-    		((Math.abs(Robot._liftMotor.getEncoderCount() - Constants.liftRocketPositionSetpoint))
+    		((Math.abs(Robot._liftMotor.getEncoderCount() - Constants.liftHatchPlaceLowerPositionSetpoint))
     			<= (int)Constants.liftMotorAllowableClosedLoopError))
     	{
-    		LiftMotor._liftState = LiftMotor.LiftState.LIFT_ROCKET_HEIGHT;
+    		LiftMotor._liftState = LiftMotor.LiftState.LIFT_HATCH_HEIGHT;
     		return true;
     	} else {
             return false;
