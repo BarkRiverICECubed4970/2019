@@ -3,44 +3,42 @@ package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4970.robot.subsystems.HatchMotor;
+import org.usfirst.frc.team4970.robot.subsystems.LiftMotor;
 import org.usfirst.frc.team4970.robot.Robot;
 import utils.Constants;
 
 /**
  *
  */
-public class HatchToggle extends Command {
+public class LiftToPosition extends Command {
+    private static double setPoint;
 
-	public HatchToggle() {
+	public LiftToPosition(double setPointParm) {
 
-        requires(Robot._hatchMotor);
+        setPoint = setPointParm;
+        requires(Robot._liftMotor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.hatchCommandTimeout = SmartDashboard.getNumber("Hatch Command Timeout", Constants.hatchCommandTimeout);
+        Constants.liftCommandTimeout = SmartDashboard.getNumber("Lift Command Timeout", Constants.liftCommandTimeout);
 
-    	setTimeout(Constants.hatchCommandTimeout);
+    	setTimeout(Constants.liftCommandTimeout);
 
-        if (HatchMotor._hatchState == HatchMotor.HatchState.HATCH_UP)
-        {
-            Robot._hatchMotor.holdDown();
-            HatchMotor._hatchState = HatchMotor.HatchState.HATCH_DOWN;
-        } else{
-            Robot._hatchMotor.holdUp();
-            HatchMotor._hatchState = HatchMotor.HatchState.HATCH_UP;
-        }
+       	LiftMotor._liftState = LiftMotor.LiftState.LIFT_MOVING;    		
+       	Robot._liftMotor.moveLiftPosition(setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
 
-
     protected boolean isFinished() {
-    	if (isTimedOut())
+    	if ((isTimedOut()) || 
+    		((Math.abs(Robot._liftMotor.getEncoderCount() - setPoint))
+    			<= (int)Constants.liftMotorAllowableClosedLoopError))
     	{
+    		LiftMotor._liftState = LiftMotor.LiftState.LIFT_HATCH_HEIGHT;
     		return true;
     	} else {
             return false;
@@ -49,7 +47,7 @@ public class HatchToggle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._hatchMotor.stop();
+//    	Robot._liftMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

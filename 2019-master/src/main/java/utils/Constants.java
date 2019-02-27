@@ -76,14 +76,17 @@ public class Constants {
     public static double liftMotorPidKi = 0.0;
     public static double liftMotorPidKd = 0.0;
 	public static double liftMotorPidKf = 0.0;
-	public static double liftMotorMotionCruiseVelocity = 0.0;
-	public static double liftMotorMotionAcceleration = 0.0;
+	public static double liftMotorMotionCruiseVelocity = 4000.0;
+	public static double liftMotorMotionAcceleration = 2000.0;
     public static double liftMotorAllowableClosedLoopError = 10;
 	public static double liftMotorPeakVoltage = 1.0;
 
 	public static double liftIntakePositionPidSetpoint = 50.0;
-    public static double liftHatchPositionPidSetpoint = 70.0;
-	public static double liftRocketPositionPidSetpoint = 100.0;
+    public static double liftHatchPositionPidSetpoint = 5000.0;
+	public static double liftRocketPositionPidSetpoint = 7420.0;
+	public static double liftHatchOffRack = 2250.0;
+    public static double liftPlaceLowerHatch = 1100.0;
+	public static double liftPlaceUpperHatch = 10900.0;
 
 	public static double liftCommandTimeout = 5.0;
 	public static double liftTestDutyCycle = 0.2;
@@ -100,7 +103,7 @@ public class Constants {
 	    new Thread(() -> {
 		   	while (true) {
 		   		updateSmartDashboard();
-		   		Timer.delay(1.0);
+		   		Timer.delay(2.0);
 		   	}
 		}).start();
     }

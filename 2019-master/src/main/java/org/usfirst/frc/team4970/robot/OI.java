@@ -13,6 +13,7 @@ import org.usfirst.frc.team4970.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import utils.Constants;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -70,15 +71,21 @@ public class OI {
 //        joystickButton1.whenPressed(new RaiseHinge());
         
         joystickButton1 = new JoystickButton(joystick, 2);
-        joystickButton1.whenPressed(new LiftToIntakePosition());
-        
-        joystickButton1 = new JoystickButton(joystick, 1);
-        joystickButton1.whenPressed(new LiftToHatchPosition());
-        
-        joystickButton1 = new JoystickButton(joystick, 4);
-        joystickButton1.whenPressed(new LiftToRocketPosition());
+        joystickButton1.whenPressed(new LiftToPosition(50.0));
         
         joystickButton1 = new JoystickButton(joystick, 3);
+        joystickButton1.whenPressed(new LiftToPosition(2250.0));
+        
+        joystickButton1 = new JoystickButton(joystick, 1);
+        joystickButton1.whenPressed(new LiftToPosition(1100.0));
+        
+        joystickButton1 = new JoystickButton(joystick, 4);
+        joystickButton1.whenPressed(new LiftToPosition(7420.0));
+
+		joystickButton1 = new JoystickButton(joystick, 10);
+        joystickButton1.whenPressed(new LiftToPosition(10900.0));
+        
+        joystickButton1 = new JoystickButton(joystick, 14);
         joystickButton1.whenPressed(new HatchToggle());
         
         joystickButton1 = new JoystickButton(joystick, 8);
@@ -88,10 +95,10 @@ public class OI {
         joystickButton1.whileHeld(new BallOutput());
 
         joystickButton1 = new JoystickButton(joystick, 5);
-        joystickButton1.whileHeld(new BallOutputSlow());
+        joystickButton1.whileHeld(new TestLiftDown());
 
         joystickButton1 = new JoystickButton(joystick, 6);
-        joystickButton1.whileHeld(new BallIntakeSlow());
+        joystickButton1.whileHeld(new TestLiftUp());
 
 //       joystickButton1 = new JoystickButton(joystick, 13);
 //        joystickButton1.whenPressed(new ReleaseArmSpring());
