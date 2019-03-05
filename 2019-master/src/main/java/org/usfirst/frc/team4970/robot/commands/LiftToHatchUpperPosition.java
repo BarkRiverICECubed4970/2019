@@ -36,7 +36,7 @@ public class LiftToHatchUpperPosition extends Command {
     protected boolean isFinished() {
     	if ((isTimedOut()) || 
     		((Math.abs(Robot._liftMotor.getEncoderCount() - Constants.liftHatchPlaceUpperPositionSetpoint))
-    			<= (int)Constants.liftMotorAllowableClosedLoopError))
+    			<= Constants.liftMotorAllowableClosedLoopError))
     	{
     		LiftMotor._liftState = LiftMotor.LiftState.LIFT_HATCH_HEIGHT;
     		return true;

@@ -1,7 +1,6 @@
 package utils;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -88,7 +87,7 @@ public class Constants {
 	public static double liftHatchPlaceUpperPositionSetpoint = 10900.0;
 
 	public static double liftCommandTimeout = 5.0;
-	public static double liftTestDutyCycle = 0.3;
+	public static double liftTestDutyCycle = 0.4;
 
     public static double intakeBallDutyCycle = 0.3;
     public static double outputBallDutyCycle = 0.4;
@@ -102,7 +101,7 @@ public class Constants {
 	    new Thread(() -> {
 		   	while (true) {
 		   		updateSmartDashboard();
-		   		Timer.delay(2.0);
+		   		Timer.delay(1.0);
 		   	}
 		}).start();
     }

@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team4970.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
+//import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -22,9 +22,6 @@ import org.usfirst.frc.team4970.robot.subsystems.LiftMotor;
 import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
 
 import utils.Constants;
 

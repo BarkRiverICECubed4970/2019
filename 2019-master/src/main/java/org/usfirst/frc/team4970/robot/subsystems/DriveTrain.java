@@ -43,7 +43,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     private static double rotate;
     /* used for ramp up in autonomous to prevent lurching */
 //    private static double prevForward;
-    private static double dutyCycleLimit;
     private static boolean squaredInputs = true;
     
     private double gyroAngle;
@@ -305,7 +304,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     
 	@Override
 	public void pidWrite(double output) {
-		// TODO Auto-generated method stub
 		PID_rotateValue = output;
 	}
 	

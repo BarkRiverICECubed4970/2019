@@ -36,7 +36,7 @@ public class LiftToRocketPosition extends Command {
     protected boolean isFinished() {
     	if ((isTimedOut()) || 
     		((Math.abs(Robot._liftMotor.getEncoderCount() - Constants.liftRocketPositionSetpoint))
-    			<= (int)Constants.liftMotorAllowableClosedLoopError))
+    			<= Constants.liftMotorAllowableClosedLoopError))
     	{
     		LiftMotor._liftState = LiftMotor.LiftState.LIFT_ROCKET_HEIGHT;
     		return true;

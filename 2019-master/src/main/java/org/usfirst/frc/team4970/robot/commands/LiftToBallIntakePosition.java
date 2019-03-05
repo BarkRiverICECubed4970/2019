@@ -36,7 +36,7 @@ public class LiftToBallIntakePosition extends Command {
     protected boolean isFinished() {
     	if ((isTimedOut()) || 
     		((Math.abs(Robot._liftMotor.getEncoderCount() - Constants.liftBallIntakePositionSetpoint))
-    			<= (int)Constants.liftMotorAllowableClosedLoopError))
+    			<= Constants.liftMotorAllowableClosedLoopError))
     	{
     		LiftMotor._liftState = LiftMotor.LiftState.LIFT_INTAKE_HEIGHT;
     		return true;

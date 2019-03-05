@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4970.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import utils.Constants;
 
@@ -8,7 +7,6 @@ import org.usfirst.frc.team4970.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class IntakeMotor extends Subsystem {
 	

@@ -1,12 +1,9 @@
 package org.usfirst.frc.team4970.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import utils.Constants;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team4970.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -32,7 +29,6 @@ public class LiftMotor extends Subsystem {
 		m_lift.configNominalOutputReverse(0, Constants.timeoutMs);
 		
 		m_lift.setSensorPhase(false);
-//		m_lift.setInverted(true);
 				   
 		m_lift.setNeutralMode(NeutralMode.Brake);
 		
@@ -43,32 +39,24 @@ public class LiftMotor extends Subsystem {
 		 */
 		m_lift.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
 
+		m_lift.config_kP(0, Constants.liftMotorPidKp, Constants.timeoutMs);
+		m_lift.config_kI(0, Constants.liftMotorPidKi, Constants.timeoutMs);
+		m_lift.config_kD(0, Constants.liftMotorPidKd, Constants.timeoutMs);
+		m_lift.config_kF(0, Constants.liftMotorPidKf, Constants.timeoutMs);
+
+		 m_lift.configMotionCruiseVelocity((int)Constants.liftMotorMotionCruiseVelocity, Constants.timeoutMs);
+		 m_lift.configMotionAcceleration((int)Constants.liftMotorMotionAcceleration, Constants.timeoutMs);
+
+		m_lift.configPeakOutputForward(Constants.liftMotorPeakVoltage, Constants.timeoutMs);
+		m_lift.configPeakOutputReverse(-1.0 * Constants.liftMotorPeakVoltage, Constants.timeoutMs);
+
+		m_lift.configAllowableClosedloopError(0, (int)Constants.liftMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
+
+
 	}
 
 	public void moveLiftPosition(double setpoint)
 	{
-		Constants.liftMotorPidKf = SmartDashboard.getNumber("Lift PID KF", Constants.liftMotorPidKf);
-		Constants.liftMotorPidKp = SmartDashboard.getNumber("Lift PID KP", Constants.liftMotorPidKp);
-    	Constants.liftMotorPidKi = SmartDashboard.getNumber("Lift PID KI", Constants.liftMotorPidKi);
-    	Constants.liftMotorPidKd = SmartDashboard.getNumber("Lift PID KD", Constants.liftMotorPidKd);
-    	Constants.liftMotorAllowableClosedLoopError = SmartDashboard.getNumber("Lift PID Allowable Error", Constants.liftMotorAllowableClosedLoopError);
-
-	   	m_lift.config_kP(0, Constants.liftMotorPidKp, Constants.timeoutMs);
-	   	m_lift.config_kI(0, Constants.liftMotorPidKi, Constants.timeoutMs);
-	   	m_lift.config_kD(0, Constants.liftMotorPidKd, Constants.timeoutMs);
-	   	m_lift.config_kF(0, Constants.liftMotorPidKf, Constants.timeoutMs);
-
-		Constants.liftMotorMotionCruiseVelocity = SmartDashboard.getNumber("Lift Motion Cruise Velocity", Constants.liftMotorMotionCruiseVelocity);
-		Constants.liftMotorMotionAcceleration = SmartDashboard.getNumber("Lift Motion Acceleration", Constants.liftMotorMotionAcceleration);
-		m_lift.configMotionCruiseVelocity((int)Constants.liftMotorMotionCruiseVelocity, Constants.timeoutMs);
-		m_lift.configMotionAcceleration((int)Constants.liftMotorMotionAcceleration, Constants.timeoutMs);
-
-	   	Constants.liftMotorPeakVoltage = SmartDashboard.getNumber("Lift Peak Voltage", Constants.liftMotorPeakVoltage);
-	   	m_lift.configPeakOutputForward(Constants.liftMotorPeakVoltage, Constants.timeoutMs);
-	   	m_lift.configPeakOutputReverse(-1.0 * Constants.liftMotorPeakVoltage, Constants.timeoutMs);
-
-	   	m_lift.configAllowableClosedloopError(0, (int)Constants.liftMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
-
 		m_lift.set(ControlMode.MotionMagic, setpoint);
 	}
 
