@@ -128,5 +128,7 @@ public class OI {
 		SmartDashboard.putData("Test Lift Up", new TestLiftUp());
 		SmartDashboard.putData("Test Lift Down", new TestLiftDown());
 		SmartDashboard.putData("Reset Lift Encoder", new TestLiftResetEncoder());
+		SmartDashboard.putData("Drive Assist Hatch", new DriveAssistHatch());
+		SmartDashboard.putData("Drive Assist Ball", new DriveAssistBall());
     }
 }

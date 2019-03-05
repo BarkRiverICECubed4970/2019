@@ -41,8 +41,15 @@ public class Constants {
     // use left encoder for now
     // 714 counts per 18.85 inches = 37.87
     public static double driveEncoderCountsPerInch = 74.7;
-    
-    
+	
+	public static double centerXArray[];
+    private static final double[] defaultArray = {0.0};
+	
+	public static double driveAssistDutyCycle = 0.2;
+	public static double driveAssistTimeout = 3.0;
+	public static double driveAssistPixelsToDegrees = 0.05;
+	public static double driveAssistImageCenter = 80.0;
+
 //    public static double turnDegreesTimeout = 90.0;
     public static double turnDegreesTimeout = 2.0;
     public static double turnDegrees = -90.0;
@@ -113,6 +120,13 @@ public class Constants {
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Autonomous drive inches", autoDriveStraightAutoInches);
 				
+		/* drive assist */
+		SmartDashboard.putNumber("Drive Assist DutyCycle", driveAssistDutyCycle);
+		SmartDashboard.putNumber("Drive Assist Timeout", driveAssistTimeout);
+		SmartDashboard.putNumber("Drive Assist Pixels to Degrees", driveAssistPixelsToDegrees);
+		SmartDashboard.putNumber("Drive Assist Image Center", driveAssistImageCenter);
+
+
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive start duty cycle", straightDriveStartDutyCycle);
 		SmartDashboard.putNumber("Straight drive final duty cycle", straightDriveFinalDutyCycle);
@@ -197,5 +211,17 @@ public class Constants {
     	SmartDashboard.putNumber("Lift Encoder Count", Robot._liftMotor.getEncoderCount());
     	SmartDashboard.putNumber("Lift Closed Loop Error", Robot._liftMotor.getClosedLoopError());
     	SmartDashboard.putNumber("Lift Motor Output Voltage", Robot._liftMotor.getMotorOutputVoltage());
+	}
+
+	public static boolean updateCenterXArray()
+	{
+		centerXArray = table.getNumberArray("centerX", defaultArray);
+    	if (centerXArray.length == 2)
+    	{
+    		return true;
+    	} else
+    	{
+    		return false;
+    	}
 	}
 }

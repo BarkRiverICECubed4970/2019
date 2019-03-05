@@ -34,7 +34,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
 	public enum DriveTrainControl
 	{
-		STOP, JOYSTICK, DRIVE_STRAIGHT, DRIVE_STRAIGHT_REVERSE, TURN_DEGREES
+		STOP, JOYSTICK, DRIVE_STRAIGHT, DRIVE_STRAIGHT_REVERSE, TURN_DEGREES, DRIVE_ASSIST
 	};
 	
 	private DriveTrainControl _driveTrainControl = DriveTrainControl.STOP;
@@ -111,46 +111,42 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		squaredInputs = true;
     			forward = Robot.m_oi.joystick.getRawAxis(1);
 	    		rotate = -Robot.m_oi.joystick.getRawAxis(0);
-//	    		prevForward = 0;
 	    		break;
 
 	    	case TURN_DEGREES:
 	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = PID_rotateValue;	    		
-//	    		prevForward = 0;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT:
 	    		squaredInputs = false;
-//	   			forward = -Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
-//	   			forward = -Constants.straightDriveDutyCycle;	    		
 	   			forward = -forwardDutyCycle;	    		
 	    		rotate = PID_rotateValue;
-//	    		prevForward = forward;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT_REVERSE:
 	    		squaredInputs = false;
-//    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
-//	   			forward = Constants.straightDriveDutyCycle;	    		
 	   			forward = forwardDutyCycle;	    		
 	    		rotate = PID_rotateValue;
-//	    		prevForward = forward;
 	    		break;
-	    			
+
+			case DRIVE_ASSIST:
+				squaredInputs = false;
+				forward = Constants.driveAssistDutyCycle;
+				rotate = PID_rotateValue;
+				break;
+
 	    	case STOP:
 	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = 0.0;
-//	    		prevForward = 0;
 	    		break;
 
 	    	default:
 	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = 0.0;
-//	    		prevForward = 0;
 	    		break;
     	}
 
@@ -245,6 +241,11 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		
 		_gyroPid.enable();
     }
+
+	public void resetGyro()
+	{
+		_gyro.reset();
+	}
 
     public void setGyroPidSetpoint(double setPoint)
     {
