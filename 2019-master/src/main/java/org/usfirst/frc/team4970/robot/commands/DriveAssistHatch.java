@@ -14,6 +14,7 @@ import org.usfirst.frc.team4970.robot.Robot;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 
 import utils.Constants;
+import utils.VisionUtils;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -32,6 +33,8 @@ public class DriveAssistHatch extends Command {
 	@Override
 	protected void initialize() {
 
+		VisionUtils.turnOnLed();
+		VisionUtils.setVisionAssistExposure(true);
 //		Robot.setExposure(1);
 
 		Constants.driveAssistDutyCycle = SmartDashboard.getNumber("Drive Assist DutyCycle", Constants.driveAssistDutyCycle);
@@ -39,46 +42,46 @@ public class DriveAssistHatch extends Command {
 		Constants.driveAssistPixelsToDegrees = SmartDashboard.getNumber("Drive Assist Pixels to Degrees", Constants.driveAssistPixelsToDegrees);
 		Constants.driveAssistImageCenter = SmartDashboard.getNumber("Drive Assist Image Center", Constants.driveAssistImageCenter);
 
-		setTimeout(Robot.driveAssistTimeout);
+//		setTimeout(Robot.driveAssistTimeout);
 
 		// redundant, since setupGyroPID() does this already
-    	Robot.driveTrain.setGyroPidSetpoint(0.0);
-    	Robot.driveTrain.controlLoop(DriveTrain.STOP_MOTOR);
-		Robot.targetFound = false;
+ //   	Robot.driveTrain.setGyroPidSetpoint(0.0);
+ //   	Robot.driveTrain.controlLoop(DriveTrain.STOP_MOTOR);
+//		Robot.targetFound = false;
 		
 		Robot._driveTrain.resetEncoders();
 				
 		Robot._driveTrain.setupGyroPID(DriveTrain.DriveTrainControl.DRIVE_ASSIST);
 		Robot._driveTrain.setDriveTrainBrakeMode(true);
-		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
+//		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-    	if (Constants.updateCenterXArray() == true)
+ //   	if (Constants.updateCenterXArray() == true)
     	{
-    		centerXValue = (Robot.centerXArray[0] - Robot.centerXArray[1])/2.0 + Robot.centerXArray[1];
+ //   		centerXValue = (Robot.centerXArray[0] - Robot.centerXArray[1])/2.0 + Robot.centerXArray[1];
     		// change centerX to drive direction
-    		centerXValue = centerXValue - Constants.driveAssistImageCenter;
+  //  		centerXValue = centerXValue - Constants.driveAssistImageCenter;
     	
     		// convert centerXValue to degrees to turn
-    		degrees = centerXValue * Constants.pixelsToDegrees;
-    		Robot._driveTrain.resetGyro();
-    		Robot._driveTrain.setGyroPidSetpoint(degrees);
+    //		degrees = centerXValue * Constants.pixelsToDegrees;
+    //		Robot._driveTrain.resetGyro();
+    //		Robot._driveTrain.setGyroPidSetpoint(degrees);
     		
-    		SmartDashboard.putNumber("centerXValue", centerXValue);
-    		Robot.targetFound = true;
+    //		SmartDashboard.putNumber("centerXValue", centerXValue);
+    //		Robot.targetFound = true;
     	}
 
     	/* 
     	 * as long as the target was found at least once, drive toward
     	 * the computed angle
     	 */
-    	if (Robot.targetFound == true)
-    	{
-    		Robot.driveTrain.controlLoop(DriveTrain.DRIVE_ASSIST);
-    	}    	
+//    	if (Robot.targetFound == true)
+ //   	{
+  //  		Robot.driveTrain.controlLoop(DriveTrain.DRIVE_ASSIST);
+   // 	}    	
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -98,6 +101,8 @@ public class DriveAssistHatch extends Command {
 	@Override
 	protected void end() {
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP, 0.0);
+		VisionUtils.turnOffLed();
+		VisionUtils.setVisionAssistExposure(false);
 	}
 
 	// Called when another command which requires one or more of the same

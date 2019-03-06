@@ -19,15 +19,20 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.vision.VisionPipeline;
 import edu.wpi.first.vision.VisionThread;
 
 import org.opencv.core.Mat;
+
+import visionpipeline.GripPipeline;
 
 /*
    JSON format:
@@ -61,26 +66,13 @@ import org.opencv.core.Mat;
                }
            }
        ]
-       "switched cameras": [
-           {
-               "name": <virtual camera name>
-               "key": <network table key used for selection>
-               // if NT value is a string, it's treated as a name
-               // if NT value is a double, it's treated as an integer index
-           }
-       ]
    }
  */
 
 public final class Main {
   private static String configFile = "/boot/frc.json";
-  private static String testExposure = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]},\"properties\":[{\"name\": \"exposure_time_absolute\",\"value\": 1339}]}";
-  private static String testExposure1 = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]},\"properties\":[{\"name\": \"exposure_time_absolute\",\"value\": 80}]}";
-  private static String lowExposure = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"exposure\": 80,\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]}}";
-  private static String highExposure = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"exposure\": 1000,\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]}}";
-//  {"fps":30,"height":120,"name":"rPi Camera 0","path":"/dev/video0","pixel format":"mjpeg","stream":{"properties":[]},"width":160}
-  private static int exposure = 3;
-  private static UsbCamera camera;
+  private static String highExposureConfig = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]},\"properties\":[{\"name\": \"auto_exposure\",\"value\": 0,\"name\": \"exposure_time_absolute\",\"value\": 1000}]}";
+  private static String lowExposureConfig = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]},\"properties\":[{\"name\": \"auto_exposure\",\"value\": 1,\"name\": \"exposure_time_absolute\",\"value\": 80}]}";
 
   @SuppressWarnings("MemberName")
   public static class CameraConfig {
@@ -90,17 +82,14 @@ public final class Main {
     public JsonElement streamConfig;
   }
 
-  @SuppressWarnings("MemberName")
-  public static class SwitchedCameraConfig {
-    public String name;
-    public String key;
-  };
-
   public static int team;
   public static boolean server;
   public static List<CameraConfig> cameraConfigs = new ArrayList<>();
-  public static List<SwitchedCameraConfig> switchedCameraConfigs = new ArrayList<>();
-  public static List<VideoSource> cameras = new ArrayList<>();
+  public static UsbCamera camera;
+  private static CvSource outputStream;
+  private static CvSink cvSink;
+  private static GripPipeline pipe = new GripPipeline();
+  private static Mat source = new Mat();
 
   private Main() {
   }
@@ -140,32 +129,6 @@ public final class Main {
     cam.config = config;
 
     cameraConfigs.add(cam);
-    return true;
-  }
-
-  /**
-   * Read single switched camera configuration.
-   */
-  public static boolean readSwitchedCameraConfig(JsonObject config) {
-    SwitchedCameraConfig cam = new SwitchedCameraConfig();
-
-    // name
-    JsonElement nameElement = config.get("name");
-    if (nameElement == null) {
-      parseError("could not read switched camera name");
-      return false;
-    }
-    cam.name = nameElement.getAsString();
-
-    // path
-    JsonElement keyElement = config.get("key");
-    if (keyElement == null) {
-      parseError("switched camera '" + cam.name + "': could not read key");
-      return false;
-    }
-    cam.key = keyElement.getAsString();
-
-    switchedCameraConfigs.add(cam);
     return true;
   }
 
@@ -223,15 +186,6 @@ public final class Main {
       }
     }
 
-    if (obj.has("switched cameras")) {
-      JsonArray switchedCameras = obj.get("switched cameras").getAsJsonArray();
-      for (JsonElement camera : switchedCameras) {
-        if (!readSwitchedCameraConfig(camera.getAsJsonObject())) {
-          return false;
-        }
-      }
-    }
-
     return true;
   }
 
@@ -244,48 +198,20 @@ public final class Main {
     camera = new UsbCamera(config.name, config.path);
     MjpegServer server = inst.startAutomaticCapture(camera);
 
+    cvSink = inst.getVideo();
+    outputStream = inst.putVideo("processed", 320, 240);
+
+
     Gson gson = new GsonBuilder().create();
 
     camera.setConfigJson(gson.toJson(config.config));
-    System.out.println("CONFIG " + gson.toJson(config.config));
-    System.out.println("HIGH EXPOSURE CONFIG " + highExposure);
     camera.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
 
     if (config.streamConfig != null) {
-      server.setConfigJson(gson.toJson(config.streamConfig));
+//      server.setConfigJson(gson.toJson(config.streamConfig));
     }
 
     return camera;
-  }
-
-  /**
-   * Start running the switched camera.
-   */
-  public static MjpegServer startSwitchedCamera(SwitchedCameraConfig config) {
-    System.out.println("Starting switched camera '" + config.name + "' on " + config.key);
-    MjpegServer server = CameraServer.getInstance().addSwitchedCamera(config.name);
-
-    NetworkTableInstance.getDefault()
-        .getEntry(config.key)
-        .addListener(event -> {
-              if (event.value.isDouble()) {
-                int i = (int) event.value.getDouble();
-                if (i >= 0 && i < cameras.size()) {
-                  server.setSource(cameras.get(i));
-                }
-              } else if (event.value.isString()) {
-                String str = event.value.getString();
-                for (int i = 0; i < cameraConfigs.size(); i++) {
-                  if (str.equals(cameraConfigs.get(i).name)) {
-                    server.setSource(cameras.get(i));
-                    break;
-                  }
-                }
-              }
-            },
-            EntryListenerFlags.kImmediate | EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
-    return server;
   }
 
   /**
@@ -304,6 +230,14 @@ public final class Main {
    * Main.
    */
   public static void main(String... args) {
+    NetworkTableEntry centerXEntry;
+    NetworkTableEntry exposureEntry;
+    double centerX = 0.0;
+    boolean exposureLow = false;
+    boolean exposureLowPrev = false;
+    NetworkTable table;
+  //  NetworkTable shuffletable = NetworkTable.getTable("SmartDashboard");
+
     if (args.length > 0) {
       configFile = args[0];
     }
@@ -322,45 +256,63 @@ public final class Main {
       System.out.println("Setting up NetworkTables client for team " + team);
       ntinst.startClientTeam(team);
     }
+    table = ntinst.getTable("visionTable");
+    centerXEntry = ntinst.getEntry("centerX");
+    exposureEntry = ntinst.getEntry("piCamExposure");
 
     // start cameras
-    for (CameraConfig config : cameraConfigs) {
-      cameras.add(startCamera(config));
-    }
-
-    // start switched cameras
-    for (SwitchedCameraConfig config : switchedCameraConfigs) {
-      startSwitchedCamera(config);
+    List<VideoSource> cameras = new ArrayList<>();
+    for (CameraConfig cameraConfig : cameraConfigs) {
+      cameras.add(startCamera(cameraConfig));
     }
 
     // start image processing on camera 0 if present
     if (cameras.size() >= 1) {
-      VisionThread visionThread = new VisionThread(cameras.get(0),
-              new MyPipeline(), pipeline -> {
+  //    VisionThread visionThread = new VisionThread(cameras.get(0),
+  //            new MyPipeline(), pipeline -> {
         // do something with pipeline results
-      });
-      /* something like this for GRIP:
+ //     });
       VisionThread visionThread = new VisionThread(cameras.get(0),
-              new GripPipeline(), pipeline -> {
-        ...
+              pipe, pipeline -> {
+	//	if (!pipeline.filterContoursOutput().isEmpty()) {
+    //          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+//                synchronized (imgLock) {
+    //              centerX = r.x + (r.width / 2);
+//                  table.putNumber("CenterX",centerX);
+//                }
+
+	      cvSink.grabFrameNoTimeout(source);
+	      outputStream.putFrame(pipeline.hsvThresholdOutput());
+
+          //    }
+	   // System.out.println("Grip sees " +   + " targets");
+	
       });
-       */
       visionThread.start();
     }
 
     // loop forever
     for (;;) {
       try {
-        Thread.sleep(10000);
-	if (exposure == 3)
+        Thread.sleep(1000);
+//        Thread.sleep(10000);
+        centerX += 0.1;
+	centerXEntry.setDouble(centerX);
+	exposureLow = exposureEntry.getBoolean(false);
+	if (exposureLowPrev != exposureLow)
 	{
-	  exposure = 1;
-          camera.setConfigJson(testExposure);
-	} else
-	{
-	  exposure = 3;
-          camera.setConfigJson(testExposure1);
+	  if (exposureLow)
+	  {
+          	camera.setConfigJson(lowExposureConfig);
+	  }
+	  else
+	  {
+          	camera.setConfigJson(highExposureConfig);
+	  }
 	}
+
+	exposureLowPrev = exposureLow;
+
       } catch (InterruptedException ex) {
         return;
       }

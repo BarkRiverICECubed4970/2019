@@ -42,9 +42,6 @@ public class Constants {
     // 714 counts per 18.85 inches = 37.87
     public static double driveEncoderCountsPerInch = 74.7;
 	
-	public static double centerXArray[];
-    private static final double[] defaultArray = {0.0};
-	
 	public static double driveAssistDutyCycle = 0.2;
 	public static double driveAssistTimeout = 3.0;
 	public static double driveAssistPixelsToDegrees = 0.05;
@@ -88,12 +85,12 @@ public class Constants {
 	public static double liftMotorPeakVoltage = 1.0;
 
 	public static double liftBallIntakePositionSetpoint = 50.0;
-	public static double liftRocketPositionSetpoint = 7420.0;
+	public static double liftRocketPositionSetpoint = 7580.0;
 	public static double liftHatchIntakePositionSetpoint = 2250.0;
     public static double liftHatchPlaceLowerPositionSetpoint = 1100.0;
-	public static double liftHatchPlaceUpperPositionSetpoint = 10900.0;
+	public static double liftHatchPlaceUpperPositionSetpoint = 10975.0;
 
-	public static double liftCommandTimeout = 5.0;
+	public static double liftCommandTimeout = 3.0;
 	public static double liftTestDutyCycle = 0.4;
 
     public static double intakeBallDutyCycle = 0.3;
@@ -213,15 +210,4 @@ public class Constants {
     	SmartDashboard.putNumber("Lift Motor Output Voltage", Robot._liftMotor.getMotorOutputVoltage());
 	}
 
-	public static boolean updateCenterXArray()
-	{
-		centerXArray = table.getNumberArray("centerX", defaultArray);
-    	if (centerXArray.length == 2)
-    	{
-    		return true;
-    	} else
-    	{
-    		return false;
-    	}
-	}
 }

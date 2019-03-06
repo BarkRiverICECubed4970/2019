@@ -117,6 +117,12 @@ public class OI {
 		SmartDashboard.putData("Stop Lift", new TestLiftStop());
 		SmartDashboard.putData("Stop Hatch", new TestHatchStop());
 
+		SmartDashboard.putData("LED Off", new TestLedOff());
+		SmartDashboard.putData("LED On", new TestLedOn());
+
+		SmartDashboard.putData("PiCam Low Exposure", new TestCameraLowExposure());
+		SmartDashboard.putData("PiCam High Exposure", new TestCameraHighExposure());
+
 		SmartDashboard.putData("Hatch Up", new HatchUp());
 		SmartDashboard.putData("Hatch Down", new HatchDown());
 		SmartDashboard.putData("Hatch Toggle", new HatchToggle());
