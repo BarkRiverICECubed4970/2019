@@ -14,7 +14,6 @@ import org.usfirst.frc.team4970.robot.Robot;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 
 import utils.Constants;
-import utils.VisionUtils;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -33,8 +32,8 @@ public class DriveAssistHatch extends Command {
 	@Override
 	protected void initialize() {
 
-		VisionUtils.turnOnLed();
-		VisionUtils.setVisionAssistExposure(true);
+		Robot._visionUtils.turnOnLed();
+		Robot._visionUtils.setVisionAssistExposure(true);
 //		Robot.setExposure(1);
 
 		Constants.driveAssistDutyCycle = SmartDashboard.getNumber("Drive Assist DutyCycle", Constants.driveAssistDutyCycle);
@@ -101,8 +100,8 @@ public class DriveAssistHatch extends Command {
 	@Override
 	protected void end() {
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP, 0.0);
-		VisionUtils.turnOffLed();
-		VisionUtils.setVisionAssistExposure(false);
+		Robot._visionUtils.turnOffLed();
+		Robot._visionUtils.setVisionAssistExposure(false);
 	}
 
 	// Called when another command which requires one or more of the same

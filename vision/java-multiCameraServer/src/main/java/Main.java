@@ -71,8 +71,6 @@ import visionpipeline.GripPipeline;
 
 public final class Main {
   private static String configFile = "/boot/frc.json";
-  private static String highExposureConfig = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]},\"properties\":[{\"name\": \"auto_exposure\",\"value\": 0,\"name\": \"exposure_time_absolute\",\"value\": 1000}]}";
-  private static String lowExposureConfig = "{\"name\":\"rPi Camera 0\",\"path\":\"/dev/video0\",\"fps\":30,\"height\":120,\"width\":160,\"pixel format\":\"mjpeg\",\"stream\":{\"properties\":[]},\"properties\":[{\"name\": \"auto_exposure\",\"value\": 1,\"name\": \"exposure_time_absolute\",\"value\": 80}]}";
 
   @SuppressWarnings("MemberName")
   public static class CameraConfig {
@@ -90,6 +88,13 @@ public final class Main {
   private static CvSink cvSink;
   private static GripPipeline pipe = new GripPipeline();
   private static Mat source = new Mat();
+
+  private static NetworkTableEntry centerXEntry;
+  private static NetworkTableEntry exposureEntry;
+  private static double centerX = 0.0;
+  private static boolean exposureLow = false;
+  private static boolean exposureLowPrev = false;
+  private static NetworkTable table;
 
   private Main() {
   }
@@ -230,13 +235,6 @@ public final class Main {
    * Main.
    */
   public static void main(String... args) {
-    NetworkTableEntry centerXEntry;
-    NetworkTableEntry exposureEntry;
-    double centerX = 0.0;
-    boolean exposureLow = false;
-    boolean exposureLowPrev = false;
-    NetworkTable table;
-  //  NetworkTable shuffletable = NetworkTable.getTable("SmartDashboard");
 
     if (args.length > 0) {
       configFile = args[0];
@@ -257,8 +255,8 @@ public final class Main {
       ntinst.startClientTeam(team);
     }
     table = ntinst.getTable("visionTable");
-    centerXEntry = ntinst.getEntry("centerX");
-    exposureEntry = ntinst.getEntry("piCamExposure");
+    centerXEntry = table.getEntry("centerX");
+    exposureEntry = table.getEntry("piCamExposure");
 
     // start cameras
     List<VideoSource> cameras = new ArrayList<>();
@@ -286,6 +284,26 @@ public final class Main {
 
           //    }
 	   // System.out.println("Grip sees " +   + " targets");
+              centerX += 0.1;
+	      centerXEntry.setDouble(centerX);
+	      exposureLow = exposureEntry.getBoolean(false);
+
+              if (exposureLowPrev != exposureLow)
+	      {
+	        if (exposureLow)
+	        {
+            	  System.out.println("exposureLow == true");
+          	  camera.setExposureManual(1);
+	        }
+	        else
+	        {
+           	  System.out.println("exposureLow == false");
+          	  camera.setExposureManual(5);
+	        }
+	      }
+
+	      exposureLowPrev = exposureLow;
+
 	
       });
       visionThread.start();
@@ -294,25 +312,7 @@ public final class Main {
     // loop forever
     for (;;) {
       try {
-        Thread.sleep(1000);
-//        Thread.sleep(10000);
-        centerX += 0.1;
-	centerXEntry.setDouble(centerX);
-	exposureLow = exposureEntry.getBoolean(false);
-	if (exposureLowPrev != exposureLow)
-	{
-	  if (exposureLow)
-	  {
-          	camera.setConfigJson(lowExposureConfig);
-	  }
-	  else
-	  {
-          	camera.setConfigJson(highExposureConfig);
-	  }
-	}
-
-	exposureLowPrev = exposureLow;
-
+        Thread.sleep(10000);
       } catch (InterruptedException ex) {
         return;
       }

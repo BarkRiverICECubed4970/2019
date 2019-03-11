@@ -1,7 +1,8 @@
 package org.usfirst.frc.team4970.robot.commands;
 
+import org.usfirst.frc.team4970.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
-import utils.VisionUtils;
 
 /**
  *
@@ -13,7 +14,7 @@ public class TestLedOff extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        VisionUtils.turnOffLed();
+        Robot._visionUtils.turnOffLed();
     }
 
     // Called repeatedly when this Command is scheduled to run

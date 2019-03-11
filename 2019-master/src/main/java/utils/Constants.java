@@ -207,7 +207,10 @@ public class Constants {
     	/* Lift motor */
     	SmartDashboard.putNumber("Lift Encoder Count", Robot._liftMotor.getEncoderCount());
     	SmartDashboard.putNumber("Lift Closed Loop Error", Robot._liftMotor.getClosedLoopError());
-    	SmartDashboard.putNumber("Lift Motor Output Voltage", Robot._liftMotor.getMotorOutputVoltage());
+		SmartDashboard.putNumber("Lift Motor Output Voltage", Robot._liftMotor.getMotorOutputVoltage());
+		
+		/* vision utils */
+		SmartDashboard.putNumber("CenterX from Pi Camera", Robot._visionUtils.getCenterX());
 	}
 
 }

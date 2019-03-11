@@ -24,6 +24,7 @@ import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import utils.Constants;
+import utils.VisionUtils;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -53,7 +54,8 @@ public class Robot extends TimedRobot {
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	public static Constants _calibrationManager;
-    
+	public static VisionUtils _visionUtils;
+	
     /**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -64,6 +66,7 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		
 		_calibrationManager = new Constants();
+		_visionUtils = new VisionUtils();
 		
 	    m_chooser.addDefault("Do Nothing", null);
 		m_chooser.addObject("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches, 0.0, false));

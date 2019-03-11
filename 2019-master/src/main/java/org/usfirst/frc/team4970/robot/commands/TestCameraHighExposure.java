@@ -1,7 +1,8 @@
 package org.usfirst.frc.team4970.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import utils.VisionUtils;
+import org.usfirst.frc.team4970.robot.Robot;
+
 
 /**
  *
@@ -13,7 +14,7 @@ public class TestCameraHighExposure extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        VisionUtils.setVisionAssistExposure(false);
+        Robot._visionUtils.setVisionAssistExposure(false);
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -815,6 +815,226 @@
               "_source0": "network_table:///SmartDashboard/Reset Lift Encoder",
               "_title": "Reset Lift Encoder"
             }
+          },
+          "37,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Image Center",
+              "_title": "Drive Assist Image Center"
+            }
+          },
+          "20,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Hatch Intake Position",
+              "_title": "Lift to Hatch Intake Position"
+            }
+          },
+          "37,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Hatch Lower Setpoint",
+              "_title": "Lift Hatch Lower Setpoint"
+            }
+          },
+          "22,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Hatch Upper Position",
+              "_title": "Lift to Hatch Upper Position"
+            }
+          },
+          "24,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Ball",
+              "_title": "Drive Assist Ball"
+            }
+          },
+          "17,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Rocket Setpoint",
+              "_title": "Lift Rocket Setpoint"
+            }
+          },
+          "26,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Hatch Upper Setpoint",
+              "_title": "Lift Hatch Upper Setpoint"
+            }
+          },
+          "27,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Hatch Lower Position",
+              "_title": "Lift to Hatch Lower Position"
+            }
+          },
+          "29,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Hatch",
+              "_title": "Drive Assist Hatch"
+            }
+          },
+          "31,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Timeout",
+              "_title": "Drive Assist Timeout"
+            }
+          },
+          "32,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Ball Intake Setpoint",
+              "_title": "Lift Ball Intake Setpoint"
+            }
+          },
+          "33,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Ball Intake Position",
+              "_title": "Lift to Ball Intake Position"
+            }
+          },
+          "35,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Pixels to Degrees",
+              "_title": "Drive Assist Pixels to Degrees"
+            }
+          },
+          "36,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist DutyCycle",
+              "_title": "Drive Assist DutyCycle"
+            }
+          },
+          "37,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Hatch Intake Setpoint",
+              "_title": "Lift Hatch Intake Setpoint"
+            }
+          },
+          "0,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LED Off",
+              "_title": "LED Off"
+            }
+          },
+          "4,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LED On",
+              "_title": "LED On"
+            }
+          },
+          "6,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/PiCam Low Exposure",
+              "_title": "PiCam Low Exposure"
+            }
+          },
+          "8,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/PiCam High Exposure",
+              "_title": "PiCam High Exposure"
+            }
+          },
+          "38,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/CenterX from Pi Camera",
+              "_title": "CenterX from Pi Camera"
+            }
           }
         }
       }
@@ -1195,7 +1415,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/Reset Lift Encoder",
-              "_title": "Reset Lift Encoder"
+              "_title": "/SmartDashboard/Reset Lift Encoder"
             }
           }
         }
@@ -2117,6 +2337,226 @@
               "_source0": "network_table:///SmartDashboard/Lift Motor Output Voltage",
               "_title": "martDashboard/Lift Motor Output Voltage"
             }
+          },
+          "19,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Image Center",
+              "_title": "martDashboard/Drive Assist Image Center"
+            }
+          },
+          "1,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Hatch Intake Position",
+              "_title": "martDashboard/Lift to Hatch Intake Position"
+            }
+          },
+          "19,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Hatch Lower Setpoint",
+              "_title": "martDashboard/Lift Hatch Lower Setpoint"
+            }
+          },
+          "3,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Hatch Upper Position",
+              "_title": "martDashboard/Lift to Hatch Upper Position"
+            }
+          },
+          "5,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Ball",
+              "_title": "martDashboard/Drive Assist Ball"
+            }
+          },
+          "19,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Rocket Setpoint",
+              "_title": "martDashboard/Lift Rocket Setpoint"
+            }
+          },
+          "19,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Hatch Upper Setpoint",
+              "_title": "martDashboard/Lift Hatch Upper Setpoint"
+            }
+          },
+          "7,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Hatch Lower Position",
+              "_title": "martDashboard/Lift to Hatch Lower Position"
+            }
+          },
+          "14,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Hatch",
+              "_title": "martDashboard/Drive Assist Hatch"
+            }
+          },
+          "19,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Timeout",
+              "_title": "martDashboard/Drive Assist Timeout"
+            }
+          },
+          "16,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Ball Intake Setpoint",
+              "_title": "martDashboard/Lift Ball Intake Setpoint"
+            }
+          },
+          "17,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lift to Ball Intake Position",
+              "_title": "martDashboard/Lift to Ball Intake Position"
+            }
+          },
+          "19,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist Pixels to Degrees",
+              "_title": "martDashboard/Drive Assist Pixels to Degrees"
+            }
+          },
+          "0,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Drive Assist DutyCycle",
+              "_title": "martDashboard/Drive Assist DutyCycle"
+            }
+          },
+          "1,6": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lift Hatch Intake Setpoint",
+              "_title": "martDashboard/Lift Hatch Intake Setpoint"
+            }
+          },
+          "2,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LED Off",
+              "_title": "martDashboard/LED Off"
+            }
+          },
+          "4,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LED On",
+              "_title": "martDashboard/LED On"
+            }
+          },
+          "6,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/PiCam Low Exposure",
+              "_title": "martDashboard/PiCam Low Exposure"
+            }
+          },
+          "14,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/PiCam High Exposure",
+              "_title": "martDashboard/PiCam High Exposure"
+            }
+          },
+          "20,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/CenterX from Pi Camera",
+              "_title": "martDashboard/CenterX from Pi Camera"
+            }
           }
         }
       }
@@ -2465,7 +2905,114 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "tiles": {}
+        "tiles": {
+          "5,0": {
+            "size": [
+              9,
+              6
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://rPi Camera 0",
+              "_title": "rPi Camera 0",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
+          },
+          "15,1": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/PiCam Low Exposure",
+              "_title": "SmartDashboard/PiCam Low Exposure"
+            }
+          },
+          "15,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/PiCam High Exposure",
+              "_title": "SmartDashboard/PiCam High Exposure"
+            }
+          },
+          "15,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LED On",
+              "_title": "SmartDashboard/LED On"
+            }
+          },
+          "15,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LED Off",
+              "_title": "SmartDashboard/LED Off"
+            }
+          },
+          "7,7": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/CenterX from Pi Camera",
+              "_title": "SmartDashboard/CenterX from Pi Camera"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Tab 8",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 64.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "5,0": {
+            "size": [
+              10,
+              7
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://processed",
+              "_title": "processed",
+              "Crosshair/Show crosshair": false,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
+          }
+        }
       }
     }
   ],

@@ -4,45 +4,47 @@ import org.usfirst.frc.team4970.robot.Robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class VisionUtils {
 
-	private static DigitalOutput led_output;
-	private static NetworkTableEntry xEntry;
-	private static NetworkTableEntry exposureEntry;
-	public static double centerX;
+	private Spark m_ledDriver;
+	private NetworkTableEntry xEntry;
+	private NetworkTableEntry exposureEntry;
+	public double centerX;
 
     public VisionUtils() {
 		NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
 		NetworkTable table = ntinst.getTable("visionTable");
 
+		m_ledDriver = new Spark(0);
+
 		xEntry = table.getEntry("centerX");
 		exposureEntry = table.getEntry("piCamExposure");
 
-		led_output = new DigitalOutput(0);
-		led_output.set(false);
+		m_ledDriver.set(0.0);
     }
 
-	public static double getCenterX()
+	public double getCenterX()
 	{
 		return xEntry.getDouble(0.0);
 	}
 
-	public static void setVisionAssistExposure (boolean lowExposure)
+	public void setVisionAssistExposure (boolean lowExposure)
 	{
 		exposureEntry.setBoolean(lowExposure);
 	}
 
-	public static void turnOnLed()
+	public void turnOnLed()
 	{
-		led_output.set(true);
+		m_ledDriver.set(0.8);
 	}
 
-	public static void turnOffLed()
+	public void turnOffLed()
 	{
-		led_output.set(false);
+		m_ledDriver.set(0.0);
 	}
 }
