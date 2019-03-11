@@ -13,8 +13,16 @@ public class VisionUtils {
 
 	private Spark m_ledDriver;
 	private NetworkTableEntry xEntry;
+	private NetworkTableEntry xValid;
 	private NetworkTableEntry exposureEntry;
 	public double centerX;
+
+	public enum VisionAssistState
+	{
+		STOP, BALL, HATCH
+	};
+	
+	private VisionAssistState _visionAssistState = VisionAssistState.STOP;
 
     public VisionUtils() {
 		NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
@@ -23,6 +31,7 @@ public class VisionUtils {
 		m_ledDriver = new Spark(0);
 
 		xEntry = table.getEntry("centerX");
+		xValid = table.getEntry("centerXValid");
 		exposureEntry = table.getEntry("piCamExposure");
 
 		m_ledDriver.set(0.0);
@@ -31,6 +40,29 @@ public class VisionUtils {
 	public double getCenterX()
 	{
 		return xEntry.getDouble(0.0);
+	}
+
+	public boolean centerXvalid()
+	{
+		return xValid.getBoolean(false);
+	}
+
+	public void setState (VisionAssistState state)
+	{
+		_visionAssistState = state;
+	}
+
+	public double getOffset()
+	{
+		double offset = 0.0;
+		if (_visionAssistState == VisionAssistState.BALL)
+		{
+			offset = SmartDashboard.getNumber("Drive Assist Ball Image Center Pixels", Constants.ballAssistImageCenterPixels);
+		} else if (_visionAssistState == VisionAssistState.HATCH)
+		{
+			offset = SmartDashboard.getNumber("Drive Assist Hatch Image Center Pixels", Constants.hatchAssistImageCenterPixels);
+		}
+		return offset;
 	}
 
 	public void setVisionAssistExposure (boolean lowExposure)
@@ -46,5 +78,12 @@ public class VisionUtils {
 	public void turnOffLed()
 	{
 		m_ledDriver.set(0.0);
+	}
+
+	public void stop()
+	{
+		turnOffLed();
+		setVisionAssistExposure(false);
+		_visionAssistState = VisionAssistState.STOP;
 	}
 }

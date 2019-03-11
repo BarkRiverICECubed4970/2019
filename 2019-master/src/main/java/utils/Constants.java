@@ -45,7 +45,8 @@ public class Constants {
 	public static double driveAssistDutyCycle = 0.2;
 	public static double driveAssistTimeout = 3.0;
 	public static double driveAssistPixelsToDegrees = 0.05;
-	public static double driveAssistImageCenter = 80.0;
+	public static double hatchAssistImageCenterPixels = 5.0;
+	public static double ballAssistImageCenterPixels = -5.0;
 
 //    public static double turnDegreesTimeout = 90.0;
     public static double turnDegreesTimeout = 2.0;
@@ -121,7 +122,8 @@ public class Constants {
 		SmartDashboard.putNumber("Drive Assist DutyCycle", driveAssistDutyCycle);
 		SmartDashboard.putNumber("Drive Assist Timeout", driveAssistTimeout);
 		SmartDashboard.putNumber("Drive Assist Pixels to Degrees", driveAssistPixelsToDegrees);
-		SmartDashboard.putNumber("Drive Assist Image Center", driveAssistImageCenter);
+		SmartDashboard.putNumber("Drive Assist Hatch Image Center Pixels", hatchAssistImageCenterPixels);
+		SmartDashboard.putNumber("Drive Assist Ball Image Center Pixels", ballAssistImageCenterPixels);
 
 
 		/* consider ramping function on the talons */
