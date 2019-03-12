@@ -31,6 +31,8 @@ import edu.wpi.first.vision.VisionPipeline;
 import edu.wpi.first.vision.VisionThread;
 
 import org.opencv.core.Mat;
+import org.opencv.core.*;
+import org.opencv.imgproc.*;
 
 import visionpipeline.GripPipeline;
 
@@ -90,11 +92,17 @@ public final class Main {
   private static Mat source = new Mat();
 
   private static NetworkTableEntry centerXEntry;
+  private static NetworkTableEntry centerXValid;
   private static NetworkTableEntry exposureEntry;
   private static double centerX = 0.0;
   private static boolean exposureLow = false;
   private static boolean exposureLowPrev = false;
   private static NetworkTable table;
+  private static double numTargets = 0.0;
+  private static double r1x = 0.0;
+  private static double r2x = 0.0;
+  private static double r1width = 0.0;
+  private static double r2width = 0.0;
 
   private Main() {
   }
@@ -256,6 +264,7 @@ public final class Main {
     }
     table = ntinst.getTable("visionTable");
     centerXEntry = table.getEntry("centerX");
+    centerXValid = table.getEntry("centerXValid");
     exposureEntry = table.getEntry("piCamExposure");
 
     // start cameras
@@ -271,28 +280,40 @@ public final class Main {
         // do something with pipeline results
  //     });
       VisionThread visionThread = new VisionThread(cameras.get(0),
-              pipe, pipeline -> {
-	//	if (!pipeline.filterContoursOutput().isEmpty()) {
-    //          Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-//                synchronized (imgLock) {
-    //              centerX = r.x + (r.width / 2);
-//                  table.putNumber("CenterX",centerX);
-//                }
+      pipe, pipeline -> {
+        numTargets = pipeline.filterContoursOutput().size();
+  		  if (numTargets == 2) {
+          Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+          Rect r2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
+          centerX = ((r1.x + r1.width) - r2.x)/2.0 + r2.x;
 
-	      cvSink.grabFrameNoTimeout(source);
-	      outputStream.putFrame(pipeline.hsvThresholdOutput());
+          // subtract the image center
+          centerX = centerX - 80.0;
 
-          //    }
+          r1x = r1.x;
+          r2x = r2.x;
+          r1width = r1.width;
+          r2width = r2.width;
+
+          centerXEntry.setDouble(centerX);
+                  
+          centerXValid.setBoolean(true);
+        } else {
+          centerXValid.setBoolean(false);
+        }
+
+
+      cvSink.grabFrameNoTimeout(source);
+	    outputStream.putFrame(pipeline.hslThresholdOutput());
+
 	   // System.out.println("Grip sees " +   + " targets");
-              centerX += 0.1;
-	      centerXEntry.setDouble(centerX);
 	      exposureLow = exposureEntry.getBoolean(false);
 
               if (exposureLowPrev != exposureLow)
 	      {
 	        if (exposureLow)
 	        {
-            	  System.out.println("exposureLow == true");
+           	  System.out.println("exposureLow == true");
           	  camera.setExposureManual(1);
 	        }
 	        else
@@ -312,7 +333,13 @@ public final class Main {
     // loop forever
     for (;;) {
       try {
-        Thread.sleep(10000);
+        Thread.sleep(1000);
+        System.out.println("PICAM found " + numTargets + "targets!");
+        System.out.println("CenterX = " + centerX);        
+        System.out.println("r1x = " + r1x);        
+        System.out.println("r2x = " + r2x);        
+        System.out.println("r1width = " + r1width);        
+        System.out.println("r2width = " + r2width);        
       } catch (InterruptedException ex) {
         return;
       }

@@ -72,7 +72,7 @@ public class VisionUtils {
 
 	public void turnOnLed()
 	{
-		m_ledDriver.set(0.8);
+		m_ledDriver.set(1.0);
 	}
 
 	public void turnOffLed()

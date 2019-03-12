@@ -1,27 +1,27 @@
 <grip:Pipeline>
   <sources>
     <grip:Camera>
-      <property name="address" value="http://169.254.247.236:1181/?action=stream"/>
+      <property name="address" value="http://10.49.70.11:1181/?action=stream"/>
     </grip:Camera>
   </sources>
   <steps>
-    <grip:Step name="HSV Threshold">
+    <grip:Step name="HSL Threshold">
       <grip:Input step="0" socket="0"/>
       <grip:Input step="0" socket="1">
         <value>
-          <double>41.43884876649155</double>
-          <double>95.83619036365289</double>
+          <double>64.10071927008869</double>
+          <double>112.42320819112628</double>
         </value>
       </grip:Input>
       <grip:Input step="0" socket="2">
         <value>
-          <double>62.37409590817184</double>
+          <double>172.44604710194704</double>
           <double>255.0</double>
         </value>
       </grip:Input>
       <grip:Input step="0" socket="3">
         <value>
-          <double>130.57828491787376</double>
+          <double>122.91366884605489</double>
           <double>255.0</double>
         </value>
       </grip:Input>
@@ -34,11 +34,55 @@
       </grip:Input>
       <grip:Output step="1" socket="0" previewed="true"/>
     </grip:Step>
+    <grip:Step name="Filter Contours">
+      <grip:Input step="2" socket="0"/>
+      <grip:Input step="2" socket="1">
+        <value>100.0</value>
+      </grip:Input>
+      <grip:Input step="2" socket="2">
+        <value>0</value>
+      </grip:Input>
+      <grip:Input step="2" socket="3">
+        <value>0</value>
+      </grip:Input>
+      <grip:Input step="2" socket="4">
+        <value>1000</value>
+      </grip:Input>
+      <grip:Input step="2" socket="5">
+        <value>0</value>
+      </grip:Input>
+      <grip:Input step="2" socket="6">
+        <value>1000</value>
+      </grip:Input>
+      <grip:Input step="2" socket="7">
+        <value>
+          <int>0</int>
+          <int>100</int>
+        </value>
+      </grip:Input>
+      <grip:Input step="2" socket="8">
+        <value>1000000</value>
+      </grip:Input>
+      <grip:Input step="2" socket="9">
+        <value>0</value>
+      </grip:Input>
+      <grip:Input step="2" socket="10">
+        <value>0</value>
+      </grip:Input>
+      <grip:Input step="2" socket="11">
+        <value>1000</value>
+      </grip:Input>
+      <grip:Output step="2" socket="0" previewed="true"/>
+    </grip:Step>
   </steps>
   <connections>
     <grip:Connection>
-      <grip:Output source="0" socket="0" previewed="true"/>
+      <grip:Output source="0" socket="0" previewed="false"/>
       <grip:Input step="0" socket="0"/>
+    </grip:Connection>
+    <grip:Connection>
+      <grip:Output step="1" socket="0" previewed="true"/>
+      <grip:Input step="2" socket="0"/>
     </grip:Connection>
     <grip:Connection>
       <grip:Output step="0" socket="0" previewed="true"/>
@@ -58,7 +102,7 @@
     <language>Java</language>
     <className>GripPipeline</className>
     <implementWpilibPipeline>true</implementWpilibPipeline>
-    <saveDir>C:\Users\BRH_Robotics\Documents\2019\java-multiCameraServer\src\main\java\visionpipeline</saveDir>
+    <saveDir>C:\Users\BRH_Robotics\Documents\2019\robotCode\repo\vision\java-multiCameraServer\src\main\java\visionpipeline</saveDir>
     <packageName>visionpipeline</packageName>
     <moduleName>grip</moduleName>
   </codeGenerationSettings>
