@@ -24,6 +24,7 @@ public class DriveAssist extends Command {
 	private double centerXOffset;
 	private double degrees;
 	private boolean targetFound;
+	private double targetHeight;
 	
 	public DriveAssist() {
 		// Use requires() here to declare subsystem dependencies
@@ -43,7 +44,7 @@ public class DriveAssist extends Command {
 
 		centerXOffset = Robot._visionUtils.getOffset();
 
-		setTimeout(Constants.driveAssistTimeout);
+//		setTimeout(Constants.driveAssistTimeout);
 
 		Robot._driveTrain.resetGyro();
 		// redundant, since setupGyroPID() does this already
@@ -62,10 +63,10 @@ public class DriveAssist extends Command {
 	@Override
 	protected void execute() {
 
-		if (Robot._visionUtils.centerXvalid())
+//		if (Robot._visionUtils.centerXvalid())
     	{
     		centerXValue = Robot._visionUtils.getCenterX() + centerXOffset;
-    	
+			targetHeight = Robot._visionUtils.getTargetHeight();
     		// convert centerXValue to degrees to turn
     		degrees = centerXValue * Constants.driveAssistPixelsToDegrees;
     		Robot._driveTrain.resetGyro();
@@ -78,27 +79,27 @@ public class DriveAssist extends Command {
     	 * as long as the target was found at least once, drive toward
     	 * the computed angle
     	 */
-    	if (targetFound == true)
+  //  	if (targetFound == true)
     	{
 			Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_ASSIST, Constants.driveAssistDutyCycle);
-			System.out.println("turn " + degrees + " degrees");
+//			System.out.println("turn " + degrees + " degrees");
 		} 
-		else {
-			System.out.println("no target found yet");
-		}  	
+//		else {
+//			System.out.println("no target found yet");
+//		}  	
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
 
-		if (isTimedOut())
-		{
-			return true;
-		} else
-		{
+//		if (isTimedOut())
+//		{
+//			return true;
+//		} else
+//		{
 			return false;
-		}
+//		}
 	}
 
 	// Called once after isFinished returns true

@@ -63,10 +63,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		
+		_visionUtils = new VisionUtils();
 		m_oi = new OI();
 		
 		_calibrationManager = new Constants();
-		_visionUtils = new VisionUtils();
 		
 	    m_chooser.addDefault("Do Nothing", null);
 		m_chooser.addObject("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches, 0.0, false));

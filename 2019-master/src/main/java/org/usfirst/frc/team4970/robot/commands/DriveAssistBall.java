@@ -16,7 +16,7 @@ public class DriveAssistBall extends CommandGroup {
   
   public DriveAssistBall() {
 
-    Robot._visionUtils.setState(VisionUtils.VisionAssistState.BALL);
+    addSequential(new SetStateBall());
     addSequential(new DriveAssist());
   }
 }

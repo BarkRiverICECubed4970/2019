@@ -92,6 +92,7 @@ public final class Main {
   private static Mat source = new Mat();
 
   private static NetworkTableEntry centerXEntry;
+  private static NetworkTableEntry centerXHeight;
   private static NetworkTableEntry centerXValid;
   private static NetworkTableEntry exposureEntry;
   private static double centerX = 0.0;
@@ -99,10 +100,18 @@ public final class Main {
   private static boolean exposureLowPrev = false;
   private static NetworkTable table;
   private static double numTargets = 0.0;
-  private static double r1x = 0.0;
-  private static double r2x = 0.0;
-  private static double r1width = 0.0;
-  private static double r2width = 0.0;
+  private static Object imgLock = new Object();
+  private static List<Rect> rectArray = new ArrayList<>();
+  private static List<RotatedRect> rotRectArray = new ArrayList<>();
+  private static MatOfPoint2f contourMOP2f = new MatOfPoint2f();
+  private static Rect r1;
+  private static Rect r2;
+  private static double deltaX = 0.0;
+  private static double deltaXTemp = 0.0;
+  private static double targetHeight = 0.0;
+  private static boolean targetFound = false;
+
+  private static final double CENTER_IMAGE = 160.0;
 
   private Main() {
   }
@@ -264,6 +273,7 @@ public final class Main {
     }
     table = ntinst.getTable("visionTable");
     centerXEntry = table.getEntry("centerX");
+    centerXHeight = table.getEntry("centerXHeight");
     centerXValid = table.getEntry("centerXValid");
     exposureEntry = table.getEntry("piCamExposure");
 
@@ -281,29 +291,61 @@ public final class Main {
  //     });
       VisionThread visionThread = new VisionThread(cameras.get(0),
       pipe, pipeline -> {
-        numTargets = pipeline.filterContoursOutput().size();
-  		  if (numTargets == 2) {
-          Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-          Rect r2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
-          centerX = ((r1.x + r1.width) - r2.x)/2.0 + r2.x;
 
-          // subtract the image center
-          centerX = centerX - 80.0;
+	  rectArray.clear();
+	  rotRectArray.clear();
+          deltaX = 0.0;
+          deltaXTemp = 0.0;
+          centerX = 0.0;
+	  targetHeight = 0.0;
+	  targetFound = false;
 
-          r1x = r1.x;
-          r2x = r2.x;
-          r1width = r1.width;
-          r2width = r2.width;
+          numTargets = pipeline.filterContoursOutput().size();
+  	  if (numTargets >= 2) {
+		  
+            for (int i = 0; i < numTargets; i++)
+	    {
+		pipeline.filterContoursOutput().get(i).convertTo(contourMOP2f, CvType.CV_32F);
+		rectArray.add(Imgproc.boundingRect(pipeline.filterContoursOutput().get(i)));
+		rotRectArray.add(Imgproc.minAreaRect(contourMOP2f));
+	 
+		/* at least on second target */
+		if (i > 0)
+		{
+	          /* right side has a smaller angle, images are listed in the
+		   * array from right to left */
+		  if (rotRectArray.get(i).angle < rotRectArray.get(i-1).angle)
+		  {
+			/* found a potential target pair */
+			deltaXTemp = Math.abs(rectArray.get(i-1).x - CENTER_IMAGE);
+			if (deltaXTemp - 80.0 < deltaX)
+			{
+			  deltaX = deltaXTemp;
+                          r1 = rectArray.get(i-1);
+			  r2 = rectArray.get(i);
+
+                          centerX = ((r1.x + r1.width) - r2.x)/2.0 + r2.x;
+
+                          // subtract the image center
+                          centerX = centerX - CENTER_IMAGE;
+
+			  targetHeight = r1.height;
+
+			  targetFound = true;
+			}
+		  }
+		}
+	
+	    }
+
+          }
 
           centerXEntry.setDouble(centerX);
-                  
-          centerXValid.setBoolean(true);
-        } else {
-          centerXValid.setBoolean(false);
-        }
+          centerXHeight.setDouble(targetHeight);
+          centerXValid.setBoolean(targetFound);
 
 
-      cvSink.grabFrameNoTimeout(source);
+            cvSink.grabFrameNoTimeout(source);
 	    outputStream.putFrame(pipeline.hslThresholdOutput());
 
 	   // System.out.println("Grip sees " +   + " targets");
@@ -319,7 +361,7 @@ public final class Main {
 	        else
 	        {
            	  System.out.println("exposureLow == false");
-          	  camera.setExposureManual(5);
+          	  camera.setExposureManual(2);
 	        }
 	      }
 
@@ -336,10 +378,8 @@ public final class Main {
         Thread.sleep(1000);
         System.out.println("PICAM found " + numTargets + "targets!");
         System.out.println("CenterX = " + centerX);        
-        System.out.println("r1x = " + r1x);        
-        System.out.println("r2x = " + r2x);        
-        System.out.println("r1width = " + r1width);        
-        System.out.println("r2width = " + r2width);        
+        System.out.println("targetHeight = " + targetHeight);        
+        System.out.println("targetFound = " + targetFound);        
       } catch (InterruptedException ex) {
         return;
       }

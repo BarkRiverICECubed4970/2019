@@ -8,7 +8,6 @@
 package org.usfirst.frc.team4970.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import utils.VisionUtils;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
@@ -16,7 +15,7 @@ public class DriveAssistHatch extends CommandGroup {
   
   public DriveAssistHatch() {
 
-    Robot._visionUtils.setState(VisionUtils.VisionAssistState.HATCH);
+    addSequential(new SetStateHatch());    
     addSequential(new DriveAssist());
   }
 }

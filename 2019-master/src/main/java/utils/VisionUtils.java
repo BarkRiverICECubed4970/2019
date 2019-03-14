@@ -11,8 +11,10 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class VisionUtils {
 
+	private DigitalOutput led;
 	private Spark m_ledDriver;
 	private NetworkTableEntry xEntry;
+	private NetworkTableEntry xHeight;
 	private NetworkTableEntry xValid;
 	private NetworkTableEntry exposureEntry;
 	public double centerX;
@@ -31,15 +33,22 @@ public class VisionUtils {
 		m_ledDriver = new Spark(0);
 
 		xEntry = table.getEntry("centerX");
+		xHeight = table.getEntry("centerXHeight");
 		xValid = table.getEntry("centerXValid");
 		exposureEntry = table.getEntry("piCamExposure");
 
 		m_ledDriver.set(0.0);
+		led = new DigitalOutput(0);
     }
 
 	public double getCenterX()
 	{
 		return xEntry.getDouble(0.0);
+	}
+
+	public double getTargetHeight()
+	{
+		return xHeight.getDouble(0.0);
 	}
 
 	public boolean centerXvalid()
@@ -72,11 +81,13 @@ public class VisionUtils {
 
 	public void turnOnLed()
 	{
+		led.set(true);
 		m_ledDriver.set(1.0);
 	}
 
 	public void turnOffLed()
 	{
+		led.set(false);
 		m_ledDriver.set(0.0);
 	}
 

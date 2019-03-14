@@ -45,8 +45,8 @@ public class Constants {
 	public static double driveAssistDutyCycle = 0.2;
 	public static double driveAssistTimeout = 3.0;
 	public static double driveAssistPixelsToDegrees = 0.05;
-	public static double hatchAssistImageCenterPixels = 5.0;
-	public static double ballAssistImageCenterPixels = -5.0;
+	public static double hatchAssistImageCenterPixels = 0.0;
+	public static double ballAssistImageCenterPixels = 0.0;
 
 //    public static double turnDegreesTimeout = 90.0;
     public static double turnDegreesTimeout = 2.0;
