@@ -42,7 +42,7 @@ public class Constants {
     // 714 counts per 18.85 inches = 37.87
     public static double driveEncoderCountsPerInch = 74.7;
 	
-	public static double driveAssistDutyCycle = 0.2;
+	public static double driveAssistDutyCycle = 0.3;
 	public static double driveAssistTimeout = 3.0;
 	public static double driveAssistPixelsToDegrees = 0.05;
 	public static double hatchAssistImageCenterPixels = 0.0;
@@ -52,7 +52,7 @@ public class Constants {
     public static double turnDegreesTimeout = 2.0;
     public static double turnDegrees = -90.0;
     
-    public static double gyroStraightPidKp = 0.04;
+    public static double gyroStraightPidKp = 0.15;
     public static double gyroTurnPidKp = 0.08;
     public static double gyroReversePidKp = 0.05;
     public static double gyroPidKi = 0.0;
@@ -69,10 +69,10 @@ public class Constants {
     public static double intakeMotorPidKd = 0.0;
     public static double intakeMotorAllowableClosedLoopError = 10;
 
-    public static double hatchMotorUpDutyCycle = 0.2;
-    public static double hatchMotorDownDutyCycle = 0.2;
+    public static double hatchMotorUpDutyCycle = 0.35;
+    public static double hatchMotorDownDutyCycle = 0.3;
 
-	public static double hatchCommandTimeout = 2.0;
+	public static double hatchCommandTimeout = 1.0;
 
 	public static double ballOutputAutoTimeout = 2.0;
     

@@ -39,7 +39,8 @@ public class VisionUtils {
 
 		m_ledDriver.set(0.0);
 		led = new DigitalOutput(0);
-    }
+		setVisionAssistExposure(false);
+	}
 
 	public double getCenterX()
 	{

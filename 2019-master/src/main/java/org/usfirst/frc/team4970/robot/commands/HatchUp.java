@@ -45,7 +45,7 @@ public class HatchUp extends Command {
     // Called once after isFinished returns true
     protected void end() {
         /* spring holds this up */
-    	Robot._hatchMotor.stop();
+    	Robot._hatchMotor.keepUp();
     }
 
     // Called when another command which requires one or more of the same

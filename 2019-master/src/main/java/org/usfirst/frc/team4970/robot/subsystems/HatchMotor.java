@@ -28,15 +28,19 @@ public class HatchMotor extends Subsystem {
     	m_hatch.configNominalOutputForward(0, Constants.timeoutMs);
     	m_hatch.configNominalOutputReverse(0, Constants.timeoutMs);
     	m_hatch.configPeakOutputForward(1.0, Constants.timeoutMs);
-    	m_hatch.configPeakOutputReverse(-1.0, Constants.timeoutMs);
+		m_hatch.configPeakOutputReverse(-1.0, Constants.timeoutMs);
 	}
 	
     public void initDefaultCommand() {
-//    	holdUp();
+//    	setDefaultCommand(new HatchUp());	
     }
     
     public void holdUp() {
     	m_hatch.set(ControlMode.PercentOutput, -1.0 * SmartDashboard.getNumber("Hatch Up Duty Cycle", Constants.hatchMotorUpDutyCycle));
+    }
+    
+    public void keepUp() {
+    	m_hatch.set(ControlMode.PercentOutput, -1.0 * SmartDashboard.getNumber("Hatch Down Duty Cycle", Constants.hatchMotorDownDutyCycle));
     }
     
     public void holdDown() {

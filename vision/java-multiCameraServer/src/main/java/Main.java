@@ -96,8 +96,9 @@ public final class Main {
   private static NetworkTableEntry centerXValid;
   private static NetworkTableEntry exposureEntry;
   private static double centerX = 0.0;
+  private static double centerXTemp = 0.0;
   private static boolean exposureLow = false;
-  private static boolean exposureLowPrev = false;
+  private static boolean exposureLowPrev = true;
   private static NetworkTable table;
   private static double numTargets = 0.0;
   private static Object imgLock = new Object();
@@ -106,10 +107,10 @@ public final class Main {
   private static MatOfPoint2f contourMOP2f = new MatOfPoint2f();
   private static Rect r1;
   private static Rect r2;
-  private static double deltaX = 0.0;
-  private static double deltaXTemp = 0.0;
   private static double targetHeight = 0.0;
   private static boolean targetFound = false;
+  private static double rightAngle = 0.0;
+  private static double leftAngle = 0.0;
 
   private static final double CENTER_IMAGE = 160.0;
 
@@ -294,8 +295,9 @@ public final class Main {
 
 	  rectArray.clear();
 	  rotRectArray.clear();
-          deltaX = 0.0;
-          deltaXTemp = 0.0;
+  	  rightAngle = 0.0;
+  	  leftAngle = 0.0;
+          centerXTemp = 0.0;
           centerX = 0.0;
 	  targetHeight = 0.0;
 	  targetFound = false;
@@ -309,25 +311,29 @@ public final class Main {
 		rectArray.add(Imgproc.boundingRect(pipeline.filterContoursOutput().get(i)));
 		rotRectArray.add(Imgproc.minAreaRect(contourMOP2f));
 	 
+//		System.out.println("angle " + i + ": " + rotRectArray.get(i).angle);
+
 		/* at least on second target */
 		if (i > 0)
 		{
+			rightAngle = rotRectArray.get(i-1).angle;
+			leftAngle = rotRectArray.get(i).angle;
 	          /* right side has a smaller angle, images are listed in the
 		   * array from right to left */
-		  if (rotRectArray.get(i).angle < rotRectArray.get(i-1).angle)
+		  if (rotRectArray.get(i-1).angle > rotRectArray.get(i).angle)
 		  {
-			/* found a potential target pair */
-			deltaXTemp = Math.abs(rectArray.get(i-1).x - CENTER_IMAGE);
-			if (deltaXTemp - 80.0 < deltaX)
+			/* found a potential target pair... which one is closest
+			 * to center image */
+                        r1 = rectArray.get(i-1);
+			r2 = rectArray.get(i);
+
+                        centerXTemp = ((r1.x + r1.width) - r2.x)/2.0 + r2.x;
+
+//		        System.out.println("centerXTemp = " + centerXTemp);
+			if (Math.abs(centerXTemp - CENTER_IMAGE) < Math.abs(centerX - CENTER_IMAGE))
 			{
-			  deltaX = deltaXTemp;
-                          r1 = rectArray.get(i-1);
-			  r2 = rectArray.get(i);
-
-                          centerX = ((r1.x + r1.width) - r2.x)/2.0 + r2.x;
-
                           // subtract the image center
-                          centerX = centerX - CENTER_IMAGE;
+                          centerX = centerXTemp - CENTER_IMAGE;
 
 			  targetHeight = r1.height;
 
@@ -361,7 +367,7 @@ public final class Main {
 	        else
 	        {
            	  System.out.println("exposureLow == false");
-          	  camera.setExposureManual(2);
+          	  camera.setExposureManual(3);
 	        }
 	      }
 
@@ -376,10 +382,12 @@ public final class Main {
     for (;;) {
       try {
         Thread.sleep(1000);
-        System.out.println("PICAM found " + numTargets + "targets!");
+        System.out.println("PICAM found " + numTargets + "contours!");
         System.out.println("CenterX = " + centerX);        
         System.out.println("targetHeight = " + targetHeight);        
         System.out.println("targetFound = " + targetFound);        
+        System.out.println("right angle = " + rightAngle);        
+        System.out.println("left angle = " + leftAngle);        
       } catch (InterruptedException ex) {
         return;
       }
