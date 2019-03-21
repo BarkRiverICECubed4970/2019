@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team4970.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 //import edu.wpi.first.wpilibj.DriverStation;
 //import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -76,6 +77,8 @@ public class Robot extends TimedRobot {
         // instantiate the command used for the autonomous period
 
 		SmartDashboard.putData("Auto mode", m_chooser);	
+
+		CameraServer.getInstance().startAutomaticCapture();
 	}
 
 	/**
