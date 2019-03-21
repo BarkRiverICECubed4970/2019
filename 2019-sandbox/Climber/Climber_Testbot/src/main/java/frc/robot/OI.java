@@ -140,5 +140,9 @@ public class OI {
 		SmartDashboard.putData("Back Climber to Platform Position", new ClimbRearToPlatform());
 		SmartDashboard.putData("Back Climber Move Manual", new ClimbRearMoveManual());
 
+		SmartDashboard.putData("Both Climbers To Platform Position", new ClimbersToPlatformGroup());
+		SmartDashboard.putData("Both Climbers To Start Position", new ClimbersToStartGroup());
+		SmartDashboard.putData("Both Climbers To Final Position", new ClimbersToFinalGroup());
+
 	}
 }
