@@ -3,29 +3,29 @@ package commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import utils.Constants;
-import subsystems.FrontClimb;
+import subsystems.RearClimb;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
  *
  */
-public class ClimbFrontMoveManual extends Command {
+public class ClimbRearMoveManualOpposite extends Command {
 
-	public ClimbFrontMoveManual() {
+	public ClimbRearMoveManualOpposite() {
 
-        requires(Robot._frontClimber);
+        requires(Robot._rearClimber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.frontClimbTestDutyCycle = SmartDashboard.getNumber("Front Climb Test Duty Cycle", Constants.frontClimbTestDutyCycle);
-       	FrontClimb._legState = FrontClimb.LegState.LEGS_MOVING;    		
+        Constants.rearClimbTestDutyCycle = SmartDashboard.getNumber("Rear Climb Test Duty Cycle", Constants.rearClimbTestDutyCycle);
+       	RearClimb._legState = RearClimb.LegState.LEGS_MOVING;    		
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot._frontClimber.moveManual(Constants.frontClimbTestDutyCycle);
+        Robot._rearClimber.moveManual(-1.0*Constants.rearClimbTestDutyCycle);
     }
 
     protected boolean isFinished() {
@@ -34,8 +34,8 @@ public class ClimbFrontMoveManual extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot._frontClimber.hold();
-    	Robot._frontClimber.stop();
+//    	Robot._rearClimber.hold();
+    	Robot._rearClimber.stop();
     }
 
     // Called when another command which requires one or more of the same

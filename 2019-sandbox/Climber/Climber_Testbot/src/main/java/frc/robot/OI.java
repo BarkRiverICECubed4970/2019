@@ -66,6 +66,18 @@ public class OI {
         joystickButton1 = new JoystickButton(joystick2, 7);
         joystickButton1.whileHeld(new ClimbDriveReverse());
 
+        joystickButton1 = new JoystickButton(joystick2, 1);
+        joystickButton1.whileHeld(new ClimbFrontMoveManual());
+
+        joystickButton1 = new JoystickButton(joystick2, 2);
+        joystickButton1.whileHeld(new ClimbRearMoveManual());
+
+        joystickButton1 = new JoystickButton(joystick2, 3);
+        joystickButton1.whileHeld(new ClimbFrontMoveManualOpposite());
+
+        joystickButton1 = new JoystickButton(joystick2, 4);
+        joystickButton1.whileHeld(new ClimbRearMoveManualOpposite());
+
 /*        joystickButton1 = new JoystickButton(joystick, 2);
         joystickButton1.whenPressed(new LiftToBallIntakePosition());
         

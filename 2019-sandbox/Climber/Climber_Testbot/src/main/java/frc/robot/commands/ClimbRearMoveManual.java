@@ -34,8 +34,8 @@ public class ClimbRearMoveManual extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._rearClimber.hold();
-//    	Robot._rearClimber.stop();
+//    	Robot._rearClimber.hold();
+    	Robot._rearClimber.stop();
     }
 
     // Called when another command which requires one or more of the same

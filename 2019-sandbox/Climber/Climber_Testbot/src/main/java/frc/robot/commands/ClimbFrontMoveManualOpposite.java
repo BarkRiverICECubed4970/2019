@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ClimbFrontMoveManual extends Command {
+public class ClimbFrontMoveManualOpposite extends Command {
 
-	public ClimbFrontMoveManual() {
+	public ClimbFrontMoveManualOpposite() {
 
         requires(Robot._frontClimber);
     }
@@ -25,7 +25,7 @@ public class ClimbFrontMoveManual extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot._frontClimber.moveManual(Constants.frontClimbTestDutyCycle);
+        Robot._frontClimber.moveManual(-1.0*Constants.frontClimbTestDutyCycle);
     }
 
     protected boolean isFinished() {
