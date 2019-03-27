@@ -156,5 +156,6 @@ public class OI {
 		SmartDashboard.putData("Both Climbers To Start Position", new ClimbersToStartGroup());
 		SmartDashboard.putData("Both Climbers To Final Position", new ClimbersToFinalGroup());
 
+		SmartDashboard.putData("Update Constants", new UpdateConstants());
 	}
 }

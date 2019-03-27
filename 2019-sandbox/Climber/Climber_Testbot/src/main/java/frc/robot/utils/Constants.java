@@ -95,7 +95,7 @@ public class Constants {
 	public static double rearClimbCommandTimeout = 5.0;
 	public static double rearClimbAllowableClosedLoopError = 10;
 
-	public static double rearClimbMotorPidKp = 5.0;
+	public static double rearClimbMotorPidKp = 1.0;
     public static double rearClimbMotorPidKi = 0.0;
     public static double rearClimbMotorPidKd = 0.0;
 	public static double rearClimbMotorPidKf = 0.0;
@@ -114,7 +114,7 @@ public class Constants {
 	public static double frontClimbCommandTimeout = 5.0;
 	public static double frontClimbAllowableClosedLoopError = 10;
 
-	public static double frontClimbMotorPidKp = 5.0;
+	public static double frontClimbMotorPidKp = 1.0;
     public static double frontClimbMotorPidKi = 0.0;
     public static double frontClimbMotorPidKd = 0.0;
 	public static double frontClimbMotorPidKf = 0.0;
@@ -219,13 +219,28 @@ public class Constants {
 		SmartDashboard.putNumber("Front Climb Start Setpoint", frontClimbStartPositionSetpoint);
 		SmartDashboard.putNumber("Front Climb Final Setpoint", frontClimbFinalPositionSetpoint);		
 		SmartDashboard.putNumber("Front Climb Test Duty Cycle", frontClimbTestDutyCycle);
+    	SmartDashboard.putNumber("Front Climb PID KP", frontClimbMotorPidKp);
+    	SmartDashboard.putNumber("Front Climb PID KI", frontClimbMotorPidKi);
+    	SmartDashboard.putNumber("Front Climb PID KD", frontClimbMotorPidKd);
+		SmartDashboard.putNumber("Front Climb PID KF", frontClimbMotorPidKf);
+		SmartDashboard.putNumber("Front Climb Motion Cruise Velocity", frontClimbMotorMotionCruiseVelocity);
+		SmartDashboard.putNumber("Front Climb Motion Acceleration", frontClimbMotorMotionAcceleration);
+    	SmartDashboard.putNumber("Front Climb Peak Voltage", frontClimbMotorPeakVoltage);
+
 
 		/* Rear Climber */
 		SmartDashboard.putNumber("Rear Climb Platform Setpoint", rearClimbPlatformPositionSetpoint);
 		SmartDashboard.putNumber("Rear Climb Start Setpoint", rearClimbStartPositionSetpoint);
 		SmartDashboard.putNumber("Rear Climb Final Setpoint", rearClimbFinalPositionSetpoint);		
 		SmartDashboard.putNumber("Rear Climb Test Duty Cycle", rearClimbTestDutyCycle);
-
+    	SmartDashboard.putNumber("Rear Climb PID KP", rearClimbMotorPidKp);
+    	SmartDashboard.putNumber("Rear Climb PID KI", rearClimbMotorPidKi);
+    	SmartDashboard.putNumber("Rear Climb PID KD", rearClimbMotorPidKd);
+		SmartDashboard.putNumber("Rear Climb PID KF", rearClimbMotorPidKf);
+		SmartDashboard.putNumber("Rear Climb Motion Cruise Velocity", rearClimbMotorMotionCruiseVelocity);
+		SmartDashboard.putNumber("Rear Climb Motion Acceleration", rearClimbMotorMotionAcceleration);
+		SmartDashboard.putNumber("Rear Climb Peak Voltage", rearClimbMotorPeakVoltage);
+		
 	   	/* CAN Addresses for Talons */
     	SmartDashboard.putNumber("Left Rear Drive Motor CAN Address", leftRearDriveMotorCanAddress);   
     	SmartDashboard.putNumber("Left Front Drive Motor CAN Address", leftFrontDriveMotorCanAddress);   
@@ -235,7 +250,26 @@ public class Constants {
     	SmartDashboard.putNumber("Lift Motor CAN Address", liftMotorCanAddress);   
     	SmartDashboard.putNumber("Hatch Motor CAN Address", hatchMotorCanAddress);   
 	}
-    
+	
+	public void updateConstants() {
+		Constants.rearClimbMotorPidKp = SmartDashboard.getNumber("Rear Climb PID KP", Constants.rearClimbMotorPidKp);
+		Constants.rearClimbMotorPidKi = SmartDashboard.getNumber("Rear Climb PID KI", Constants.rearClimbMotorPidKi);
+		Constants.rearClimbMotorPidKd = SmartDashboard.getNumber("Rear Climb PID KD", Constants.rearClimbMotorPidKd);
+		Constants.rearClimbMotorPidKf = SmartDashboard.getNumber("Rear Climb PID KF", Constants.rearClimbMotorPidKf);
+		Constants.rearClimbMotorMotionCruiseVelocity = SmartDashboard.getNumber("Rear Climb PID Motion Cruise Velocity", Constants.rearClimbMotorMotionCruiseVelocity);
+		Constants.rearClimbMotorMotionAcceleration = SmartDashboard.getNumber("Rear Climb PID Motion Acceleration", Constants.rearClimbMotorMotionAcceleration);
+		Constants.rearClimbMotorPeakVoltage = SmartDashboard.getNumber("Rear Climb Peak Voltage", Constants.rearClimbMotorPeakVoltage);
+
+		Constants.frontClimbMotorPidKp = SmartDashboard.getNumber("Front Climb PID KP", Constants.frontClimbMotorPidKp);
+		Constants.frontClimbMotorPidKi = SmartDashboard.getNumber("Front Climb PID KI", Constants.frontClimbMotorPidKi);
+		Constants.frontClimbMotorPidKd = SmartDashboard.getNumber("Front Climb PID KD", Constants.frontClimbMotorPidKd);
+		Constants.frontClimbMotorPidKf = SmartDashboard.getNumber("Front Climb PID KF", Constants.frontClimbMotorPidKf);
+		Constants.frontClimbMotorMotionCruiseVelocity = SmartDashboard.getNumber("Front Climb PID Motion Cruise Velocity", Constants.frontClimbMotorMotionCruiseVelocity);
+		Constants.frontClimbMotorMotionAcceleration = SmartDashboard.getNumber("Front Climb PID Motion Acceleration", Constants.frontClimbMotorMotionAcceleration);
+		Constants.frontClimbMotorPeakVoltage = SmartDashboard.getNumber("Front Climb Peak Voltage", Constants.frontClimbMotorPeakVoltage);
+
+	}
+
 	/* periodically publish outputs */
     private void updateSmartDashboard() {
 

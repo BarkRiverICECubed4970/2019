@@ -90,6 +90,6 @@ public class RearClimb extends Subsystem {
     
     public void resetEncoder() {
     	m_rearClimb.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
-    }
+	}
 }
 
