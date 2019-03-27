@@ -115,7 +115,7 @@ public final class Main {
   private static double leftAngle = 0.0;
   private static double leftIndex = 0.0;
 
-  private static final double CENTER_IMAGE = 80.0;
+  private static final double CENTER_IMAGE = 60.0;
 
   private Main() {
   }
@@ -336,26 +336,27 @@ public final class Main {
 			rightIndex = rectArray.get(i-1).y;
 			leftAngle = rotRectArray.get(i).angle;
 			leftIndex = rectArray.get(i).y;
-	          /* right side has a smaller angle, images are listed in the
-		   * array from right to left */
-		  if (rotRectArray.get(i-1).angle > rotRectArray.get(i).angle)
+		/*
+		 *  Contour arrays are built from top to bottom, so for vision processing,
+		 *  place the camera sideways and now we don't need to sort the arrays.
+		 *  Now, centerX is actually centerY!
+		 */ 
+		  if (rightAngle < leftAngle)
 		  {
 			/* found a potential target pair... which one is closest
 			 * to center image */
                         r1 = rectArray.get(i-1);
 			r2 = rectArray.get(i);
 
-                        centerXTemp = ((r1.x + r1.width) - r2.x)/2.0 + r2.x;
+                        centerXTemp = ((r1.y + r1.height) - r2.y)/2.0 + r2.y;
+                        centerXTemp = centerXTemp - CENTER_IMAGE;
 //		        System.out.println("centerXTemp = " + centerXTemp);
 
-			if (i == 1)
-			{
-			  /* first target... assume it is closest */
-			  centerX = centerXTemp;
-			} else if (Math.abs(centerXTemp - CENTER_IMAGE) < Math.abs(centerX - CENTER_IMAGE))
+			if ((targetFound == false) ||
+			    (Math.abs(centerXTemp) < Math.abs(centerX)))
 			{
                           // subtract the image center
-                          centerX = centerXTemp - CENTER_IMAGE;
+                          centerX = centerXTemp;
 
 			  targetHeight = r1.height;
 
