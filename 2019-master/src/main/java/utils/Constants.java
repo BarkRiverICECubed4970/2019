@@ -119,6 +119,7 @@ public class Constants {
 	public static double climbDriveDutyCycle = 0.2;
 	public static double frontClimbTestDutyCycle = 0.2;
 	public static double rearClimbTestDutyCycle = 0.2;
+	public static double platformDriveDutyCycle = 0.2;
 
 	public static double frontClimbStartPositionSetpoint = 0.0;
 	public static double frontClimbPlatformPositionSetpoint = 0.0;
@@ -214,6 +215,9 @@ public class Constants {
 		/* Climb Drive */
 		SmartDashboard.putNumber("Climber Drive Duty Cycle", climbDriveDutyCycle);
 
+		/* Main Drive System Duty Cycle for Automatic Climbing */
+		SmartDashboard.putNumber("Platform drive duty cycle", platformDriveDutyCycle);
+
 		/* Front Climber */
 		SmartDashboard.putNumber("Front Climb Platform Setpoint", frontClimbPlatformPositionSetpoint);
 		SmartDashboard.putNumber("Front Climb Start Setpoint", frontClimbStartPositionSetpoint);
@@ -280,6 +284,12 @@ public class Constants {
 		
 		/* vision utils */
 		SmartDashboard.putNumber("CenterX from Pi Camera", Robot._visionUtils.getCenterX());
+
+		/* rear climb */
+		SmartDashboard.putNumber("Rear climber encoder count", Robot._rearClimber.getEncoderCount());
+
+		/* front climb */
+		SmartDashboard.putNumber("Front climber encoder count", Robot._frontClimber.getEncoderCount());
 	}
 
 }

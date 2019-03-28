@@ -116,7 +116,19 @@ public class OI {
 		joystickButton2 = new JoystickButton(joystick2, 4);
 		joystickButton2.whileHeld(new ClimbRearMoveManualOpposite());
 	
-//        joystickButton1 = new JoystickButton(joystick, 13);
+        joystickButton2 = new JoystickButton(joystick2, 14);
+        joystickButton2.whileHeld(new ClimbRearMoveManual());
+        
+        joystickButton2 = new JoystickButton(joystick2, 14);
+        joystickButton2.whileHeld(new ClimbFrontMoveManual());
+        
+        joystickButton2 = new JoystickButton(joystick2, 14);
+        joystickButton2.whileHeld(new ClimbDriveForward());
+        
+        joystickButton2 = new JoystickButton(joystick2, 14);
+        joystickButton2.whileHeld(new DriveStraightOnPlatform());
+
+		//        joystickButton1 = new JoystickButton(joystick, 13);
 //	      joystickButton1.whileHeld(new DriveAssistBall());
         
     	// SmartDashboard Buttons
