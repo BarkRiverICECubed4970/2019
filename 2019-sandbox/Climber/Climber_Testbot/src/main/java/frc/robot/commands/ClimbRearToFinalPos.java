@@ -1,9 +1,9 @@
-package commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import utils.Constants;
-import subsystems.RearClimb;
+import frc.robot.utils.Constants;
+import frc.robot.subsystems.RearClimb;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 

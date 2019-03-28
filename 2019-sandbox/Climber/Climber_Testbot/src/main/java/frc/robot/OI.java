@@ -8,7 +8,7 @@
 package frc.robot;
 
 
-import commands.*;
+import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -48,8 +48,8 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	public Joystick joystick = new Joystick(0);
-	public Joystick joystick2 = new Joystick(1);
+//	public Joystick joystick = new Joystick(0);
+	public Joystick joystick2 = new Joystick(0);
     public JoystickButton joystickButton1;
     public JoystickButton joystickButton2;
     public JoystickButton joystickButton3;
@@ -156,6 +156,8 @@ public class OI {
 		SmartDashboard.putData("Both Climbers To Start Position", new ClimbersToStartGroup());
 		SmartDashboard.putData("Both Climbers To Final Position", new ClimbersToFinalGroup());
 
-		SmartDashboard.putData("Update Constants", new UpdateConstants());
+		SmartDashboard.putData("Climber Drive Forward", new ClimbDriveForward());
+
+//		SmartDashboard.putData("Update Constants", new UpdateConstants());
 	}
 }

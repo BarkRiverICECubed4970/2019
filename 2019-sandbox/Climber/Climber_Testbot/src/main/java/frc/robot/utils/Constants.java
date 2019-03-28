@@ -1,4 +1,4 @@
-package utils;
+package frc.robot.utils;
 
 import frc.robot.Robot;
 

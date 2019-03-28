@@ -1,8 +1,8 @@
-package commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import utils.Constants;
+import frc.robot.utils.Constants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -23,7 +23,7 @@ public class ClimbDriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._rearClimbDrive.driveForward(Constants.climbDriveDutyCycle);
+        Robot._rearClimbDrive.driveForward(Constants.climbDriveDutyCycle);
     }
 
     protected boolean isFinished() {
