@@ -15,10 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
-import org.usfirst.frc.team4970.robot.subsystems.HatchMotor;
-import org.usfirst.frc.team4970.robot.subsystems.LiftMotor;
+import org.usfirst.frc.team4970.robot.subsystems.*;
 
 import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 import org.usfirst.frc.team4970.robot.commands.HatchUp;
@@ -49,7 +46,10 @@ public class Robot extends TimedRobot {
 	public static final IntakeMotor _intakeMotor = new IntakeMotor();
 	public static final HatchMotor _hatchMotor = new HatchMotor();
 	public static final LiftMotor _liftMotor = new LiftMotor();
-
+	public static final FrontClimb _frontClimber = new FrontClimb();
+	public static final RearClimb _rearClimber = new RearClimb();
+	public static final RearClimbDriveSystem _rearClimbDrive = new RearClimbDriveSystem();
+  
 	public static OI m_oi;
 
 //	public static PowerDistributionPanel pdp = new PowerDistributionPanel(); 

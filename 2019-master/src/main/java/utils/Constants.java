@@ -13,6 +13,10 @@ public class Constants {
 	public static final int rightRearDriveMotorCanAddress = 4;
 	public static final int rightFrontDriveMotorCanAddress = 5;
 
+	public static final int rearClimbMotorCanAddress = 7;
+	public static final int frontClimbMotorCanAddress = 8;
+	public static final int rearClimbDriveMotorCanAddress = 9;
+
 	public static final int liftMotorCanAddress = 12;
 	public static final int hatchMotorCanAddress = 13;
 	public static final int intakeMotorCanAddress = 14;
@@ -96,7 +100,41 @@ public class Constants {
 
     public static double intakeBallDutyCycle = 0.3;
     public static double outputBallDutyCycle = 0.4;
- 	
+
+	public static double rearClimbStartPositionSetpoint = 0.0;
+	public static double rearClimbPlatformPositionSetpoint = 0.0;
+	public static double rearClimbFinalPositionSetpoint = 0.0;
+	public static double rearClimbCommandTimeout = 5.0;
+	public static double rearClimbAllowableClosedLoopError = 10;
+
+	public static double rearClimbMotorPidKp = 1.0;
+    public static double rearClimbMotorPidKi = 0.0;
+    public static double rearClimbMotorPidKd = 0.0;
+	public static double rearClimbMotorPidKf = 0.0;
+	public static double rearClimbMotorMotionCruiseVelocity = 4000.0;
+	public static double rearClimbMotorMotionAcceleration = 2000.0;
+    public static double rearClimbMotorAllowableClosedLoopError = 10;
+	public static double rearClimbMotorPeakVoltage = 1.0;
+
+	public static double climbDriveDutyCycle = 0.2;
+	public static double frontClimbTestDutyCycle = 0.2;
+	public static double rearClimbTestDutyCycle = 0.2;
+
+	public static double frontClimbStartPositionSetpoint = 0.0;
+	public static double frontClimbPlatformPositionSetpoint = 0.0;
+	public static double frontClimbFinalPositionSetpoint = 0.0;
+	public static double frontClimbCommandTimeout = 5.0;
+	public static double frontClimbAllowableClosedLoopError = 10;
+
+	public static double frontClimbMotorPidKp = 1.0;
+    public static double frontClimbMotorPidKi = 0.0;
+    public static double frontClimbMotorPidKd = 0.0;
+	public static double frontClimbMotorPidKf = 0.0;
+	public static double frontClimbMotorMotionCruiseVelocity = 4000.0;
+	public static double frontClimbMotorMotionAcceleration = 2000.0;
+    public static double frontClimbMotorAllowableClosedLoopError = 10;
+	public static double frontClimbMotorPeakVoltage = 1.0;
+
     public static final int timeoutMs = 10;
     
     public Constants() {
@@ -173,6 +211,35 @@ public class Constants {
     	SmartDashboard.putNumber("Hatch Down Duty Cycle", hatchMotorDownDutyCycle);
 		SmartDashboard.putNumber("Hatch Command Timeout", hatchCommandTimeout);
 
+		/* Climb Drive */
+		SmartDashboard.putNumber("Climber Drive Duty Cycle", climbDriveDutyCycle);
+
+		/* Front Climber */
+		SmartDashboard.putNumber("Front Climb Platform Setpoint", frontClimbPlatformPositionSetpoint);
+		SmartDashboard.putNumber("Front Climb Start Setpoint", frontClimbStartPositionSetpoint);
+		SmartDashboard.putNumber("Front Climb Final Setpoint", frontClimbFinalPositionSetpoint);		
+		SmartDashboard.putNumber("Front Climb Test Duty Cycle", frontClimbTestDutyCycle);
+		SmartDashboard.putNumber("Front Climb PID KP", frontClimbMotorPidKp);
+		SmartDashboard.putNumber("Front Climb PID KI", frontClimbMotorPidKi);
+		SmartDashboard.putNumber("Front Climb PID KD", frontClimbMotorPidKd);
+		SmartDashboard.putNumber("Front Climb PID KF", frontClimbMotorPidKf);
+		SmartDashboard.putNumber("Front Climb Motion Cruise Velocity", frontClimbMotorMotionCruiseVelocity);
+		SmartDashboard.putNumber("Front Climb Motion Acceleration", frontClimbMotorMotionAcceleration);
+		SmartDashboard.putNumber("Front Climb Peak Voltage", frontClimbMotorPeakVoltage);
+		
+		/* Rear Climber */
+		SmartDashboard.putNumber("Rear Climb Platform Setpoint", rearClimbPlatformPositionSetpoint);
+		SmartDashboard.putNumber("Rear Climb Start Setpoint", rearClimbStartPositionSetpoint);
+		SmartDashboard.putNumber("Rear Climb Final Setpoint", rearClimbFinalPositionSetpoint);		
+		SmartDashboard.putNumber("Rear Climb Test Duty Cycle", rearClimbTestDutyCycle);
+		SmartDashboard.putNumber("Rear Climb PID KP", rearClimbMotorPidKp);
+		SmartDashboard.putNumber("Rear Climb PID KI", rearClimbMotorPidKi);
+		SmartDashboard.putNumber("Rear Climb PID KD", rearClimbMotorPidKd);
+		SmartDashboard.putNumber("Rear Climb PID KF", rearClimbMotorPidKf);
+		SmartDashboard.putNumber("Rear Climb Motion Cruise Velocity", rearClimbMotorMotionCruiseVelocity);
+		SmartDashboard.putNumber("Rear Climb Motion Acceleration", rearClimbMotorMotionAcceleration);
+		SmartDashboard.putNumber("Rear Climb Peak Voltage", rearClimbMotorPeakVoltage);
+				
 	   	/* CAN Addresses for Talons */
     	SmartDashboard.putNumber("Left Rear Drive Motor CAN Address", leftRearDriveMotorCanAddress);   
     	SmartDashboard.putNumber("Left Front Drive Motor CAN Address", leftFrontDriveMotorCanAddress);   

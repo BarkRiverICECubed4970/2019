@@ -49,13 +49,9 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public Joystick joystick = new Joystick(0);
+	public Joystick joystick2 = new Joystick(1);
     public JoystickButton joystickButton1;
     public JoystickButton joystickButton2;
-    public JoystickButton joystickButton3;
-    public JoystickButton joystickButton4;
-    public JoystickButton joystickButton5;
-    public JoystickButton joystickButton6;
-    public JoystickButton joystickButton7;
     
     public OI() {
 
@@ -100,8 +96,26 @@ public class OI {
         joystickButton1.whileHeld(new TestLiftUp());
 
         joystickButton1 = new JoystickButton(joystick, 12);
-	      joystickButton1.whileHeld(new DriveAssistHatch());
-        
+	    joystickButton1.whileHeld(new DriveAssistHatch());
+		
+		joystickButton2 = new JoystickButton(joystick2, 8);
+		joystickButton2.whileHeld(new ClimbDriveForward());
+		 
+		joystickButton2 = new JoystickButton(joystick2, 7);
+		joystickButton2.whileHeld(new ClimbDriveReverse());
+  
+		joystickButton2 = new JoystickButton(joystick2, 1);
+		joystickButton2.whileHeld(new ClimbFrontMoveManual());
+  
+		joystickButton2 = new JoystickButton(joystick2, 2);
+		joystickButton2.whileHeld(new ClimbRearMoveManual());
+  
+		joystickButton2 = new JoystickButton(joystick2, 3);
+		joystickButton2.whileHeld(new ClimbFrontMoveManualOpposite());
+  
+		joystickButton2 = new JoystickButton(joystick2, 4);
+		joystickButton2.whileHeld(new ClimbRearMoveManualOpposite());
+	
 //        joystickButton1 = new JoystickButton(joystick, 13);
 //	      joystickButton1.whileHeld(new DriveAssistBall());
         
@@ -132,5 +146,20 @@ public class OI {
 		SmartDashboard.putData("Reset Lift Encoder", new TestLiftResetEncoder());
 		SmartDashboard.putData("Drive Assist Hatch", new DriveAssistHatch());
 		SmartDashboard.putData("Drive Assist Ball", new DriveAssistBall());
+
+		SmartDashboard.putData("Front Climber to Start Position", new ClimbFrontToStartPos());
+		SmartDashboard.putData("Front Climber to Final Position", new ClimbFrontToFinalPos());
+		SmartDashboard.putData("Front Climber to Platform Position", new ClimbFrontToPlatform());
+		SmartDashboard.putData("Front Climber Move Manual", new ClimbFrontMoveManual());
+
+		SmartDashboard.putData("Back Climber to Start Position", new ClimbRearToStartPos());
+		SmartDashboard.putData("Back Climber to Final Position", new ClimbRearToFinalPos());
+		SmartDashboard.putData("Back Climber to Platform Position", new ClimbRearToPlatform());
+		SmartDashboard.putData("Back Climber Move Manual", new ClimbRearMoveManual());
+
+		SmartDashboard.putData("Both Climbers To Platform Position", new ClimbersToPlatformGroup());
+		SmartDashboard.putData("Both Climbers To Start Position", new ClimbersToStartGroup());
+		SmartDashboard.putData("Both Climbers To Final Position", new ClimbersToFinalGroup());
+
     }
 }

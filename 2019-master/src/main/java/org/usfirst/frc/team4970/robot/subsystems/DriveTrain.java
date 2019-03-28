@@ -18,7 +18,10 @@ import org.usfirst.frc.team4970.robot.commands.DriveWithJoystick;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
@@ -49,10 +52,18 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     private double potentialError;
 
     /* drive motors and differential drive */
-	WPI_TalonSRX m_leftRear = new WPI_TalonSRX(Constants.leftRearDriveMotorCanAddress);
-	WPI_TalonSRX m_leftFront = new WPI_TalonSRX(Constants.leftFrontDriveMotorCanAddress);
-	WPI_TalonSRX m_rightRear = new WPI_TalonSRX(Constants.rightRearDriveMotorCanAddress);
-	WPI_TalonSRX m_rightFront = new WPI_TalonSRX(Constants.rightFrontDriveMotorCanAddress);
+	CANSparkMax m_leftRear = new CANSparkMax(Constants.leftRearDriveMotorCanAddress, MotorType.kBrushless);
+	CANSparkMax m_leftFront = new CANSparkMax(Constants.leftFrontDriveMotorCanAddress, MotorType.kBrushless);
+	CANSparkMax m_rightRear = new CANSparkMax(Constants.rightRearDriveMotorCanAddress, MotorType.kBrushless);
+	CANSparkMax m_rightFront = new CANSparkMax(Constants.rightFrontDriveMotorCanAddress, MotorType.kBrushless);
+
+	private CANEncoder m_leftEncoder;
+	private CANEncoder m_rightEncoder;	
+
+//	WPI_TalonSRX m_leftRear = new WPI_TalonSRX(Constants.leftRearDriveMotorCanAddress);
+//	WPI_TalonSRX m_leftFront = new WPI_TalonSRX(Constants.leftFrontDriveMotorCanAddress);
+//	WPI_TalonSRX m_rightRear = new WPI_TalonSRX(Constants.rightRearDriveMotorCanAddress);
+//	WPI_TalonSRX m_rightFront = new WPI_TalonSRX(Constants.rightFrontDriveMotorCanAddress);
 	
 	SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);
 	SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);
@@ -65,25 +76,36 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	
 	public DriveTrain()
 	{
+		m_leftFront.restoreFactoryDefaults();
+		m_leftRear.restoreFactoryDefaults();
+		m_rightFront.restoreFactoryDefaults();
+		m_rightRear.restoreFactoryDefaults();
+/*
 		m_leftFront.configFactoryDefault();
 		m_leftRear.configFactoryDefault();
 		m_rightFront.configFactoryDefault();
 		m_rightRear.configFactoryDefault();
+*/
+		m_leftEncoder = m_leftFront.getEncoder();
+		m_rightEncoder = m_rightFront.getEncoder();
 
-    	m_leftFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
-    	m_rightFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
+//		m_leftFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
+//    	m_rightFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
     	
 		/* invert right encoder to count forward when drive is moving forward */
-		m_rightFront.setSensorPhase(true);
+//		m_rightFront.setSensorPhase(true);
 		
     	/* reset encoder counters */
-    	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
-    	m_rightFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+		m_leftEncoder.setPosition(0.0);
+		m_rightEncoder.setPosition(0.0);
+
+//    	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+//    	m_rightFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     	
-    	m_leftFront.setInverted(true);
-    	m_rightFront.setInverted(true);
-    	m_leftRear.setInverted(true);
-    	m_rightRear.setInverted(true);
+//    	m_leftFront.setInverted(true);
+//    	m_rightFront.setInverted(true);
+//    	m_leftRear.setInverted(true);
+//    	m_rightRear.setInverted(true);
     	
     	_gyroPid.setName("Gyro PID");
     	_gyro.setName("Pigeon");
@@ -170,33 +192,45 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     {
     	if (enabled)
     	{
-			m_leftFront.setNeutralMode(NeutralMode.Brake);
-	    	m_rightFront.setNeutralMode(NeutralMode.Brake);
-			m_leftRear.setNeutralMode(NeutralMode.Brake);
-	    	m_rightRear.setNeutralMode(NeutralMode.Brake);
+			m_leftFront.setIdleMode(CANSparkMax.IdleMode.kBrake);
+	    	m_rightFront.setIdleMode(CANSparkMax.IdleMode.kBrake);
+			m_leftRear.setIdleMode(CANSparkMax.IdleMode.kBrake);
+	    	m_rightRear.setIdleMode(CANSparkMax.IdleMode.kBrake);
+//			m_leftFront.setNeutralMode(NeutralMode.Brake);
+//	    	m_rightFront.setNeutralMode(NeutralMode.Brake);
+//			m_leftRear.setNeutralMode(NeutralMode.Brake);
+//	    	m_rightRear.setNeutralMode(NeutralMode.Brake);
     	} else {
-			m_leftFront.setNeutralMode(NeutralMode.Coast);
-	    	m_rightFront.setNeutralMode(NeutralMode.Coast);
-			m_leftRear.setNeutralMode(NeutralMode.Coast);
-	    	m_rightRear.setNeutralMode(NeutralMode.Coast);
+			m_leftFront.setIdleMode(CANSparkMax.IdleMode.kCoast);
+	    	m_rightFront.setIdleMode(CANSparkMax.IdleMode.kCoast);
+			m_leftRear.setIdleMode(CANSparkMax.IdleMode.kCoast);
+			m_rightRear.setIdleMode(CANSparkMax.IdleMode.kCoast);
+//			m_leftFront.setNeutralMode(NeutralMode.Coast);
+//	    	m_rightFront.setNeutralMode(NeutralMode.Coast);
+//			m_leftRear.setNeutralMode(NeutralMode.Coast);
+//	    	m_rightRear.setNeutralMode(NeutralMode.Coast);
     	}
     }
     
     public void resetEncoders()
     {
-    	/* reset encoder counters */
-    	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
-    	m_rightFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+		/* reset encoder counters */
+		m_leftEncoder.setPosition(0.0);
+		m_rightEncoder.setPosition(0.0);
+//    	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+//    	m_rightFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     }
     
-    public int getRightEncoderCount()
+    public double getRightEncoderCount()
     {
-    	return m_rightFront.getSelectedSensorPosition(0);
+		return m_rightEncoder.getPosition();
+//		return m_rightFront.getSelectedSensorPosition(0);
     }
     
-    public int getLeftEncoderCount()
+    public double getLeftEncoderCount()
     {
-    	return m_leftFront.getSelectedSensorPosition(0);
+		return m_leftEncoder.getPosition();
+//    	return m_leftFront.getSelectedSensorPosition(0);
     }
     
     public double getGyroHeading()
