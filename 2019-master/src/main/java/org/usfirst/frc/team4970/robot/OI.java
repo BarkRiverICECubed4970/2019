@@ -49,7 +49,7 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public Joystick joystick = new Joystick(0);
-	public Joystick joystick2 = new Joystick(1);
+	public Joystick joystick2 = new Joystick(2);
     public JoystickButton joystickButton1;
     public JoystickButton joystickButton2;
     
@@ -116,14 +116,17 @@ public class OI {
 		joystickButton2 = new JoystickButton(joystick2, 4);
 		joystickButton2.whileHeld(new ClimbRearMoveManualOpposite());
 	
-        joystickButton2 = new JoystickButton(joystick2, 14);
-        joystickButton2.whileHeld(new ClimbRearMoveManual());
+  //      joystickButton2 = new JoystickButton(joystick2, 14);
+  //      joystickButton2.whileHeld(new ClimbRearMoveManual());
         
-        joystickButton2 = new JoystickButton(joystick2, 14);
-        joystickButton2.whileHeld(new ClimbFrontMoveManual());
+  //      joystickButton2 = new JoystickButton(joystick2, 14);
+  //      joystickButton2.whileHeld(new ClimbFrontMoveManual());
         
-        joystickButton2 = new JoystickButton(joystick2, 14);
-        joystickButton2.whileHeld(new ClimbDriveForward());
+  //      joystickButton2 = new JoystickButton(joystick2, 8);
+  //      joystickButton2.whileHeld(new ClimbDriveForward());
+        
+  //      joystickButton2 = new JoystickButton(joystick2, 7);
+  ///      joystickButton2.whileHeld(new ClimbDriveReverse());
         
         joystickButton2 = new JoystickButton(joystick2, 14);
         joystickButton2.whileHeld(new DriveStraightOnPlatform());
