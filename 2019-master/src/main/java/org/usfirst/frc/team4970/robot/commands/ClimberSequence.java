@@ -5,14 +5,21 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class ClimberSequence extends CommandGroup {
     public ClimberSequence() {
-        addParallel(new ClimbFrontToPlatform());
-        addSequential(new ClimbRearToPlatform());
+        addSequential(new ClimbersToPlatformGroup());
+
+        /* one second pause */
+        addSequential(new StallCommand());
+
         /* assuming the front to platform finishes first, this will be fine */
         addParallel(new ClimbDriveForward());
         addParallel(new ClimbFrontToFinalPos());
-        addSequential(new ClimbRearToFinalPos());
+        addParallel(new ClimbRearToFinalPos());
 
-        // add drive to timeout here??
+        /* one second pause */
+        addSequential(new StallCommand());
+
+        addSequential(new DriveStraightOnPlatform());
+
         // add front climber to start position?
         // add rear climber to platform position?
     }

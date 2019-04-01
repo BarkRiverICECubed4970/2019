@@ -47,8 +47,8 @@ public class RearClimb extends Subsystem {
 		m_rearClimb.configMotionCruiseVelocity((int)Constants.rearClimbMotorMotionCruiseVelocity, Constants.timeoutMs);
 		m_rearClimb.configMotionAcceleration((int)Constants.rearClimbMotorMotionAcceleration, Constants.timeoutMs);
 
-		m_rearClimb.configPeakOutputForward(Constants.rearClimbMotorPeakVoltage, Constants.timeoutMs);
-		m_rearClimb.configPeakOutputReverse(-1.0 * Constants.rearClimbMotorPeakVoltage, Constants.timeoutMs);
+		m_rearClimb.configPeakOutputForward(Constants.rearClimbForwardTestDutyCycle, Constants.timeoutMs);
+		m_rearClimb.configPeakOutputReverse(Constants.rearClimbReverseTestDutyCycle, Constants.timeoutMs);		
 
 		m_rearClimb.configAllowableClosedloopError(0, (int)Constants.rearClimbMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 

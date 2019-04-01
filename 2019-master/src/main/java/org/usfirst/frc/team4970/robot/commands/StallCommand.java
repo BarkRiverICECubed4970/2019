@@ -1,41 +1,42 @@
 package org.usfirst.frc.team4970.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team4970.robot.Robot;
-import utils.Constants;
-import org.usfirst.frc.team4970.robot.subsystems.RearClimb;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4970.robot.Robot;
+import utils.Constants;
 
 /**
  *
  */
-public class ClimbRearMoveManualOpposite extends Command {
+public class StallCommand extends Command {
 
-	public ClimbRearMoveManualOpposite() {
-
-        requires(Robot._rearClimber);
+	public StallCommand() {
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.rearClimbReverseTestDutyCycle = SmartDashboard.getNumber("Rear Climb Reverse Test Duty Cycle", Constants.rearClimbReverseTestDutyCycle);
-       	RearClimb._legState = RearClimb.LegState.LEGS_MOVING;    		
+    	Constants.stallCommandTimeout = SmartDashboard.getNumber("Stall Command Timeout", Constants.stallCommandTimeout);
+
+    	setTimeout(Constants.stallCommandTimeout);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot._rearClimber.moveManual(-1.0*Constants.rearClimbReverseTestDutyCycle);
     }
 
+
     protected boolean isFinished() {
-        return false;
+    	if (isTimedOut())
+    	{
+    		return true;
+    	} else {
+            return false;
+        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
-//    	Robot._rearClimber.hold();
-    	Robot._rearClimber.stop();
     }
 
     // Called when another command which requires one or more of the same

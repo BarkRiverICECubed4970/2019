@@ -49,7 +49,7 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public Joystick joystick = new Joystick(0);
-	public Joystick joystick2 = new Joystick(2);
+	public Joystick joystick2 = new Joystick(1);
     public JoystickButton joystickButton1;
     public JoystickButton joystickButton2;
     

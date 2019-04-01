@@ -39,7 +39,7 @@ public class DriveStraightOnPlatform extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT, Constants.platformDriveDutyCycle);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT_PLATFORM, Constants.platformDriveDutyCycle);
     	// continue to set this, since this function will ramp the setpoint
     	Robot._driveTrain.setGyroPidSetpoint(0.0);
 	}

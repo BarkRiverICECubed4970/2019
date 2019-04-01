@@ -37,7 +37,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
 	public enum DriveTrainControl
 	{
-		STOP, JOYSTICK, DRIVE_STRAIGHT, DRIVE_STRAIGHT_REVERSE, TURN_DEGREES, DRIVE_ASSIST
+		STOP, JOYSTICK, DRIVE_STRAIGHT, DRIVE_STRAIGHT_PLATFORM, DRIVE_STRAIGHT_REVERSE, TURN_DEGREES, DRIVE_ASSIST
 	};
 	
 	private DriveTrainControl _driveTrainControl = DriveTrainControl.STOP;
@@ -141,10 +141,16 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		rotate = PID_rotateValue;	    		
 	    		break;
 	    		
-	    	case DRIVE_STRAIGHT:
+			case DRIVE_STRAIGHT:
 	    		squaredInputs = false;
 	   			forward = -forwardDutyCycle;	    		
 	    		rotate = PID_rotateValue;
+	    		break;
+	    		
+			case DRIVE_STRAIGHT_PLATFORM:
+	    		squaredInputs = false;
+	   			forward = -forwardDutyCycle;	    		
+	    		rotate = 0.0;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT_REVERSE:

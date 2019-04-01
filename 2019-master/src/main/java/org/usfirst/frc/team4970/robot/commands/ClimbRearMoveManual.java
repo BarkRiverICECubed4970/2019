@@ -19,13 +19,13 @@ public class ClimbRearMoveManual extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.rearClimbTestDutyCycle = SmartDashboard.getNumber("Rear Climb Test Duty Cycle", Constants.rearClimbTestDutyCycle);
+        Constants.rearClimbForwardTestDutyCycle = SmartDashboard.getNumber("Rear Climb Forward Test Duty Cycle", Constants.rearClimbForwardTestDutyCycle);
        	RearClimb._legState = RearClimb.LegState.LEGS_MOVING;    		
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot._rearClimber.moveManual(Constants.rearClimbTestDutyCycle);
+        Robot._rearClimber.moveManual(Constants.rearClimbForwardTestDutyCycle);
     }
 
     protected boolean isFinished() {

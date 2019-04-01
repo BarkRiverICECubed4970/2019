@@ -47,8 +47,8 @@ public class FrontClimb extends Subsystem {
 		m_frontClimb.configMotionCruiseVelocity((int)Constants.frontClimbMotorMotionCruiseVelocity, Constants.timeoutMs);
 		m_frontClimb.configMotionAcceleration((int)Constants.frontClimbMotorMotionAcceleration, Constants.timeoutMs);
 
-		m_frontClimb.configPeakOutputForward(Constants.frontClimbMotorPeakVoltage, Constants.timeoutMs);
-		m_frontClimb.configPeakOutputReverse(-1.0 * Constants.frontClimbMotorPeakVoltage, Constants.timeoutMs);
+		m_frontClimb.configPeakOutputForward(Constants.frontClimbTestDutyCycle, Constants.timeoutMs);
+		m_frontClimb.configPeakOutputReverse(-1.0 * Constants.frontClimbTestDutyCycle, Constants.timeoutMs);
 
 		m_frontClimb.configAllowableClosedloopError(0, (int)Constants.frontClimbMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
