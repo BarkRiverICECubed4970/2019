@@ -30,6 +30,8 @@ public class FrontClimb extends Subsystem {
 		
 		m_frontClimb.setSensorPhase(false);
 				   
+		m_frontClimb.setInverted(true);
+		
 		m_frontClimb.setNeutralMode(NeutralMode.Brake);
 		
 		/* 

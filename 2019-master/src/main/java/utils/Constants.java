@@ -107,7 +107,7 @@ public class Constants {
 	public static double rearClimbCommandTimeout = 5.0;
 	public static double rearClimbAllowableClosedLoopError = 10;
 
-	public static double rearClimbMotorPidKp = 0.001;
+	public static double rearClimbMotorPidKp = 1.0;
     public static double rearClimbMotorPidKi = 0.0;
     public static double rearClimbMotorPidKd = 0.0;
 	public static double rearClimbMotorPidKf = 0.0;
@@ -119,7 +119,7 @@ public class Constants {
 	public static double climbDriveDutyCycle = 0.8;
 	public static double frontClimbTestDutyCycle = 0.8;
 	public static double rearClimbForwardTestDutyCycle = 0.8;
-	public static double rearClimbReverseTestDutyCycle = 0.3;
+	public static double rearClimbReverseTestDutyCycle = 0.5;
 	public static double platformDriveDutyCycle = 0.3;
 
 	public static double platformDriveTimeout = 4.0;
@@ -127,8 +127,8 @@ public class Constants {
 	public static double stallCommandTimeout = 1.0;
 
 	public static double frontClimbStartPositionSetpoint = 0.0;
-	public static double frontClimbPlatformPositionSetpoint = 0.0;
-	public static double frontClimbFinalPositionSetpoint = 0.0;
+	public static double frontClimbPlatformPositionSetpoint = -1280.0;
+	public static double frontClimbFinalPositionSetpoint = -3100.0;
 	public static double frontClimbCommandTimeout = 5.0;
 	public static double frontClimbAllowableClosedLoopError = 10;
 
