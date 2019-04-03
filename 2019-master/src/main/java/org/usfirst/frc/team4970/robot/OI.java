@@ -116,23 +116,14 @@ public class OI {
 		joystickButton2 = new JoystickButton(joystick2, 4);
 		joystickButton2.whileHeld(new ClimbRearMoveManualOpposite());
 	
-  //      joystickButton2 = new JoystickButton(joystick2, 14);
-  //      joystickButton2.whileHeld(new ClimbRearMoveManual());
-        
-        joystickButton2 = new JoystickButton(joystick2, 14);
-        joystickButton2.whenPressed(new ClimberSequence());
-        
-  //      joystickButton2 = new JoystickButton(joystick2, 8);
-  //      joystickButton2.whileHeld(new ClimbDriveForward());
-        
-  //      joystickButton2 = new JoystickButton(joystick2, 7);
-  ///      joystickButton2.whileHeld(new ClimbDriveReverse());
-        
- //       joystickButton2 = new JoystickButton(joystick2, 14);
- //       joystickButton2.whileHeld(new DriveStraightOnPlatform());
+  //      joystickButton2 = new JoystickButton(joystick2, 11);
+  //      joystickButton2.whileHeld(new ClimberSmallPlatformSequence());
+  
+		joystickButton2 = new JoystickButton(joystick2, 13);
+		joystickButton2.whenPressed(new ClimberOffPlatformSequence());
 
-		//        joystickButton1 = new JoystickButton(joystick, 13);
-//	      joystickButton1.whileHeld(new DriveAssistBall());
+		joystickButton2 = new JoystickButton(joystick2, 14);
+		joystickButton2.whenPressed(new ClimberSequence());
         
     	// SmartDashboard Buttons
     	SmartDashboard.putData("Drive Straight", new DriveStraight(0.0, 0.0, true));
@@ -166,6 +157,7 @@ public class OI {
 		SmartDashboard.putData("Front Climber to Final Position", new ClimbFrontToFinalPos());
 		SmartDashboard.putData("Front Climber to Platform Position", new ClimbFrontToPlatform());
 		SmartDashboard.putData("Front Climber Move Manual", new ClimbFrontMoveManual());
+		SmartDashboard.putData("Front Climber To Drive Off Position", new ClimbFrontToDriveOffPos());
 
 		SmartDashboard.putData("Back Climber to Start Position", new ClimbRearToStartPos());
 		SmartDashboard.putData("Back Climber to Final Position", new ClimbRearToFinalPos());
@@ -177,6 +169,7 @@ public class OI {
 		SmartDashboard.putData("Both Climbers To Final Position", new ClimbersToFinalGroup());
 
 		SmartDashboard.putData("Climb Sequence", new ClimberSequence());
+		SmartDashboard.putData("Climb Off Platform", new ClimberOffPlatformSequence());
 
     }
 }

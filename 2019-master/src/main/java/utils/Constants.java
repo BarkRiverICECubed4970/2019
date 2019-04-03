@@ -107,7 +107,9 @@ public class Constants {
 	public static double rearClimbCommandTimeout = 3.0;
 	public static double rearClimbAllowableClosedLoopError = 100;
 
-	public static double rearClimbMotorPidKp = 0.5;
+	public static double rearClimbSmallPlatformFinalSetpoint = 6000.0;
+
+	public static double rearClimbMotorPidKp = 0.7;
     public static double rearClimbMotorPidKi = 0.0;
     public static double rearClimbMotorPidKd = 0.0;
 	public static double rearClimbMotorPidKf = 0.0;
@@ -117,10 +119,11 @@ public class Constants {
 	public static double rearClimbMotorPeakVoltage = 1.0;
 
 	public static double climbDriveDutyCycle = 0.8;
-	public static double frontClimbTestDutyCycle = 0.8;
-	public static double frontClimbTestDutyCycleReverse = 0.5;
-	public static double rearClimbForwardTestDutyCycle = 0.8;
+	public static double frontClimbTestDutyCycle = 0.5;
+	public static double frontClimbTestDutyCycleReverse = 1.0;
+	public static double rearClimbForwardTestDutyCycle = 1.0;
 	public static double rearClimbReverseTestDutyCycle = 0.5;
+	public static double rearClimbDriveOffPlatformDutyCycle = 0.6;
 	public static double platformDriveDutyCycle = 0.15;
 
 	public static double platformDriveTimeout = 4.0;
@@ -129,11 +132,16 @@ public class Constants {
 
 	public static double frontClimbStartPositionSetpoint = 0.0;
 	public static double frontClimbPlatformPositionSetpoint = -1150.0;
-	public static double frontClimbFinalPositionSetpoint = -3100.0;
+	public static double frontClimbFinalPositionSetpoint = -3300.0;
 	public static double frontClimbCommandTimeout = 3.0;
 	public static double frontClimbAllowableClosedLoopError = 100;
 
-	public static double frontClimbMotorPidKp = 0.75;
+	public static double frontClimbSmallPlatformStartSetpoint = -2000.0;
+	public static double frontClimbSmallPlatformFinalSetpoint = -2500.0;
+
+	public static double frontClimbDriveOffSetpoint = -3850.0;
+
+	public static double frontClimbMotorPidKp = 1.0;
     public static double frontClimbMotorPidKi = 0.0;
     public static double frontClimbMotorPidKd = 0.0;
 	public static double frontClimbMotorPidKf = 0.0;
@@ -228,8 +236,11 @@ public class Constants {
 
 		/* Front Climber */
 		SmartDashboard.putNumber("Front Climb Platform Setpoint", frontClimbPlatformPositionSetpoint);
+		SmartDashboard.putNumber("Front Climb Small Platform Start Setpoint", frontClimbSmallPlatformStartSetpoint);
+		SmartDashboard.putNumber("Front Climb Small Platform Final Setpoint", frontClimbSmallPlatformFinalSetpoint);
 		SmartDashboard.putNumber("Front Climb Start Setpoint", frontClimbStartPositionSetpoint);
-		SmartDashboard.putNumber("Front Climb Final Setpoint", frontClimbFinalPositionSetpoint);		
+		SmartDashboard.putNumber("Front Climb Final Setpoint", frontClimbFinalPositionSetpoint);	
+		SmartDashboard.putNumber("Front Climb Drive Off Setpoint", frontClimbDriveOffSetpoint);	
 		SmartDashboard.putNumber("Front Climb Test Duty Cycle", frontClimbTestDutyCycle);
 		SmartDashboard.putNumber("Front Climb PID KP", frontClimbMotorPidKp);
 		SmartDashboard.putNumber("Front Climb PID KI", frontClimbMotorPidKi);
@@ -243,8 +254,10 @@ public class Constants {
 		SmartDashboard.putNumber("Rear Climb Platform Setpoint", rearClimbPlatformPositionSetpoint);
 		SmartDashboard.putNumber("Rear Climb Start Setpoint", rearClimbStartPositionSetpoint);
 		SmartDashboard.putNumber("Rear Climb Final Setpoint", rearClimbFinalPositionSetpoint);		
+		SmartDashboard.putNumber("Rear Climb Small Platform Final Setpoint", rearClimbSmallPlatformFinalSetpoint);
 		SmartDashboard.putNumber("Rear Climb Forward Test Duty Cycle", rearClimbForwardTestDutyCycle);
 		SmartDashboard.putNumber("Rear Climb Reverse Test Duty Cycle", rearClimbReverseTestDutyCycle);
+		SmartDashboard.putNumber("Rear Climb Drive Off Duty Cycle", rearClimbDriveOffPlatformDutyCycle);
 		SmartDashboard.putNumber("Rear Climb PID KP", rearClimbMotorPidKp);
 		SmartDashboard.putNumber("Rear Climb PID KI", rearClimbMotorPidKi);
 		SmartDashboard.putNumber("Rear Climb PID KD", rearClimbMotorPidKd);
