@@ -105,13 +105,13 @@ public class OI {
 		joystickButton2.whileHeld(new ClimbDriveReverse());
   
 		joystickButton2 = new JoystickButton(joystick2, 1);
-		joystickButton2.whileHeld(new ClimbFrontMoveManual());
+		joystickButton2.whileHeld(new ClimbFrontMoveManualOpposite());
   
 		joystickButton2 = new JoystickButton(joystick2, 2);
 		joystickButton2.whileHeld(new ClimbRearMoveManual());
   
 		joystickButton2 = new JoystickButton(joystick2, 3);
-		joystickButton2.whileHeld(new ClimbFrontMoveManualOpposite());
+		joystickButton2.whileHeld(new ClimbFrontMoveManual());
   
 		joystickButton2 = new JoystickButton(joystick2, 4);
 		joystickButton2.whileHeld(new ClimbRearMoveManualOpposite());
@@ -119,8 +119,8 @@ public class OI {
   //      joystickButton2 = new JoystickButton(joystick2, 14);
   //      joystickButton2.whileHeld(new ClimbRearMoveManual());
         
-  //      joystickButton2 = new JoystickButton(joystick2, 14);
-  //      joystickButton2.whileHeld(new ClimbFrontMoveManual());
+        joystickButton2 = new JoystickButton(joystick2, 14);
+        joystickButton2.whenPressed(new ClimberSequence());
         
   //      joystickButton2 = new JoystickButton(joystick2, 8);
   //      joystickButton2.whileHeld(new ClimbDriveForward());
@@ -128,8 +128,8 @@ public class OI {
   //      joystickButton2 = new JoystickButton(joystick2, 7);
   ///      joystickButton2.whileHeld(new ClimbDriveReverse());
         
-        joystickButton2 = new JoystickButton(joystick2, 14);
-        joystickButton2.whileHeld(new DriveStraightOnPlatform());
+ //       joystickButton2 = new JoystickButton(joystick2, 14);
+ //       joystickButton2.whileHeld(new DriveStraightOnPlatform());
 
 		//        joystickButton1 = new JoystickButton(joystick, 13);
 //	      joystickButton1.whileHeld(new DriveAssistBall());
@@ -175,6 +175,8 @@ public class OI {
 		SmartDashboard.putData("Both Climbers To Platform Position", new ClimbersToPlatformGroup());
 		SmartDashboard.putData("Both Climbers To Start Position", new ClimbersToStartGroup());
 		SmartDashboard.putData("Both Climbers To Final Position", new ClimbersToFinalGroup());
+
+		SmartDashboard.putData("Climb Sequence", new ClimberSequence());
 
     }
 }

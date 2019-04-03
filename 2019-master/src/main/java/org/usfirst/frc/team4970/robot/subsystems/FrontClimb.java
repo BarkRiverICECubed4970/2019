@@ -26,12 +26,11 @@ public class FrontClimb extends Subsystem {
 		m_frontClimb.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.timeoutMs);
 
 		m_frontClimb.configNominalOutputForward(0, Constants.timeoutMs);
-		m_frontClimb.configNominalOutputReverse(0, Constants.timeoutMs);
-		
-		m_frontClimb.setSensorPhase(false);
+		m_frontClimb.configNominalOutputReverse(0, Constants.timeoutMs);		
 				   
-		m_frontClimb.setInverted(true);
-		
+		m_frontClimb.setInverted(false);
+		m_frontClimb.setSensorPhase(true);
+
 		m_frontClimb.setNeutralMode(NeutralMode.Brake);
 		
 		/* 
@@ -50,7 +49,7 @@ public class FrontClimb extends Subsystem {
 		m_frontClimb.configMotionAcceleration((int)Constants.frontClimbMotorMotionAcceleration, Constants.timeoutMs);
 
 		m_frontClimb.configPeakOutputForward(Constants.frontClimbTestDutyCycle, Constants.timeoutMs);
-		m_frontClimb.configPeakOutputReverse(-1.0 * Constants.frontClimbTestDutyCycle, Constants.timeoutMs);
+		m_frontClimb.configPeakOutputReverse(-1.0 * Constants.frontClimbTestDutyCycleReverse, Constants.timeoutMs);
 
 		m_frontClimb.configAllowableClosedloopError(0, (int)Constants.frontClimbMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 

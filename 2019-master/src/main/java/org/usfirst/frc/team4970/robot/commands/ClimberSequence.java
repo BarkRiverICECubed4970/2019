@@ -8,10 +8,10 @@ public class ClimberSequence extends CommandGroup {
         addSequential(new ClimbersToPlatformGroup());
 
         /* one second pause */
-        addSequential(new StallCommand());
+//        addSequential(new StallCommand());
 
         /* assuming the front to platform finishes first, this will be fine */
-        addParallel(new ClimbDriveForward());
+        addParallel(new ClimbDriveReverse());
         addParallel(new ClimbFrontToFinalPos());
         addParallel(new ClimbRearToFinalPos());
 
@@ -19,6 +19,10 @@ public class ClimberSequence extends CommandGroup {
         addSequential(new StallCommand());
 
         addSequential(new DriveStraightOnPlatform());
+
+        addParallel(new ClimbRearStop());
+        addParallel(new ClimbFrontStop());
+        addSequential(new ClimbDriveStop());
 
         // add front climber to start position?
         // add rear climber to platform position?

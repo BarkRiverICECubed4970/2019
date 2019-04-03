@@ -34,6 +34,9 @@ public class DriveStraightOnPlatform extends Command {
 		Robot._driveTrain.setupGyroPID(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT);
 		Robot._driveTrain.setDriveTrainBrakeMode(true);
 		Robot._driveTrain.setGyroPidSetpoint(0.0);
+
+		setTimeout(Constants.platformDriveTimeout);
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -47,7 +50,12 @@ public class DriveStraightOnPlatform extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+    	if (isTimedOut())
+    	{
+    		return true;
+    	} else {
+            return false;
+		}
 	}
 
 	// Called once after isFinished returns true

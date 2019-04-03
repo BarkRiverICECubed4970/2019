@@ -46,7 +46,7 @@ public class Constants {
     // 714 counts per 18.85 inches = 37.87
     public static double driveEncoderCountsPerInch = 74.7;
 	
-	public static double driveAssistDutyCycle = 0.3;
+	public static double driveAssistDutyCycle = 0.2;
 	public static double driveAssistTimeout = 3.0;
 	public static double driveAssistPixelsToDegrees = 0.05;
 	public static double hatchAssistImageCenterPixels = 0.0;
@@ -56,7 +56,7 @@ public class Constants {
     public static double turnDegreesTimeout = 2.0;
     public static double turnDegrees = -90.0;
     
-    public static double gyroStraightPidKp = 0.15;
+    public static double gyroStraightPidKp = 0.08;
     public static double gyroTurnPidKp = 0.08;
     public static double gyroReversePidKp = 0.05;
     public static double gyroPidKi = 0.0;
@@ -102,43 +102,44 @@ public class Constants {
     public static double outputBallDutyCycle = 0.4;
 
 	public static double rearClimbStartPositionSetpoint = 0.0;
-	public static double rearClimbPlatformPositionSetpoint = 4600.0;
+	public static double rearClimbPlatformPositionSetpoint = 5200.0;
 	public static double rearClimbFinalPositionSetpoint = 8500.0;
-	public static double rearClimbCommandTimeout = 5.0;
-	public static double rearClimbAllowableClosedLoopError = 10;
+	public static double rearClimbCommandTimeout = 3.0;
+	public static double rearClimbAllowableClosedLoopError = 100;
 
-	public static double rearClimbMotorPidKp = 1.0;
+	public static double rearClimbMotorPidKp = 0.5;
     public static double rearClimbMotorPidKi = 0.0;
     public static double rearClimbMotorPidKd = 0.0;
 	public static double rearClimbMotorPidKf = 0.0;
 	public static double rearClimbMotorMotionCruiseVelocity = 4000.0;
 	public static double rearClimbMotorMotionAcceleration = 2000.0;
-    public static double rearClimbMotorAllowableClosedLoopError = 10;
+    public static double rearClimbMotorAllowableClosedLoopError = 100;
 	public static double rearClimbMotorPeakVoltage = 1.0;
 
 	public static double climbDriveDutyCycle = 0.8;
 	public static double frontClimbTestDutyCycle = 0.8;
+	public static double frontClimbTestDutyCycleReverse = 0.5;
 	public static double rearClimbForwardTestDutyCycle = 0.8;
 	public static double rearClimbReverseTestDutyCycle = 0.5;
-	public static double platformDriveDutyCycle = 0.3;
+	public static double platformDriveDutyCycle = 0.15;
 
 	public static double platformDriveTimeout = 4.0;
 
 	public static double stallCommandTimeout = 1.0;
 
 	public static double frontClimbStartPositionSetpoint = 0.0;
-	public static double frontClimbPlatformPositionSetpoint = -1280.0;
+	public static double frontClimbPlatformPositionSetpoint = -1150.0;
 	public static double frontClimbFinalPositionSetpoint = -3100.0;
-	public static double frontClimbCommandTimeout = 5.0;
-	public static double frontClimbAllowableClosedLoopError = 10;
+	public static double frontClimbCommandTimeout = 3.0;
+	public static double frontClimbAllowableClosedLoopError = 100;
 
-	public static double frontClimbMotorPidKp = 0.001;
+	public static double frontClimbMotorPidKp = 0.75;
     public static double frontClimbMotorPidKi = 0.0;
     public static double frontClimbMotorPidKd = 0.0;
 	public static double frontClimbMotorPidKf = 0.0;
 	public static double frontClimbMotorMotionCruiseVelocity = 4000.0;
 	public static double frontClimbMotorMotionAcceleration = 2000.0;
-    public static double frontClimbMotorAllowableClosedLoopError = 10;
+    public static double frontClimbMotorAllowableClosedLoopError = 100;
 	public static double frontClimbMotorPeakVoltage = 1.0;
 
     public static final int timeoutMs = 10;
