@@ -40,7 +40,7 @@ public class HatchMotor extends Subsystem {
     }
     
     public void keepUp() {
-    	m_hatch.set(ControlMode.PercentOutput, -1.0 * SmartDashboard.getNumber("Hatch Down Duty Cycle", Constants.hatchMotorDownDutyCycle));
+    	m_hatch.set(ControlMode.PercentOutput, -1.0 * SmartDashboard.getNumber("Hatch Keep Up Duty Cycle", Constants.hatchMotorKeepUpDutyCycle));
     }
     
     public void holdDown() {

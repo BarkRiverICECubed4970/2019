@@ -73,8 +73,9 @@ public class Constants {
     public static double intakeMotorPidKd = 0.0;
     public static double intakeMotorAllowableClosedLoopError = 10;
 
-    public static double hatchMotorUpDutyCycle = 0.35;
-    public static double hatchMotorDownDutyCycle = 0.3;
+    public static double hatchMotorUpDutyCycle = 0.25;
+	public static double hatchMotorDownDutyCycle = 0.4;
+	public static double hatchMotorKeepUpDutyCycle = 0.25;
 
 	public static double hatchCommandTimeout = 1.0;
 
@@ -128,7 +129,7 @@ public class Constants {
 
 	public static double platformDriveTimeout = 4.0;
 
-	public static double stallCommandTimeout = 1.0;
+	public static double stallCommandTimeout = 0.5;
 
 	public static double frontClimbStartPositionSetpoint = 0.0;
 	public static double frontClimbPlatformPositionSetpoint = -1150.0;
@@ -225,6 +226,7 @@ public class Constants {
     	SmartDashboard.putNumber("Hatch Up Duty Cycle", hatchMotorUpDutyCycle);
     	SmartDashboard.putNumber("Hatch Down Duty Cycle", hatchMotorDownDutyCycle);
 		SmartDashboard.putNumber("Hatch Command Timeout", hatchCommandTimeout);
+		SmartDashboard.putNumber("Hatch Keep Up Duty Cycle", hatchMotorKeepUpDutyCycle);
 
 		/* Climb Drive */
 		SmartDashboard.putNumber("Climber Drive Duty Cycle", climbDriveDutyCycle);
