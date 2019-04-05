@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.*;
 
 import org.usfirst.frc.team4970.robot.commands.DriveStraight;
-import org.usfirst.frc.team4970.robot.commands.HatchUp;
+import org.usfirst.frc.team4970.robot.commands.*;
 
 
 
@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
 		
 		_calibrationManager = new Constants();
 		
-	    m_chooser.setDefaultOption("Do Nothing", new HatchUp());
+	    m_chooser.setDefaultOption("Do Nothing", new ClimbersToStartAutonGroup());
 //		m_chooser.addObject("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches, 0.0, false));
         // instantiate the command used for the autonomous period
 
