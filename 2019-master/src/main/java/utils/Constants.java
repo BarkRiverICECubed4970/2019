@@ -46,7 +46,7 @@ public class Constants {
     // 714 counts per 18.85 inches = 37.87
     public static double driveEncoderCountsPerInch = 74.7;
 	
-	public static double driveAssistDutyCycle = 0.2;
+	public static double driveAssistDutyCycle = 0.12;
 	public static double driveAssistTimeout = 3.0;
 	public static double driveAssistPixelsToDegrees = 0.05;
 	public static double hatchAssistImageCenterPixels = 0.0;
@@ -56,7 +56,7 @@ public class Constants {
     public static double turnDegreesTimeout = 2.0;
     public static double turnDegrees = -90.0;
     
-    public static double gyroStraightPidKp = 0.08;
+    public static double gyroStraightPidKp = 0.06;
     public static double gyroTurnPidKp = 0.08;
     public static double gyroReversePidKp = 0.05;
     public static double gyroPidKi = 0.0;
@@ -108,7 +108,7 @@ public class Constants {
 	public static double rearClimbCommandTimeout = 3.0;
 	public static double rearClimbAllowableClosedLoopError = 100;
 
-	public static double rearClimbSmallPlatformFinalSetpoint = 6000.0;
+	public static double rearClimbSmallPlatformFinalSetpoint = 6400.0;
 
 	public static double rearClimbMotorPidKp = 0.7;
     public static double rearClimbMotorPidKi = 0.0;
@@ -122,12 +122,13 @@ public class Constants {
 	public static double climbDriveDutyCycle = 0.8;
 	public static double frontClimbTestDutyCycle = 0.5;
 	public static double frontClimbTestDutyCycleReverse = 1.0;
-	public static double rearClimbForwardTestDutyCycle = 1.0;
+	public static double rearClimbForwardTestDutyCycle = 0.8;
 	public static double rearClimbReverseTestDutyCycle = 0.5;
 	public static double rearClimbDriveOffPlatformDutyCycle = 0.6;
 	public static double platformDriveDutyCycle = 0.15;
 
 	public static double platformDriveTimeout = 4.0;
+	public static double platformLevelOneDriveTimeout = 1.5;
 
 	public static double stallCommandTimeout = 0.5;
 
@@ -137,8 +138,7 @@ public class Constants {
 	public static double frontClimbCommandTimeout = 3.0;
 	public static double frontClimbAllowableClosedLoopError = 100;
 
-	public static double frontClimbSmallPlatformStartSetpoint = -2000.0;
-	public static double frontClimbSmallPlatformFinalSetpoint = -2500.0;
+	public static double frontClimbSmallPlatformStartSetpoint = -2520.0;
 
 	public static double frontClimbDriveOffSetpoint = -3850.0;
 
@@ -239,7 +239,6 @@ public class Constants {
 		/* Front Climber */
 		SmartDashboard.putNumber("Front Climb Platform Setpoint", frontClimbPlatformPositionSetpoint);
 		SmartDashboard.putNumber("Front Climb Small Platform Start Setpoint", frontClimbSmallPlatformStartSetpoint);
-		SmartDashboard.putNumber("Front Climb Small Platform Final Setpoint", frontClimbSmallPlatformFinalSetpoint);
 		SmartDashboard.putNumber("Front Climb Start Setpoint", frontClimbStartPositionSetpoint);
 		SmartDashboard.putNumber("Front Climb Final Setpoint", frontClimbFinalPositionSetpoint);	
 		SmartDashboard.putNumber("Front Climb Drive Off Setpoint", frontClimbDriveOffSetpoint);	

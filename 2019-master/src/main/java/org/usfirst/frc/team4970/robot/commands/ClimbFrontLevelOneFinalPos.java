@@ -10,23 +10,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ClimbFrontToSmallFinalPos extends Command {
+public class ClimbFrontLevelOneFinalPos extends Command {
 
-	public ClimbFrontToSmallFinalPos() {
+	public ClimbFrontLevelOneFinalPos() {
 
         requires(Robot._frontClimber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.frontClimbSmallPlatformFinalSetpoint = SmartDashboard.getNumber("Front Climb Small Platform Final Setpoint", Constants.frontClimbSmallPlatformFinalSetpoint);
+        Constants.frontClimbFinalPositionSetpoint = SmartDashboard.getNumber("Front Climb Final Setpoint", Constants.frontClimbFinalPositionSetpoint);
 
         Constants.frontClimbCommandTimeout = SmartDashboard.getNumber("Front Climb Command Timeout", Constants.frontClimbCommandTimeout);
 
     	setTimeout(Constants.frontClimbCommandTimeout);
 
        	FrontClimb._legState = FrontClimb.LegState.LEGS_MOVING;    		
-        Robot._frontClimber.moveToPosition(Constants.frontClimbSmallPlatformFinalSetpoint);
+        Robot._frontClimber.moveToPosition(-3700);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,7 +35,7 @@ public class ClimbFrontToSmallFinalPos extends Command {
 
     protected boolean isFinished() {
     	if ((isTimedOut()) || 
-    		((Math.abs(Robot._frontClimber.getEncoderCount() - Constants.frontClimbSmallPlatformFinalSetpoint))
+    		((Math.abs(Robot._frontClimber.getEncoderCount() - Constants.frontClimbFinalPositionSetpoint))
     			<= Constants.frontClimbAllowableClosedLoopError))
     	{
     		FrontClimb._legState = FrontClimb.LegState.LEGS_FINAL_POSITION;

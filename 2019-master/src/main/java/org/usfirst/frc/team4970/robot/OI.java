@@ -119,6 +119,9 @@ public class OI {
   //      joystickButton2 = new JoystickButton(joystick2, 11);
   //      joystickButton2.whileHeld(new ClimberSmallPlatformSequence());
   
+		joystickButton2 = new JoystickButton(joystick2, 12);
+		joystickButton2.whenPressed(new ClimberSequenceLevelOne());
+
 		joystickButton2 = new JoystickButton(joystick2, 13);
 		joystickButton2.whenPressed(new ClimberOffPlatformSequence());
 

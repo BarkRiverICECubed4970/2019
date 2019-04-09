@@ -115,7 +115,7 @@ public final class Main {
   private static double leftAngle = 0.0;
   private static double leftIndex = 0.0;
 
-  private static final double CENTER_IMAGE = 60.0;
+  private static final double CENTER_IMAGE = 80.0;
 
   private Main() {
   }
@@ -333,22 +333,18 @@ public final class Main {
 		if (i > 0)
 		{
 			rightAngle = rotRectArray.get(i-1).angle;
-			rightIndex = rectArray.get(i-1).y;
+			rightIndex = rectArray.get(i-1).x;
 			leftAngle = rotRectArray.get(i).angle;
-			leftIndex = rectArray.get(i).y;
-		/*
-		 *  Contour arrays are built from top to bottom, so for vision processing,
-		 *  place the camera sideways and now we don't need to sort the arrays.
-		 *  Now, centerX is actually centerY!
-		 */ 
-		  if (rightAngle < leftAngle)
+			leftIndex = rectArray.get(i).x;
+
+		  if (true)
 		  {
 			/* found a potential target pair... which one is closest
 			 * to center image */
                         r1 = rectArray.get(i-1);
 			r2 = rectArray.get(i);
 
-                        centerXTemp = ((r1.y + r1.height) - r2.y)/2.0 + r2.y;
+                        centerXTemp = ((r1.x + r1.width) - r2.x)/2.0 + r2.x;
                         centerXTemp = centerXTemp - CENTER_IMAGE;
 //		        System.out.println("centerXTemp = " + centerXTemp);
 

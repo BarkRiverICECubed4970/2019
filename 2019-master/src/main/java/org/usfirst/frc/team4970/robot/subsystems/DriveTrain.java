@@ -162,7 +162,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 			case DRIVE_ASSIST:
 				squaredInputs = false;
 				forward = -Constants.driveAssistDutyCycle;
-				rotate = PID_rotateValue;
+				rotate = -PID_rotateValue;
 				break;
 
 	    	case STOP:
