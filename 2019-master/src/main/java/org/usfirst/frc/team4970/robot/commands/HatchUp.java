@@ -20,11 +20,13 @@ public class HatchUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.hatchCommandTimeout = SmartDashboard.getNumber("Hatch Command Timeout", Constants.hatchCommandTimeout);
+//        Constants.hatchCommandTimeout = SmartDashboard.getNumber("Hatch Command Timeout", Constants.hatchCommandTimeout);
 
-    	setTimeout(Constants.hatchCommandTimeout);
+//    	setTimeout(Constants.hatchCommandTimeout);
 
-        Robot._hatchMotor.holdUp();
+        Robot._hatchMotor.setHatchKp();
+
+        Robot._hatchMotor.moveHatchPosition(Constants.hatchMotorUpPositionSetpoint);
         HatchMotor._hatchState = HatchMotor.HatchState.HATCH_UP;
     }
 
@@ -34,18 +36,13 @@ public class HatchUp extends Command {
 
 
     protected boolean isFinished() {
-    	if (isTimedOut())
-    	{
-    		return true;
-    	} else {
-            return false;
-        }
+   		return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
         /* spring holds this up */
-    	Robot._hatchMotor.keepUp();
+//    	Robot._hatchMotor.keepUp();
     }
 
     // Called when another command which requires one or more of the same

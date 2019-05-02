@@ -80,7 +80,20 @@ public class Constants {
 	public static double hatchCommandTimeout = 1.0;
 
 	public static double ballOutputAutoTimeout = 2.0;
-    
+
+	public static double hatchMotorPidKp = 5.0;
+    public static double hatchMotorPidKi = 0.0;
+    public static double hatchMotorPidKd = 0.0;
+	public static double hatchMotorPidKf = 0.0;
+	public static double hatchMotorMotionCruiseVelocity = 4000.0;
+	public static double hatchMotorMotionAcceleration = 2000.0;
+    public static double hatchMotorAllowableClosedLoopError = 10;
+	public static double hatchMotorPeakVoltageUp = -0.25;
+	public static double hatchMotorPeakVoltageDown = 0.4;
+
+	public static double hatchMotorUpPositionSetpoint = 0.0;
+	public static double hatchMotorDownPositionSetpoint = 880.0;
+
 	public static double liftMotorPidKp = 5.0;
     public static double liftMotorPidKi = 0.0;
     public static double liftMotorPidKd = 0.0;
@@ -108,7 +121,7 @@ public class Constants {
 	public static double rearClimbCommandTimeout = 3.0;
 	public static double rearClimbAllowableClosedLoopError = 100;
 
-	public static double rearClimbSmallPlatformFinalSetpoint = 6400.0;
+	public static double rearClimbSmallPlatformFinalSetpoint = 6800.0;
 
 	public static double rearClimbMotorPidKp = 0.7;
     public static double rearClimbMotorPidKi = 0.0;
@@ -128,13 +141,13 @@ public class Constants {
 	public static double platformDriveDutyCycle = 0.15;
 
 	public static double platformDriveTimeout = 4.0;
-	public static double platformLevelOneDriveTimeout = 1.5;
+	public static double platformLevelOneDriveTimeout = 2.0;
 
 	public static double stallCommandTimeout = 0.5;
 
 	public static double frontClimbStartPositionSetpoint = 0.0;
 	public static double frontClimbPlatformPositionSetpoint = -1150.0;
-	public static double frontClimbFinalPositionSetpoint = -3300.0;
+	public static double frontClimbFinalPositionSetpoint = -3600.0;
 	public static double frontClimbCommandTimeout = 3.0;
 	public static double frontClimbAllowableClosedLoopError = 100;
 
@@ -142,7 +155,7 @@ public class Constants {
 
 	public static double frontClimbDriveOffSetpoint = -3850.0;
 
-	public static double frontClimbMotorPidKp = 1.0;
+	public static double frontClimbMotorPidKp = 2.0;
     public static double frontClimbMotorPidKi = 0.0;
     public static double frontClimbMotorPidKd = 0.0;
 	public static double frontClimbMotorPidKf = 0.0;
@@ -223,7 +236,12 @@ public class Constants {
     	SmartDashboard.putNumber("Ball Output Auto Timeout", ballOutputAutoTimeout);
 		
 		/* Hatch motor */
-    	SmartDashboard.putNumber("Hatch Up Duty Cycle", hatchMotorUpDutyCycle);
+    	SmartDashboard.putNumber("Hatch PID KP", hatchMotorPidKp);
+		SmartDashboard.putNumber("Hatch Motion Cruise Velocity", hatchMotorMotionCruiseVelocity);
+		SmartDashboard.putNumber("Hatch Motion Acceleration", hatchMotorMotionAcceleration);
+		SmartDashboard.putNumber("Hatch Down Setpoint", hatchMotorDownPositionSetpoint);
+
+		SmartDashboard.putNumber("Hatch Up Duty Cycle", hatchMotorUpDutyCycle);
     	SmartDashboard.putNumber("Hatch Down Duty Cycle", hatchMotorDownDutyCycle);
 		SmartDashboard.putNumber("Hatch Command Timeout", hatchCommandTimeout);
 		SmartDashboard.putNumber("Hatch Keep Up Duty Cycle", hatchMotorKeepUpDutyCycle);
@@ -299,6 +317,11 @@ public class Constants {
 		SmartDashboard.putNumber("Left Encoder Count", Robot._driveTrain.getLeftEncoderCount());
 		SmartDashboard.putNumber("Gyro PID output value", Robot._driveTrain.getPidOutput());
     	SmartDashboard.putNumber("Drive Encoder Counts Per Inch", driveEncoderCountsPerInch);
+
+		/* Hatch motor */
+    	SmartDashboard.putNumber("Hatch Encoder Count", Robot._hatchMotor.getEncoderCount());
+    	SmartDashboard.putNumber("Hatch Closed Loop Error", Robot._hatchMotor.getClosedLoopError());
+		SmartDashboard.putNumber("Hatch Motor Output Voltage", Robot._hatchMotor.getMotorOutputVoltage());
 
     	/* Lift motor */
     	SmartDashboard.putNumber("Lift Encoder Count", Robot._liftMotor.getEncoderCount());

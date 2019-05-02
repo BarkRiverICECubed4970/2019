@@ -19,16 +19,19 @@ public class HatchToggle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.hatchCommandTimeout = SmartDashboard.getNumber("Hatch Command Timeout", Constants.hatchCommandTimeout);
+//        Constants.hatchCommandTimeout = SmartDashboard.getNumber("Hatch Command Timeout", Constants.hatchCommandTimeout);
 
-    	setTimeout(Constants.hatchCommandTimeout);
+  //  	setTimeout(Constants.hatchCommandTimeout);
 
         if (HatchMotor._hatchState == HatchMotor.HatchState.HATCH_UP)
         {
-            Robot._hatchMotor.holdDown();
+            Constants.hatchMotorDownPositionSetpoint = SmartDashboard.getNumber("Hatch Down Setpoint", Constants.hatchMotorDownPositionSetpoint);
+            Robot._hatchMotor.moveHatchPosition(Constants.hatchMotorDownPositionSetpoint);
+//            Robot._hatchMotor.holdDown();
             HatchMotor._hatchState = HatchMotor.HatchState.HATCH_DOWN;
         } else{
-            Robot._hatchMotor.holdUp();
+            Robot._hatchMotor.moveHatchPosition(Constants.hatchMotorUpPositionSetpoint);
+//            Robot._hatchMotor.holdUp();
             HatchMotor._hatchState = HatchMotor.HatchState.HATCH_UP;
         }
     }
@@ -39,17 +42,22 @@ public class HatchToggle extends Command {
 
 
     protected boolean isFinished() {
-    	if (isTimedOut())
-    	{
-    		return true;
-    	} else {
-            return false;
-        }
+//        if (isTimedOut())
+//        {
+            return true;
+//        } else
+//        {
+//            return false;
+//        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._hatchMotor.stop();
+ //       if (HatchMotor._hatchState == HatchMotor.HatchState.HATCH_DOWN)
+ //       {
+ //           Robot._hatchMotor.stop();    
+ //       }
+ //   	Robot._hatchMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

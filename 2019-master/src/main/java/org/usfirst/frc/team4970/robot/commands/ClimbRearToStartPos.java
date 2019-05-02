@@ -34,20 +34,21 @@ public class ClimbRearToStartPos extends Command {
     }
 
     protected boolean isFinished() {
-    	if ((isTimedOut()) || 
-    		((Math.abs(Robot._rearClimber.getEncoderCount() - Constants.rearClimbStartPositionSetpoint))
-    			<= Constants.rearClimbAllowableClosedLoopError))
-    	{
-    		RearClimb._legState = RearClimb.LegState.LEGS_START_POSITION;
-    		return true;
-    	} else {
-            return false;
-        }    
+//    	if ((isTimedOut()) || 
+//    		((Math.abs(Robot._rearClimber.getEncoderCount() - Constants.rearClimbStartPositionSetpoint))
+ //   			<= Constants.rearClimbAllowableClosedLoopError))
+  //  	{
+   // 		RearClimb._legState = RearClimb.LegState.LEGS_START_POSITION;
+   // 		return true;
+   // 	} else {
+    //        return false;
+     //   }    
+     return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._rearClimber.hold();
+//    	Robot._rearClimber.hold();
     }
 
     // Called when another command which requires one or more of the same

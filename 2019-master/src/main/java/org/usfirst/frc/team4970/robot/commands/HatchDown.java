@@ -20,13 +20,16 @@ public class HatchDown extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Constants.hatchCommandTimeout = SmartDashboard.getNumber("Hatch Command Timeout", Constants.hatchCommandTimeout);
+ //       Constants.hatchCommandTimeout = SmartDashboard.getNumber("Hatch Command Timeout", Constants.hatchCommandTimeout);
 
-    	setTimeout(Constants.hatchCommandTimeout);
+//    	setTimeout(Constants.hatchCommandTimeout);
 
-        Robot._hatchMotor.holdDown();
+        Robot._hatchMotor.setHatchKp();
+
+        Constants.hatchMotorDownPositionSetpoint = SmartDashboard.getNumber("Hatch Down Setpoint", Constants.hatchMotorDownPositionSetpoint);
+        Robot._hatchMotor.moveHatchPosition(Constants.hatchMotorDownPositionSetpoint);
         HatchMotor._hatchState = HatchMotor.HatchState.HATCH_DOWN;
-    }
+}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -34,12 +37,7 @@ public class HatchDown extends Command {
 
 
     protected boolean isFinished() {
-    	if (isTimedOut())
-    	{
-    		return true;
-    	} else {
-            return false;
-        }
+   		return true;
     }
 
     // Called once after isFinished returns true

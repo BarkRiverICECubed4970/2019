@@ -5,20 +5,22 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class ClimberOffPlatformSequence extends CommandGroup {
     public ClimberOffPlatformSequence() {
-        addSequential(new ClimbFrontToDriveOffPos());
+        // new command
+        addParallel(new HatchUp());
+
+/*
+        SWAPPED THESE TWO COMMANDS TO TEST IN DETROIT...
+*/
+        // new command
+        addParallel(new ClimbFrontToDriveOffPos());
+
+        // old command
+//        addSequential(new ClimbFrontToDriveOffPos());
 
         addParallel(new ClimbDriveReverse());
         addParallel(new ClimbRearToLevel());
         addSequential(new DriveStraightOffPlatform());
 
-        /* one second pause */
- //       addSequential(new StallCommand());
-
-
-//        addSequential(new ClimbRearMoveManualOffPlatform());
-
-        /* one second pause */
-//        addSequential(new StallCommand());
         addParallel(new ClimbDriveStop());
 
         addSequential(new StallCommandSmall());

@@ -34,20 +34,21 @@ public class ClimbFrontToStartPos extends Command {
     }
 
     protected boolean isFinished() {
-    	if ((isTimedOut()) || 
-    		((Math.abs(Robot._frontClimber.getEncoderCount() - Constants.frontClimbStartPositionSetpoint))
-    			<= Constants.frontClimbAllowableClosedLoopError))
-    	{
-    		FrontClimb._legState = FrontClimb.LegState.LEGS_START_POSITION;
-    		return true;
-    	} else {
-            return false;
-        }    
+//    	if ((isTimedOut()) || 
+ //   		((Math.abs(Robot._frontClimber.getEncoderCount() - Constants.frontClimbStartPositionSetpoint))
+  //  			<= Constants.frontClimbAllowableClosedLoopError))
+   // 	{
+   // 		FrontClimb._legState = FrontClimb.LegState.LEGS_START_POSITION;
+   // 		return true;
+   // 	} else {
+    //        return false;
+     //   }    
+     return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._frontClimber.stop();
+//    	Robot._frontClimber.stop();
     }
 
     // Called when another command which requires one or more of the same
